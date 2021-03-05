@@ -360,10 +360,32 @@ public interface GroundItemsConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "rightClickHidden",
+			name = "Right click hidden items",
+			description = "Places hidden items below the 'Walk here' option, making it so that you need to right click to pick them up",
+			position = 26
+	)
+	default boolean rightClickHidden()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "sortByGEPrice",
+			name = "Sort by GE price",
+			description = "Sorts ground items by GE price, instead of alch value",
+			position = 27
+	)
+	default boolean sortByGEPrice()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "doubleTapDelay",
 		name = "Double-tap delay",
 		description = "Delay for the double-tap ALT to hide ground items. 0 to disable.",
-		position = 26
+		position = 28
 	)
 	@Units(Units.MILLISECONDS)
 	default int doubleTapDelay()
@@ -375,7 +397,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "collapseEntries",
 		name = "Collapse ground item menu",
 		description = "Collapses ground item menu entries together and appends count",
-		position = 27
+		position = 29
 	)
 	default boolean collapseEntries()
 	{
@@ -386,7 +408,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "groundItemTimers",
 		name = "Despawn timer",
 		description = "Shows despawn timers for items you've dropped and received as loot",
-		position = 28
+		position = 30
 	)
 	default DespawnTimerMode groundItemTimers()
 	{
@@ -397,7 +419,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "textOutline",
 		name = "Text Outline",
 		description = "Use an outline around text instead of a text shadow",
-		position = 29
+		position = 31
 	)
 	default boolean textOutline()
 	{
