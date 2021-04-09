@@ -13,9 +13,9 @@ plugins {
 dependencies {
     vanillaDep(group = "net.runelite.rs", name = "vanilla", version = rsversion.toString())
 
-    annotationProcessor(group = "org.projectlombok", name = "lombok", version = "1.18.4")
+    annotationProcessor(group = "org.projectlombok", name = "lombok", version = "1.18.16")
 
-    compileOnly(group = "org.projectlombok", name = "lombok", version = "1.18.4")
+    compileOnly(group = "org.projectlombok", name = "lombok", version = "1.18.16")
 
     implementation(gradleApi())
 
