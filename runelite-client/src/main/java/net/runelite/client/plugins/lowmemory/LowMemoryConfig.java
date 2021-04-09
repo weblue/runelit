@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Owain van Brakel <https://github.com/Owain94>
+ * Copyright (c) 2021, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,15 +22,36 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package net.runelite.client.plugins.lowmemory;
 
-object ProjectVersions {
-    const val launcherVersion = "2.2.0"
-    const val rlVersion = "1.7.4"
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
-    const val openosrsVersion = "4.4.0"
+@ConfigGroup(LowMemoryConfig.GROUP)
+public interface LowMemoryConfig extends Config
+{
+	String GROUP = "lowmemory";
 
-    const val rsversion = 194
-    const val cacheversion = 165
+	@ConfigItem(
+		keyName = "lowDetail",
+		name = "Low detail",
+		description = "Hides ground detail and simplifies textures.",
+		position = 0
+	)
+	default boolean lowDetail()
+	{
+		return true;
+	}
 
-    const val lombokVersion = "1.18.20"
+	@ConfigItem(
+		keyName = "hideLowerPlanes",
+		name = "Hide lower planes",
+		description = "Only renders the current plane you are on.",
+		position = 1
+	)
+	default boolean hideLowerPlanes()
+	{
+		return false;
+	}
 }
