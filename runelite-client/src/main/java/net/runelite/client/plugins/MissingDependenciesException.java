@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Noodleeater <noodleeater4@gmail.com>
+ * Copyright (c) 2021, ThatGamerBlue <thatgamerblue@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,27 +22,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins;
 
-/**
- * Represents an archive of data, which is ordered into "groups" of "files".
- */
-public interface AbstractArchive extends IndexDataBase
+import com.google.common.collect.Multimap;
+import java.util.List;
+import lombok.EqualsAndHashCode;
+import lombok.Value;
+import org.pf4j.DependencyResolver;
+
+@Value
+@EqualsAndHashCode(callSuper = true)
+public class MissingDependenciesException extends DependencyResolver.DependenciesNotFoundException
 {
-	/**
-	 * the methods bellow are usefull for reading byte data from the cache
-	 */
-	int getGroupCount();
+	Multimap<String, String> reverseDependencyMap;
 
-	byte[] getConfigData(int archiveId, int fileId);
-
-	int[] getFileIds(int groupId);
-
-	int[][] getFileIds();
-
-	byte[] getFile(int groupId, int fileId);
-
-	int getGroupFileCount(int groupId);
-
-	int[] getFileCounts();
+	public MissingDependenciesException(List<String> dependencies, Multimap<String, String> reverseDependencyMap)
+	{
+		super(dependencies);
+		this.reverseDependencyMap = reverseDependencyMap;
+	}
 }

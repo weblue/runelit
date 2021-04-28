@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Owain van Brakel <https://github.com/Owain94>
+ * Copyright (c) 2021, Maciej <https://github.com/mlewicki12>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,15 +22,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package net.runelite.client.plugins.friendlist;
 
-object ProjectVersions {
-    const val launcherVersion = "2.2.0"
-    const val rlVersion = "1.7.6"
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
-    const val openosrsVersion = "4.6.0"
-
-    const val rsversion = 195
-    const val cacheversion = 165
-
-    const val lombokVersion = "1.18.20"
+@ConfigGroup("friendlist")
+public interface FriendListConfig extends Config
+{
+	@ConfigItem(
+		keyName = "showWorldOnLogin",
+		name = "Show world on login",
+		description = "Shows world number on friend login notifications"
+	)
+	default boolean showWorldOnLogin()
+	{
+		return false;
+	}
 }
