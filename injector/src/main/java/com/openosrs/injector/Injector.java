@@ -14,13 +14,7 @@ import com.openosrs.injector.injectors.InjectConstruct;
 import com.openosrs.injector.injectors.InterfaceInjector;
 import com.openosrs.injector.injectors.MixinInjector;
 import com.openosrs.injector.injectors.RSApiInjector;
-import com.openosrs.injector.injectors.raw.AddPlayerToMenu;
-import com.openosrs.injector.injectors.raw.ClearColorBuffer;
-import com.openosrs.injector.injectors.raw.DrawMenu;
-import com.openosrs.injector.injectors.raw.Occluder;
-import com.openosrs.injector.injectors.raw.RasterizerAlpha;
-import com.openosrs.injector.injectors.raw.RenderDraw;
-import com.openosrs.injector.injectors.raw.ScriptVM;
+import com.openosrs.injector.injectors.raw.*;
 import com.openosrs.injector.rsapi.RSApi;
 import com.openosrs.injector.transformers.InjectTransformer;
 import com.openosrs.injector.transformers.Java8Ifier;
@@ -49,6 +43,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 	public static void main(String[] args)
 	{
+		System.out.println("Main!");
 		OptionParser parser = new OptionParser();
 
 		ArgumentAcceptingOptionSpec<File> vanillaFileOption =
@@ -101,6 +96,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 	public void injectVanilla()
 	{
 		log.debug("[DEBUG] Starting injection");
+		System.out.println("Hello!");
 
 		transform(new Java8Ifier(this));
 
@@ -119,6 +115,8 @@ public class Injector extends InjectData implements InjectTaskHandler
 		inject(new InjectConstruct(this));
 
 		inject(new RSApiInjector(this));
+
+		inject(new PostMenuSort(this));
 
 		//inject(new DrawAfterWidgets(this));
 

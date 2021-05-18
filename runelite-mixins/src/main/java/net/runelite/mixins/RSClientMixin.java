@@ -78,33 +78,7 @@ import net.runelite.api.WidgetNode;
 import net.runelite.api.WorldType;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.CanvasSizeChanged;
-import net.runelite.api.events.ChatMessage;
-import net.runelite.api.events.ClientTick;
-import net.runelite.api.events.DraggingWidgetChanged;
-import net.runelite.api.events.FriendsChatChanged;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GrandExchangeOfferChanged;
-import net.runelite.api.events.GrandExchangeSearched;
-import net.runelite.api.events.ItemSpawned;
-import net.runelite.api.events.Menu;
-import net.runelite.api.events.MenuEntryAdded;
-import net.runelite.api.events.MenuOpened;
-import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.events.MenuShouldLeftClick;
-import net.runelite.api.events.NpcSpawned;
-import net.runelite.api.events.PlayerDespawned;
-import net.runelite.api.events.PlayerMenuOptionsChanged;
-import net.runelite.api.events.PlayerSpawned;
-import net.runelite.api.events.PostStructComposition;
-import net.runelite.api.events.ResizeableChanged;
-import net.runelite.api.events.StatChanged;
-import net.runelite.api.events.UsernameChanged;
-import net.runelite.api.events.VarbitChanged;
-import net.runelite.api.events.VolumeChanged;
-import net.runelite.api.events.WidgetClosed;
-import net.runelite.api.events.WidgetLoaded;
-import net.runelite.api.events.WorldChanged;
+import net.runelite.api.events.*;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.Copy;
@@ -813,6 +787,51 @@ public abstract class RSClientMixin implements RSClient
 
 		setMenuOptionCount(count);
 		oldMenuEntryCount = count;
+	}
+
+	@SuppressWarnings("InfiniteRecursion")
+	@Copy("method4410")
+	@Replace("method4410")
+	private static void copy$menuSorter() {
+		copy$menuSorter();
+
+		int leftClickIndex = client.getMenuOptionCount() - 1;
+		MenuEntrySorted event = new MenuEntrySorted(leftClickIndex);
+		client.getCallbacks().post(event);
+
+		if(leftClickIndex >= 0 && event.getLeftClickIndex() >= 0 && event.getLeftClickIndex() < leftClickIndex){
+			String[] menuOptions = client.getMenuOptions();
+			String[] menuTargets = client.getMenuTargets();
+			int[] menuIdentifiers = client.getMenuIdentifiers();
+			int[] menuTypes = client.getMenuOpcodes();
+			int[] params0 = client.getMenuArguments1();
+			int[] params1 = client.getMenuArguments2();
+			boolean[] leftClick = client.getMenuForceLeftClick();
+
+			String tempOption = menuOptions[leftClickIndex];
+			String tempTarget = menuTargets[leftClickIndex];
+			int tempId = menuIdentifiers[leftClickIndex];
+			int tempOpcode = menuTypes[leftClickIndex];
+			int tempParams0 = params0[leftClickIndex];
+			int tempParams1 = params1[leftClickIndex];
+			boolean tempForceLeft = leftClick[leftClickIndex];
+
+			menuOptions[leftClickIndex] = menuOptions[event.getLeftClickIndex()];
+			menuTargets[leftClickIndex] = menuTargets[event.getLeftClickIndex()];
+			menuIdentifiers[leftClickIndex] = menuIdentifiers[event.getLeftClickIndex()];
+			menuTypes[leftClickIndex] = menuTypes[event.getLeftClickIndex()];
+			params0[leftClickIndex] = params0[event.getLeftClickIndex()];
+			params1[leftClickIndex] = params1[event.getLeftClickIndex()];
+			leftClick[leftClickIndex] = leftClick[event.getLeftClickIndex()];
+
+			menuOptions[event.getLeftClickIndex()] = tempOption;
+			menuTargets[event.getLeftClickIndex()] = tempTarget;
+			menuIdentifiers[event.getLeftClickIndex()] = tempId;
+			menuTypes[event.getLeftClickIndex()] = tempOpcode;
+			params0[event.getLeftClickIndex()] = tempParams0;
+			params1[event.getLeftClickIndex()] = tempParams1;
+			leftClick[event.getLeftClickIndex()] = tempForceLeft;
+		}
 	}
 
 	@FieldHook("menuOptionsCount")

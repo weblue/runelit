@@ -109,6 +109,7 @@ public enum PlayerType implements Enumerated {
 		descriptor = "(B)V",
 		garbageValue = "-96"
 	)
+	@Export("method4410")
 	static final void method4410() {
 		boolean var0 = false; // L: 8967
 
