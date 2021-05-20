@@ -43,7 +43,6 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 	public static void main(String[] args)
 	{
-		System.out.println("Main!");
 		OptionParser parser = new OptionParser();
 
 		ArgumentAcceptingOptionSpec<File> vanillaFileOption =
@@ -116,8 +115,6 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		inject(new RSApiInjector(this));
 
-		inject(new PostMenuSort(this));
-
 		//inject(new DrawAfterWidgets(this));
 
 		inject(new ScriptVM(this));
@@ -132,6 +129,8 @@ public class Injector extends InjectData implements InjectTaskHandler
 		inject(new DrawMenu(this));
 
 		inject(new AddPlayerToMenu(this));
+
+		inject(new PostMenuSort(this));
 
 		validate(new InjectorValidator(this));
 

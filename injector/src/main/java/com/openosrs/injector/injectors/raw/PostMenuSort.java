@@ -18,10 +18,9 @@ public class PostMenuSort extends AbstractInjector {
 
 	@Override
 	public void inject() {
-		log.info("YOLO!!");
 		final Method menu = InjectUtil.findMethod(inject, "menu", "Client", null, true, false);
 
-		int injectIdx = 0;
+		int injectIdx = -1;
 		Instruction labelIns = null;
 		Label label = null;
 
@@ -31,11 +30,12 @@ public class PostMenuSort extends AbstractInjector {
 			injectIdx++;
 			Instruction ic = iterator.next();
 			if (!(ic instanceof GetStatic)) {
+				//System.out.println(injectIdx + " not static " + ic.toString());
 				continue;
 			}
-
-			log.info("static" + ((GetStatic) ic).getField().getName());
+			//System.out.println(injectIdx + " static string " + ((GetStatic) ic).toString());
+			//System.out.println(injectIdx + " static " + ((GetStatic) ic).getField().getName());
 		}
-		log.info("count " + injectIdx);
+		System.out.println(ins.size() + " count " + injectIdx);
 	}
 }
