@@ -574,7 +574,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public Widget[] getWidgetRoots()
 	{
-		int topGroup = getWidgetRoot();
+		int topGroup = getTopLevelInterfaceId();
 		if (topGroup == -1)
 		{
 			return new Widget[]{};
@@ -1068,7 +1068,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("currentLevels")
+	@FieldHook("changedSkills")
 	@Inject
 	public static void boostedSkillLevelsChanged(int idx)
 	{
