@@ -97,6 +97,7 @@ public class ViewportMouse {
 		descriptor = "(B)V",
 		garbageValue = "104"
 	)
+	@Export("method4194")
 	static final void method4194() {
 		boolean var0 = false; // L: 9050
 
