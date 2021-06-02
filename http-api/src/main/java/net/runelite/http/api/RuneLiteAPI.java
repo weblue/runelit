@@ -73,7 +73,6 @@ public class RuneLiteAPI
 
 	private static final Properties properties = new Properties();
 	private static String version;
-	private static int rsVersion;
 
 	private static final HttpUrl RL_URL = HttpUrl.parse("https://raw.githubusercontent.com/runelite/runelite/master/runelite-client/pom.xml");
 
@@ -85,7 +84,6 @@ public class RuneLiteAPI
 			properties.load(in);
 
 			version = properties.getProperty("runelite.version");
-			rsVersion = Integer.parseInt(properties.getProperty("rs.version"));
 			String commit = properties.getProperty("runelite.commit");
 			boolean dirty = Boolean.parseBoolean(properties.getProperty("runelite.dirty"));
 
@@ -210,11 +208,6 @@ public class RuneLiteAPI
 	public static void setVersion(String version)
 	{
 		RuneLiteAPI.version = version;
-	}
-
-	public static int getRsVersion()
-	{
-		return rsVersion;
 	}
 
 }
