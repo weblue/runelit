@@ -71,6 +71,7 @@ import javax.inject.Singleton;
 import javax.swing.JOptionPane;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.RuneLite;
 import net.runelite.client.config.Config;
@@ -127,6 +128,8 @@ public class OPRSExternalPluginManager
 	@Inject
 	@Named("safeMode")
 	private boolean safeMode;
+	@Setter
+	boolean isOutdated;
 
 	public void setupInstance()
 	{
@@ -456,6 +459,11 @@ public class OPRSExternalPluginManager
 				continue;
 			}
 
+			if (!pluginDescriptor.loadWhenOutdated() && isOutdated)
+			{
+				continue;
+			}
+
 			if (safeMode && !pluginDescriptor.loadInSafeMode())
 			{
 				log.debug("Disabling {} due to safe mode", clazz);
@@ -659,9 +667,9 @@ public class OPRSExternalPluginManager
 		{
 			throw new PluginInstantiationException(ex);
 		}
-		catch (NoClassDefFoundError ex)
+		catch (NoClassDefFoundError | NoSuchFieldError | NoSuchMethodError ex)
 		{
-			log.error("Plugin {} is outdated", clazz.getSimpleName());
+			log.error("Plugin {} is outdated", clazz.getSimpleName(), ex);
 			return null;
 		}
 
@@ -782,7 +790,17 @@ public class OPRSExternalPluginManager
 
 			for (net.runelite.client.plugins.Plugin plugin : runelitePluginManager.getPlugins())
 			{
-				if (!extensions.get(0).getClass().getName().equals(plugin.getClass().getName()))
+				boolean found = false;
+				for (Plugin extension : extensions)
+				{
+					if (extension.getClass().getName().equals(plugin.getClass().getName()))
+					{
+						found = true;
+						break;
+					}
+				}
+
+				if (!found)
 				{
 					continue;
 				}

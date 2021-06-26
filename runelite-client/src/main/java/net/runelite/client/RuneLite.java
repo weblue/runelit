@@ -85,6 +85,7 @@ import net.runelite.http.api.worlds.World;
 import net.runelite.http.api.worlds.WorldResult;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import org.slf4j.LoggerFactory;
 
 @Singleton
@@ -261,8 +262,8 @@ public class RuneLite
 
 		OpenOSRS.preload();
 
-		OkHttpClient.Builder okHttpClientBuilder = RuneLiteAPI.CLIENT.newBuilder()
-			.cache(new Cache(new File(CACHE_DIR, "okhttp"), MAX_OKHTTP_CACHE_SIZE));
+		OkHttpClient.Builder okHttpClientBuilder = RuneLiteAPI.CLIENT.newBuilder();
+		setupCache(okHttpClientBuilder, new File(CACHE_DIR, "okhttp"));
 
 		final boolean insecureSkipTlsVerification = options.has("insecure-skip-tls-verification");
 		if (insecureSkipTlsVerification || RuneLiteProperties.isInsecureSkipTlsVerification())
@@ -350,6 +351,7 @@ public class RuneLite
 		oprsExternalPluginManager.setupInstance();
 		oprsExternalPluginManager.startExternalUpdateManager();
 		oprsExternalPluginManager.startExternalPluginManager();
+		oprsExternalPluginManager.setOutdated(isOutdated);
 
 		// Update external plugins
 		oprsExternalPluginManager.update(); //TODO: Re-enable after fixing actions for new repo
@@ -393,12 +395,17 @@ public class RuneLite
 			// Add core overlays
 			WidgetOverlay.createOverlays(client).forEach(overlayManager::add);
 			overlayManager.add(worldMapOverlay.get());
+			eventBus.register(worldMapOverlay.get());
 			overlayManager.add(tooltipOverlay.get());
 
 			playerManager.get();
 
 			// legacy method, i cant figure out how to make it work without garbage
 			eventBus.register(xpDropManager.get());
+
+			//Set the world if specified via CLI args - will not work until clientUI.init is called
+			Optional<Integer> worldArg = Optional.ofNullable(System.getProperty("cli.world")).map(Integer::parseInt);
+			worldArg.ifPresent(this::setWorld);
 		}
 
 		// Start plugins
@@ -407,10 +414,6 @@ public class RuneLite
 		SplashScreen.stop();
 
 		clientUI.show();
-
-		//Set the world if specified via CLI args - will not work until clientUI.init is called
-		Optional<Integer> worldArg = Optional.ofNullable(System.getProperty("cli.world")).map(Integer::parseInt);
-		worldArg.ifPresent(this::setWorld);
 	}
 
 	@VisibleForTesting
@@ -494,6 +497,25 @@ public class RuneLite
 		{
 			log.warn("World {} not found.", correctedWorld);
 		}
+	}
+
+	@VisibleForTesting
+	static void setupCache(OkHttpClient.Builder builder, File cacheDir)
+	{
+		builder.cache(new Cache(cacheDir, MAX_OKHTTP_CACHE_SIZE))
+			.addNetworkInterceptor(chain ->
+			{
+				// This has to be a network interceptor so it gets hit before the cache tries to store stuff
+				Response res = chain.proceed(chain.request());
+				if (res.code() >= 400 && "GET".equals(res.request().method()))
+				{
+					// if the request 404'd we don't want to cache it because its probably temporary
+					res = res.newBuilder()
+						.header("Cache-Control", "no-store")
+						.build();
+				}
+				return res;
+			});
 	}
 
 	private static void setupInsecureTrustManager(OkHttpClient.Builder okHttpClientBuilder)

@@ -673,11 +673,18 @@ public interface Client extends GameEngine
 	boolean isMenuOpen();
 
 	/**
-	 * Gets the angle of the map, or camera yaw.
+	 * Gets the angle of the map, or target camera yaw.
 	 *
 	 * @return the map angle
 	 */
 	int getMapAngle();
+
+	/**
+	 * Set the target camera yaw
+	 *
+	 * @param cameraYawTarget
+	 */
+	void setCameraYawTarget(int cameraYawTarget);
 
 	/**
 	 * Checks whether the client window is currently resized.
@@ -1403,6 +1410,8 @@ public interface Client extends GameEngine
 	 * @return the map sprite
 	 */
 	SpritePixels drawInstanceMap(int z);
+
+	void setMinimapReceivesClicks(boolean minimapReceivesClicks);
 
 	/**
 	 * Executes a client script from the cache

@@ -7,6 +7,7 @@
  */
 package com.openosrs.injector;
 
+import com.google.common.hash.Hashing;
 import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injection.InjectTaskHandler;
 import com.openosrs.injector.injectors.CreateAnnotations;
@@ -21,6 +22,7 @@ import com.openosrs.injector.transformers.Java8Ifier;
 import com.openosrs.injector.transformers.SourceChanger;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -72,7 +74,8 @@ public class Injector extends InjectData implements InjectTaskHandler
 		OptionSet options = parser.parse(args);
 		String oprsVer = options.valueOf(oprsVerOption);
 
-		injector.vanilla = load(options.valueOf(vanillaFileOption));
+		File vanillaFile = options.valueOf(vanillaFileOption);
+		injector.vanilla = load(vanillaFile);
 		injector.deobfuscated = load(
 			new File("../runescape-client/build/libs/runescape-client-" + oprsVer + ".jar"));
 		injector.rsApi = new RSApi(Objects.requireNonNull(
@@ -89,7 +92,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		injector.initToVanilla();
 		injector.injectVanilla();
-		save(injector.getVanilla(), options.valueOf(outFileOption), options.valueOf(outModeOption));
+		save(injector.getVanilla(), options.valueOf(outFileOption), options.valueOf(outModeOption), vanillaFile);
 	}
 
 	public void injectVanilla()
@@ -176,7 +179,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 		log.lifecycle("{} {}", name, transformer.getCompletionMsg());
 	}
 
-	private static void save(ClassGroup group, File output, OutputMode mode)
+	private static void save(ClassGroup group, File output, OutputMode mode, File vanillaFile)
 	{
 		if (output.exists())
 		{
@@ -186,7 +189,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 			}
 			catch (IOException e)
 			{
-				log.info("Failed to delete output directory contents.");
+				log.lifecycle("Failed to delete output directory contents.");
 				throw new RuntimeException(e);
 			}
 		}
@@ -200,6 +203,18 @@ public class Injector extends InjectData implements InjectTaskHandler
 				output.getParentFile().mkdirs();
 				JarUtil.save(group, output);
 				break;
+		}
+
+		try
+		{
+			String hash = com.google.common.io.Files.asByteSource(vanillaFile).hash(Hashing.sha256()).toString();
+			log.lifecycle("Writing vanilla hash: {}", hash);
+			Files.write(output.getParentFile().toPath().resolve("client.hash"), hash.getBytes(StandardCharsets.UTF_8));
+		}
+		catch (IOException ex)
+		{
+			log.lifecycle("Failed to write vanilla hash file");
+			throw new RuntimeException(ex);
 		}
 	}
 
