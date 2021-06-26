@@ -791,8 +791,8 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@SuppressWarnings("InfiniteRecursion")
-	@Copy("method4194")
-	@Replace("method4194")
+	@Copy("method6509")
+	@Replace("method6509")
 	private static void copy$menuSorter() {
 		copy$menuSorter();
 

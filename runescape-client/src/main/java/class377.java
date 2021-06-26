@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -8,6 +9,7 @@ public class class377 {
 		descriptor = "(I)V",
 		garbageValue = "1164354941"
 	)
+	@Export("method6509")
 	static final void method6509() {
 		boolean var0 = false; // L: 8768
 
