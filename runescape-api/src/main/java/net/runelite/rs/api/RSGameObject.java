@@ -32,15 +32,13 @@ public interface RSGameObject extends GameObject
 	int getHeight();
 
 	@Import("orientation")
-	@Override
-	int getRsOrientation();
+	int getModelOrientation();
 
 	@Import("tag")
 	@Override
 	long getHash();
 
 	@Import("flags")
-	@Override
 	int getFlags();
 
 	int getPlane();

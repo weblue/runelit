@@ -89,7 +89,7 @@ public class WidgetID
 	public static final int CLUE_SCROLL_REWARD_GROUP_ID = 73;
 	public static final int BARROWS_REWARD_GROUP_ID = 155;
 	public static final int RAIDS_GROUP_ID = 513;
-	public static final int TOB_PARTY_GROUP_ID = 28;
+	public static final int TOB_GROUP_ID = 28;
 	public static final int MOTHERLODE_MINE_GROUP_ID = 382;
 	public static final int EXPERIENCE_DROP_GROUP_ID = 122;
 	public static final int PUZZLE_BOX_GROUP_ID = 306;
@@ -227,6 +227,9 @@ public class WidgetID
 
 	static class PestControl
 	{
+		static final int KNIGHT_INFO_CONTAINER = 2;
+
+		static final int ACTIVITY_SHIELD_CONTAINER = 9;
 		static final int ACTIVITY_BAR = 10;
 		static final int ACTIVITY_PROGRESS = 12;
 
@@ -660,6 +663,7 @@ public class WidgetID
 
 	static class VolcanicMine
 	{
+		static final int STABILITY_INFOBOX_CONTAINER = 2;
 		static final int TIME_LEFT = 6;
 		static final int POINTS = 8;
 		static final int STABILITY = 10;
@@ -670,6 +674,7 @@ public class WidgetID
 		static final int VENT_A_STATUS = 20;
 		static final int VENT_B_STATUS = 21;
 		static final int VENT_C_STATUS = 22;
+		static final int VENTS_INFOBOX_CONTAINER = 26;
 	}
 
 	static class BarbarianAssault
@@ -713,7 +718,9 @@ public class WidgetID
 
 	static class Tob
 	{
+		static final int PARTY_INTERFACE = 5;
 		static final int PARTY_STATS = 7;
+		static final int HEALTHBAR_CONTAINER = 9;
 	}
 
 	static class PuzzleBox
@@ -847,7 +854,7 @@ public class WidgetID
 		static final int KILLDEATH_RATIO = 26;
 		static final int SKULL_CONTAINER = 45;
 		static final int SAFE_ZONE = 47;
-		static final int WILDERNESS_LEVEL = 49; // this can also be the Deadman Mode "Protection" text
+		static final int WILDERNESS_LEVEL = 50; // this can also be the Deadman Mode "Protection" text
 	}
 
 	static class KourendFavour
@@ -914,10 +921,10 @@ public class WidgetID
 
 	static class SettingsSide
 	{
-		static final int CAMERA_ZOOM_SLIDER_TRACK = 61;
-		static final int MUSIC_SLIDER = 14;
-		static final int SOUND_EFFECT_SLIDER = 18;
-		static final int AREA_SOUND_SLIDER = 22;
+		static final int CAMERA_ZOOM_SLIDER_TRACK = 98;
+		static final int MUSIC_SLIDER = 27;
+		static final int SOUND_EFFECT_SLIDER = 41;
+		static final int AREA_SOUND_SLIDER = 55;
 	}
 
 	static class Settings
@@ -942,7 +949,7 @@ public class WidgetID
 
 	static class LmsKDA
 	{
-		static final int INFO = 7;
+		static final int INFO = 4;
 	}
 
 	static class AdventureLog
@@ -996,7 +1003,7 @@ public class WidgetID
 
 	static class TemporossStatus
 	{
-		static final int STATUS_INDICATOR = 4;
+		static final int STATUS_INDICATOR = 2;
 	}
 
 	static class DialogNotification
@@ -1214,31 +1221,49 @@ public class WidgetID
 
 		// ARCEUUS SPELLS
 		static final int ARCEUUS_HOME_TELEPORT = 144;
-		static final int BATTLEFRONT_TELEPORT = 179;
-		// HEADS
-		static final int REANIMATE_GOBLIN = 145;
-		static final int REANIMATE_MONKEY = 147;
-		static final int REANIMATE_IMP = 148;
-		static final int REANIMATE_MINOTAUR = 149;
-		static final int REANIMATE_SCORPION = 151;
-		static final int REANIMATE_BEAR = 152;
-		static final int REANIMATE_UNICORN = 153;
-		static final int REANIMATE_DOG = 154;
-		static final int REANIMATE_CHAOS_DRUID = 156;
-		static final int REANIMATE_GIANT = 158;
-		static final int REANIMATE_OGRE = 160;
-		static final int REANIMATE_ELF = 161;
-		static final int REANIMATE_TROLL = 162;
-		static final int REANIMATE_HORROR = 164;
-		static final int REANIMATE_KALPHITE = 165;
-		static final int REANIMATE_DAGANNOTH = 167;
-		static final int REANIMATE_BLOODVELD = 168;
-		static final int REANIMATE_TZHAAR = 170;
-		static final int REANIMATE_DEMON = 172;
-		static final int REANIMATE_AVIANSIE = 173;
-		static final int REANIMATE_ABYSSAL = 176;
-		static final int REANIMATE_DRAGON = 178;
-
+		static final int BASIC_REANIMATION = 145;
+		static final int ARCEUUS_LIBRARY_TELEPORT = 146;
+		static final int ADEPT_REANIMATION = 147;
+		static final int EXPERT_REANIMATION = 148;
+		static final int MASTER_REANIMATION = 149;
+		static final int DRAYNOR_MANOR_TELEPORT = 150;
+		static final int MIND_ALTAR_TELEPORT = 152;
+		static final int RESPAWN_TELEPORT = 153;
+		static final int SALVE_GRAVEYARD_TELEPORT = 154;
+		static final int FENKENSTRAINS_CASTLE_TELEPORT = 155;
+		static final int WEST_ARDOUGNE_TELEPORT = 156;
+		static final int HARMONY_ISLAND_TELEPORT = 157;
+		static final int CEMETERY_TELEPORT = 158;
+		static final int RESURRECT_CROPS = 159;
+		static final int BARROWS_TELEPORT = 160;
+		static final int APE_ATOLL_TELEPORT = 161;
+		static final int BATTLEFRONT_TELEPORT = 162;
+		static final int INFERIOR_DEMONBANE = 163;
+		static final int SUPERIOR_DEMONBANE = 164;
+		static final int DARK_DEMONBANE = 165;
+		static final int MARK_OF_DARKNESS = 166;
+		static final int GHOSTLY_GRASP = 167;
+		static final int SKELETAL_GRASP = 168;
+		static final int UNDEAD_GRASP = 169;
+		static final int WARD_OF_ARCEUUS = 170;
+		static final int LESSER_CORRUPTION = 171;
+		static final int GREATER_CORRUPTION = 172;
+		static final int DEMONIC_OFFERING = 173;
+		static final int SINISTER_OFFERING = 174;
+		static final int DEGRIME = 175;
+		static final int SHADOW_VEIL = 176;
+		static final int VILE_VIGOUR = 177;
+		static final int DARK_LURE = 178;
+		static final int DEATH_CHARGE = 179;
+		static final int RESURRECT_LESSER_GHOST = 180;
+		static final int RESURRECT_LESSER_SKELETON = 181;
+		static final int RESURRECT_LESSER_ZOMBIE = 182;
+		static final int RESURRECT_SUPERIOR_GHOST = 183;
+		static final int RESURRECT_SUPERIOR_SKELETON = 184;
+		static final int RESURRECT_SUPERIOR_ZOMBIE = 185;
+		static final int RESURRECT_GREATER_GHOST = 186;
+		static final int RESURRECT_GREATER_SKELETON = 187;
+		static final int RESURRECT_GREATER_ZOMBIE = 188;
 	}
 
 	static class DialogSprite2
