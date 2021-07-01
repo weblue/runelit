@@ -226,7 +226,10 @@ public class WorldMapOverlay extends Overlay
 
 					if (worldPoint.isJumpOnClick())
 					{
-						assert worldPoint.getName() != null;
+						//assert worldPoint.getName() != null;
+						if(worldPoint.getName() == null){
+							return null;
+						}
 
 						WorldPoint target = worldPoint.getTarget();
 						if (target == null)

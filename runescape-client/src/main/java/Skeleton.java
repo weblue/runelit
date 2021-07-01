@@ -55,6 +55,7 @@ public class Skeleton extends Node {
 		descriptor = "(I)V",
 		garbageValue = "-913891462"
 	)
+	@Export("method4034")
 	static final void method4034() {
 		boolean var0 = false; // L: 8917
 
