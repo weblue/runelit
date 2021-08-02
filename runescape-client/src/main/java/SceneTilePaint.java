@@ -205,6 +205,7 @@ public final class SceneTilePaint {
 		descriptor = "(B)V",
 		garbageValue = "1"
 	)
+	@Export("method4321")
 	static final void method4321() {
 		boolean var0 = false;
 
