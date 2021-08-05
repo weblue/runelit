@@ -96,6 +96,7 @@ import net.runelite.api.widgets.WidgetConfig;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.api.widgets.WidgetType;
+import net.runelite.rs.api.RSArchive;
 import net.runelite.rs.api.RSAbstractArchive;
 import net.runelite.rs.api.RSChatChannel;
 import net.runelite.rs.api.RSClient;
@@ -749,8 +750,8 @@ public abstract class RSClientMixin implements RSClient
 			entry.setTarget(menuTargets[i]);
 			entry.setIdentifier(menuIdentifiers[i]);
 			entry.setOpcode(menuTypes[i]);
-			entry.setActionParam(params0[i]);
-			entry.setActionParam1(params1[i]);
+			entry.setParam0(params0[i]);
+			entry.setParam1(params1[i]);
 			entry.setForceLeftClick(leftClick[i]);
 		}
 		return entries;
@@ -780,8 +781,8 @@ public abstract class RSClientMixin implements RSClient
 			menuTargets[count] = entry.getTarget();
 			menuIdentifiers[count] = entry.getIdentifier();
 			menuTypes[count] = entry.getOpcode();
-			params0[count] = entry.getActionParam();
-			params1[count] = entry.getActionParam1();
+			params0[count] = entry.getParam0();
+			params1[count] = entry.getParam1();
 			leftClick[count] = entry.isForceLeftClick();
 			++count;
 		}
@@ -872,8 +873,8 @@ public abstract class RSClientMixin implements RSClient
 				targets[oldCount] = event.getTarget();
 				identifiers[oldCount] = event.getIdentifier();
 				opcodes[oldCount] = event.getOpcode();
-				arguments1[oldCount] = event.getActionParam();
-				arguments2[oldCount] = event.getActionParam1();
+				arguments1[oldCount] = event.getParam0();
+				arguments2[oldCount] = event.getParam1();
 				forceLeftClick[oldCount] = event.isForceLeftClick();
 			}
 		}
@@ -1447,12 +1448,12 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		final MenuOptionClicked menuOptionClicked = new MenuOptionClicked();
-		menuOptionClicked.setActionParam(param0);
+		menuOptionClicked.setParam0(param0);
 		menuOptionClicked.setMenuOption(option);
 		menuOptionClicked.setMenuTarget(target);
 		menuOptionClicked.setMenuAction(MenuAction.of(opcode));
 		menuOptionClicked.setId(id);
-		menuOptionClicked.setWidgetId(param1);
+		menuOptionClicked.setParam1(param1);
 		menuOptionClicked.setSelectedItemIndex(client.getSelectedItemSlot());
 
 		client.getCallbacks().post(menuOptionClicked);
@@ -2304,5 +2305,8 @@ public abstract class RSClientMixin implements RSClient
 
 		client.getCallbacks().post(new ClanChannelChanged(client.getClanChannel(), false));
 	}
+
+	@Inject
+	public static RSArchive[] archives = new RSArchive[21];
 }
 
