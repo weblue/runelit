@@ -22,30 +22,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.worldhopper.ping;
+package net.runelite.client.plugins.npchighlight;
 
-import com.sun.jna.Native;
-import com.sun.jna.Pointer;
-import com.sun.jna.platform.unix.LibC;
-import net.runelite.client.util.OSType;
+import java.util.function.Predicate;
+import net.runelite.api.NPC;
 
-interface RLLibC extends LibC
+public interface NpcIndicatorsService
 {
-	RLLibC INSTANCE = Native.load(NAME, RLLibC.class);
-
-	int AF_INET = 2;
-	int SOCK_DGRAM = 2;
-	int SOL_SOCKET = OSType.getOSType() == OSType.MacOS ? 0xffff : 1;
-	int IPPROTO_ICMP = 1;
-	int SO_RCVTIMEO = OSType.getOSType() == OSType.MacOS ? 0x1006 : 20;
-
-	int socket(int domain, int type, int protocol);
-
-	int close(int socket);
-
-	int sendto(int sockfd, byte[] buf, int len, int flags, byte[] dest_addr, int addrlen);
-
-	int recvfrom(int sockfd, Pointer buf, int len, int flags, Pointer src_addr, Pointer addrlen);
-
-	int setsockopt(int sockfd, int level, int optname, Pointer optval, int optlen);
+	void registerHighlighter(Predicate<NPC> p);
+	void unregisterHighlighter(Predicate<NPC> p);
+	void rebuild();
 }

@@ -1,7 +1,5 @@
 /*
- * Copyright (c) 2018, James Swindle <wilingua@gmail.com>
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
- * Copyright (c) 2018, Shaun Dreclin <shaundreclin@gmail.com>
+ * Copyright (c) 2017, honeyhoney <https://github.com/honeyhoney>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,62 +22,59 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.slayer;
+package net.runelite.client.plugins.experiencedrop;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.util.List;
 import javax.inject.Inject;
-import net.runelite.api.NPC;
+import javax.inject.Singleton;
+import net.runelite.api.Actor;
+import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.Overlay;
-import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.util.ColorUtil;
+import net.runelite.client.ui.overlay.OverlayPriority;
+import net.runelite.client.ui.overlay.OverlayUtil;
 
-public class TargetClickboxOverlay extends Overlay
+@Singleton
+class XpDropOverlay extends Overlay
 {
-	private final SlayerConfig config;
-	private final SlayerPlugin plugin;
+	private final XpDropPlugin plugin;
+	private final XpDropConfig config;
 
 	@Inject
-	TargetClickboxOverlay(SlayerConfig config, SlayerPlugin plugin)
+	private XpDropOverlay(final XpDropPlugin plugin, final XpDropConfig config)
 	{
-		this.config = config;
 		this.plugin = plugin;
+		this.config = config;
+
 		setPosition(OverlayPosition.DYNAMIC);
-		setLayer(OverlayLayer.ABOVE_SCENE);
+		setPriority(OverlayPriority.MED);
 	}
 
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.highlightTargets())
+		if (config.showdamagedrops() != XpDropConfig.DamageMode.ABOVE_OPPONENT)
 		{
 			return null;
 		}
 
-		List<NPC> targets = plugin.getHighlightedTargets();
-		for (NPC target : targets)
+		if (plugin.getTickShow() > 0)
 		{
-			renderTargetOverlay(graphics, target, config.getTargetColor());
+			final Actor opponent = plugin.getLastOpponent();
+			if (opponent != null)
+			{
+				int offset = opponent.getLogicalHeight() + 50;
+				String damageStr = String.valueOf(plugin.getDamage());
+				Point textLocation = opponent.getCanvasTextLocation(graphics, damageStr, offset);
+
+				if (textLocation != null && plugin.getDamage() != 0)
+				{
+					OverlayUtil.renderTextLocation(graphics, textLocation, damageStr, config.getDamageColor());
+				}
+			}
 		}
 
 		return null;
-	}
-
-	private void renderTargetOverlay(Graphics2D graphics, NPC actor, Color color)
-	{
-		Shape objectClickbox = actor.getConvexHull();
-		if (objectClickbox != null)
-		{
-			graphics.setColor(color);
-			graphics.setStroke(new BasicStroke(2));
-			graphics.draw(objectClickbox);
-			graphics.setColor(ColorUtil.colorWithAlpha(color, color.getAlpha() / 12));
-			graphics.fill(objectClickbox);
-		}
 	}
 }
