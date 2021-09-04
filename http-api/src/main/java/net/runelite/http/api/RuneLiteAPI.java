@@ -150,6 +150,18 @@ public class RuneLiteAPI
 		return HttpUrl.parse(BASE + "/runelite-" + getVersion());
 	}
 
+	public static HttpUrl getApiBase2()
+	{
+		final String prop = System.getProperty("runelite.http-service.url");
+
+		if (prop != null && !prop.isEmpty())
+		{
+			return HttpUrl.parse(prop);
+		}
+
+		return HttpUrl.parse(BASE + "/runelite-" + getVersion2());
+	}
+
 	public static HttpUrl getStaticBase()
 	{
 		final String prop = System.getProperty("runelite.static.url");
@@ -202,6 +214,12 @@ public class RuneLiteAPI
 				logger.error(null, e);
 			}
 		}
+		return version;
+	}
+
+	public static String getVersion2()
+	{
+		version = properties.getProperty("runelite.version");
 		return version;
 	}
 
