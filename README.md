@@ -11,7 +11,7 @@
 This is a special branch that uses the upstream client (RuneLite) with the OpenOSRS injector. (bundled)  
 
 From the root module, run the following gradle tasks:  
-```clean build run```
+```./gradlew clean build publishToMavenLocal :runelite-client:publishToMavenLocal :runelite-api:publishToMavenLocal :http-api:publishToMavenLocal -x test run```
   
 This branch is still in bringup but most functionality works as intended.  
 This branch uses upstreams PlayerManager/OverlayManager etc so keep that in mind if porting a plugin.  
