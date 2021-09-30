@@ -1135,6 +1135,8 @@ public interface RSClient extends RSGameEngine, Client
 
 	void setModulus(BigInteger modulus);
 
+	BigInteger getModulus();
+
 	@Import("ItemDefinition_fileCount")
 	int getItemCount();
 
