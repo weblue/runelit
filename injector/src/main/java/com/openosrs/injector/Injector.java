@@ -15,7 +15,15 @@ import com.openosrs.injector.injectors.InjectConstruct;
 import com.openosrs.injector.injectors.InterfaceInjector;
 import com.openosrs.injector.injectors.MixinInjector;
 import com.openosrs.injector.injectors.RSApiInjector;
-import com.openosrs.injector.injectors.raw.*;
+import com.openosrs.injector.injectors.raw.AddPlayerToMenu;
+import com.openosrs.injector.injectors.raw.ClearColorBuffer;
+import com.openosrs.injector.injectors.raw.DrawMenu;
+import com.openosrs.injector.injectors.raw.GraphicsObject;
+import com.openosrs.injector.injectors.raw.Occluder;
+import com.openosrs.injector.injectors.raw.RasterizerAlpha;
+import com.openosrs.injector.injectors.raw.RenderDraw;
+import com.openosrs.injector.injectors.raw.RuneliteObject;
+import com.openosrs.injector.injectors.raw.ScriptVM;
 import com.openosrs.injector.rsapi.RSApi;
 import com.openosrs.injector.transformers.InjectTransformer;
 import com.openosrs.injector.transformers.Java8Ifier;
@@ -104,6 +112,8 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		inject(new CreateAnnotations(this));
 
+		inject(new RuneliteObject(this));
+
 		inject(new InterfaceInjector(this));
 
 		inject(new RasterizerAlpha(this));
@@ -134,6 +144,8 @@ public class Injector extends InjectData implements InjectTaskHandler
 		inject(new AddPlayerToMenu(this));
 
 		inject(new PostMenuSort(this));
+
+		inject(new GraphicsObject(this));
 
 		validate(new InjectorValidator(this));
 
