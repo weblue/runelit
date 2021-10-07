@@ -300,6 +300,8 @@ public final class WidgetID
 		static final int TAB_CONTAINER = 11;
 		static final int ITEM_CONTAINER = 13;
 		static final int SCROLLBAR = 14;
+		static final int UNNOTED_BUTTON = 23;
+		static final int NOTED_BUTTON = 25;
 		static final int SEARCH_BUTTON_BACKGROUND = 40;
 		static final int DEPOSIT_INVENTORY = 42;
 		static final int DEPOSIT_EQUIPMENT = 44;
