@@ -104,6 +104,12 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		inject(new CreateAnnotations(this));
 
+		inject(new GraphicsObject(this));
+
+		inject(new CopyRuneLiteClasses(this));
+
+		inject(new RuneLiteIterableHashTable(this));
+
 		inject(new RuneliteObject(this));
 
 		inject(new InterfaceInjector(this));
