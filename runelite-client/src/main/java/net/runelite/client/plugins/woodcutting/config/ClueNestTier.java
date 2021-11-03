@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Adam <Adam@sigterm.info>
+ * Copyright (c) 2021, Tal <https://github.com/talsk>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,31 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.service;
+package net.runelite.client.plugins.woodcutting.config;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.annotation.SchedulingConfigurer;
-import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
-import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+import com.google.common.collect.ImmutableMap;
+import net.runelite.api.ItemID;
 
-@Configuration
-public class SpringSchedulingConfigurer implements SchedulingConfigurer
+public enum ClueNestTier
 {
-	@Override
-	public void configureTasks(ScheduledTaskRegistrar taskRegistrar)
+	BEGINNER,
+	EASY,
+	MEDIUM,
+	HARD,
+	ELITE,
+	DISABLED;
+
+
+	private static final ImmutableMap<Integer, ClueNestTier> CLUE_NEST_ID_TO_TIER = new ImmutableMap.Builder<Integer, ClueNestTier>()
+		.put(ItemID.CLUE_NEST_ELITE, ClueNestTier.ELITE)
+		.put(ItemID.CLUE_NEST_HARD, ClueNestTier.HARD)
+		.put(ItemID.CLUE_NEST_MEDIUM, ClueNestTier.MEDIUM)
+		.put(ItemID.CLUE_NEST_EASY, ClueNestTier.EASY)
+		.put(ItemID.CLUE_NEST_BEGINNER, ClueNestTier.BEGINNER)
+		.build();
+
+	static public ClueNestTier getTierFromItem(int itemId)
 	{
-		// this is from ScheduledTaskRegistrar.scheduleTasks() but modified to give the scheduler thread a
-		// recognizable name
-		ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor(
-			new ThreadFactoryBuilder()
-				.setNameFormat("scheduler-%d")
-				.build()
-		);
-		TaskScheduler scheduler = new ConcurrentTaskScheduler(scheduledExecutorService);
-		taskRegistrar.setTaskScheduler(scheduler);
+		return CLUE_NEST_ID_TO_TIER.get(itemId);
 	}
 }
