@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, tha23rd <https://https://github.com/tha23rd>
+ * Copyright (c) 2021, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,51 +22,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.queries;
+package net.runelite.api;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import net.runelite.api.Client;
-import net.runelite.api.Constants;
-import net.runelite.api.LocatableQueryResults;
-import net.runelite.api.Scene;
-import net.runelite.api.Tile;
+import net.runelite.api.coords.LocalPoint;
 
-@Deprecated(since = "4.2.1", forRemoval = true)
-public class TileQuery extends LocatableQuery<Tile, TileQuery>
+/**
+ * An ambient sound effect. These are loaded only at scene load and are used to play ambient
+ * sound effects that are purely client side and not sent from the server.
+ */
+public interface AmbientSoundEffect
 {
-	private List<Tile> getTiles(Client client)
-	{
-		List<Tile> tilesList = new ArrayList<>();
-		Scene scene = client.getScene();
-		Tile[][][] tiles = scene.getTiles();
-		int z = client.getPlane();
-		for (int x = 0; x < Constants.SCENE_SIZE; ++x)
-		{
-			for (int y = 0; y < Constants.SCENE_SIZE; ++y)
-			{
-				Tile tile = tiles[z][x][y];
-				if (tile == null)
-				{
-					continue;
-				}
-				tilesList.add(tile);
-			}
-		}
-		return tilesList;
-	}
+	/**
+	 * The id of the sound effect
+	 * @see SoundEffectID
+	 * @return
+	 */
+	int getSoundEffectId();
 
-	@Deprecated(since = "4.2.1", forRemoval = true)
-	@Override
-	public LocatableQueryResults<Tile> result(Client client)
-	{
-		return new LocatableQueryResults<>(getTiles(client).stream()
-			.filter(Objects::nonNull)
-			.filter(predicate)
-			.distinct()
-			.collect(Collectors.toList()));
-	}
+	/**
+	 * The plane the sound effect is on
+	 * @return
+	 */
+	int getPlane();
 
+	/**
+	 * The min x/y position of the area this sound effect is at.
+	 * @return
+	 */
+	LocalPoint getMinPosition();
+
+	/**
+	 * The max x/y position of the area this sound effect is at
+	 * @return
+	 */
+	LocalPoint getMaxPosition();
 }
