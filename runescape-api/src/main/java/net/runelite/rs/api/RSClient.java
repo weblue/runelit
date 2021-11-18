@@ -180,6 +180,10 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	boolean isDraggingWidget();
 
+	@Import("isDraggingWidget")
+	@Override
+	void setIsDraggingWidget(boolean b);
+
 	@Import("clickedWidget")
 	@Override
 	RSWidget getDraggedWidget();
@@ -1007,6 +1011,10 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("dragInventoryWidget")
 	@Override
 	RSWidget getIf1DraggedWidget();
+
+	@Import("dragInventoryWidget")
+	@Override
+	void setIf1DraggedWidget(Widget widget);
 
 	@Import("dragItemSlotSource")
 	@Override

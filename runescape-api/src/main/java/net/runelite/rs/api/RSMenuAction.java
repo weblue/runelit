@@ -26,20 +26,34 @@ package net.runelite.rs.api;
 
 import net.runelite.mapping.Import;
 
-public interface RSMenuAction
-{
-	@Import("action")
-	void setOption(String yes);
+public interface RSMenuAction {
+    @Import("action")
+    void setOption(String yes);
 
-	@Import("opcode")
-	void setOpcode(int yes);
+    @Import("action")
+    String getOption();
 
-	@Import("identifier")
-	void setIdentifier(int yes);
+    @Import("opcode")
+    void setOpcode(int yes);
 
-	@Import("param0")
-	void setParam0(int yes);
+    @Import("opcode")
+    int getOpcode();
 
-	@Import("param1")
-	void setParam1(int yes);
+    @Import("identifier")
+    void setIdentifier(int yes);
+
+    @Import("identifier")
+    int getIdentifier();
+
+    @Import("param0")
+    void setParam0(int yes);
+
+    @Import("param0")
+    int getParam0();
+
+    @Import("param1")
+    void setParam1(int yes);
+
+    @Import("param1")
+    int getParam1();
 }

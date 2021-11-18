@@ -24,6 +24,7 @@
  */
 package net.runelite.mixins;
 
+import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.events.WidgetPressed;
 import net.runelite.api.mixins.FieldHook;
@@ -217,5 +218,24 @@ public abstract class MenuMixin implements RSClient
 		tempMenuAction.setIdentifier(entry.getIdentifier());
 		tempMenuAction.setParam0(entry.getParam0());
 		tempMenuAction.setParam1(entry.getParam1());
+	}
+
+	@Inject
+	@Override
+	public MenuEntry getTempMenuEntry()
+	{
+		if (tempMenuAction == null){
+			return null;
+		}
+
+		return new MenuEntry(
+				tempMenuAction.getOption(),
+				"",
+				tempMenuAction.getIdentifier(),
+				tempMenuAction.getOpcode(),
+				tempMenuAction.getParam0(),
+				tempMenuAction.getParam1(),
+				false
+		);
 	}
 }
