@@ -120,20 +120,4 @@ public class MenuOptionClicked
 	{
 		param1 = i;
 	}
-
-	public int getActionParam0(){
-		return this.param0;
-	}
-
-	public void setActionParam0(int i){
-		this.param0 = i;
-	}
-
-	public int getActionParam1(){
-		return this.param1;
-	}
-
-	public void setActionParam1(int i){
-		this.param1 = i;
-	}
 }
