@@ -54,6 +54,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.events.ScriptPostFired;
@@ -96,6 +97,7 @@ public class ScriptInspector extends DevToolsFrame
 		HIGHLIGHT
 	}
 
+	@EqualsAndHashCode(callSuper=false)
 	@Data
 	private class ScriptTreeNode extends DefaultMutableTreeNode
 	{

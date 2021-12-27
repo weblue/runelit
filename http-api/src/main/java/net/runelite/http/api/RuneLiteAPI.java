@@ -43,6 +43,14 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 public class RuneLiteAPI
 {
@@ -65,6 +73,8 @@ public class RuneLiteAPI
 
 	private static final Properties properties = new Properties();
 	private static String version;
+
+	private static final HttpUrl RL_URL = HttpUrl.parse("https://raw.githubusercontent.com/runelite/runelite/master/runelite-client/pom.xml");
 
 	static
 	{
@@ -140,6 +150,18 @@ public class RuneLiteAPI
 		return HttpUrl.parse(BASE + "/runelite-" + getVersion());
 	}
 
+	public static HttpUrl getApiBase2()
+	{
+		final String prop = System.getProperty("runelite.http-service.url");
+
+		if (prop != null && !prop.isEmpty())
+		{
+			return HttpUrl.parse(prop);
+		}
+
+		return HttpUrl.parse(BASE + "/runelite-" + getVersion2());
+	}
+
 	public static HttpUrl getStaticBase()
 	{
 		final String prop = System.getProperty("runelite.static.url");
@@ -171,6 +193,33 @@ public class RuneLiteAPI
 
 	public static String getVersion()
 	{
+		if(version.equals(properties.getProperty("runelite.version"))){
+			Request request = new Request.Builder()
+					.url(RL_URL)
+					.build();
+			try {
+				Response response = RuneLiteAPI.CLIENT.newCall(request).execute();
+				if (response.isSuccessful()) {
+					InputStream in = response.body().byteStream();
+					Document document = DocumentBuilderFactory.newInstance()
+							.newDocumentBuilder()
+							.parse(in);
+
+					XPathFactory xpf = XPathFactory.newInstance();
+					XPath xp = xpf.newXPath();
+					version = xp.evaluate("/project/parent/version/text()",
+							document.getDocumentElement());
+				}
+			} catch (SAXException | XPathExpressionException | ParserConfigurationException | IOException e) {
+				logger.error(null, e);
+			}
+		}
+		return version;
+	}
+
+	public static String getVersion2()
+	{
+		version = properties.getProperty("runelite.version");
 		return version;
 	}
 

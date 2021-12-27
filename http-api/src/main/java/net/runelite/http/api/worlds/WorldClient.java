@@ -50,8 +50,6 @@ public class WorldClient
 			.addPathSegment("worlds.js")
 			.build();
 
-		log.debug("Built URI: {}", url);
-
 		Request request = new Request.Builder()
 			.url(url)
 			.build();
@@ -65,7 +63,35 @@ public class WorldClient
 			}
 
 			InputStream in = response.body().byteStream();
-			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), WorldResult.class);
+			InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8);
+			return RuneLiteAPI.GSON.fromJson(reader, WorldResult.class);
+		}
+		catch (NullPointerException ex)
+		{
+			HttpUrl url2 = RuneLiteAPI.getApiBase2().newBuilder()
+					.addPathSegment("worlds.js")
+					.build();
+
+			Request request2 = new Request.Builder()
+					.url(url2)
+					.build();
+
+			try (Response response = client.newCall(request2).execute())
+			{
+				if (!response.isSuccessful())
+				{
+					log.debug("Error looking up worlds: {}", response);
+					throw new IOException("unsuccessful response looking up worlds");
+				}
+
+				InputStream in = response.body().byteStream();
+				InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8);
+				return RuneLiteAPI.GSON.fromJson(reader, WorldResult.class);
+			}
+			catch (JsonParseException e)
+			{
+				throw new IOException(e);
+			}
 		}
 		catch (JsonParseException ex)
 		{

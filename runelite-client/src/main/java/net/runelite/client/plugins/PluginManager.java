@@ -58,6 +58,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.BiConsumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -465,6 +466,15 @@ public class PluginManager
 	{
 		// plugins always stop in the EDT
 		assert SwingUtilities.isEventDispatchThread();
+
+		final Plugin maybeWrongPlugin = plugin;
+		Predicate<Plugin> sameName = p -> p.getClass().getName().equals(maybeWrongPlugin.getClass().getName());
+		Optional<Plugin> actualPluginOpt = activePlugins.stream().filter(sameName).findAny();
+		if(actualPluginOpt.isEmpty()){
+			return false;
+		}
+
+		plugin = actualPluginOpt.get();
 
 		if (!activePlugins.remove(plugin))
 		{

@@ -498,6 +498,8 @@ public interface Client extends GameEngine
 	 */
 	boolean isDraggingWidget();
 
+	void setIsDraggingWidget(boolean b);
+
 	/**
 	 * Gets the widget currently being dragged.
 	 *
@@ -1962,6 +1964,8 @@ public interface Client extends GameEngine
 	 */
 	Widget getIf1DraggedWidget();
 
+	void setIf1DraggedWidget(Widget widget);
+
 	/**
 	 * Get the item index of the item being dragged on an if1 widget
 	 */
@@ -2127,6 +2131,8 @@ public interface Client extends GameEngine
 	 * when a inventory item is clicked and dragged.
 	 */
 	void setTempMenuEntry(MenuEntry entry);
+
+	MenuEntry getTempMenuEntry();
 
 	void setShowMouseCross(boolean show);
 

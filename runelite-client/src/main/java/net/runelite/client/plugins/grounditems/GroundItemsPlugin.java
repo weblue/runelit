@@ -47,6 +47,8 @@ import java.util.Queue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -115,6 +117,15 @@ public class GroundItemsPlugin extends Plugin
 	static final int MAX_QUANTITY = 65535;
 	// ItemID for coins
 	private static final int COINS = ItemID.COINS_995;
+	// Ground item menu options
+	private static final int FIRST_OPTION = MenuAction.GROUND_ITEM_FIRST_OPTION.getId();
+	private static final int SECOND_OPTION = MenuAction.GROUND_ITEM_SECOND_OPTION.getId();
+	private static final int THIRD_OPTION = MenuAction.GROUND_ITEM_THIRD_OPTION.getId(); // this is Take
+	private static final int FOURTH_OPTION = MenuAction.GROUND_ITEM_FOURTH_OPTION.getId();
+	private static final int FIFTH_OPTION = MenuAction.GROUND_ITEM_FIFTH_OPTION.getId();
+	private static final int EXAMINE_ITEM = MenuAction.EXAMINE_ITEM_GROUND.getId();
+	private static final int CAST_ON_ITEM = MenuAction.SPELL_CAST_ON_GROUND_ITEM.getId();
+	private static final int WALK = MenuAction.WALK.getId();
 
 	private static final String TELEGRAB_TEXT = ColorUtil.wrapWithColorTag("Telekinetic Grab", Color.GREEN) + ColorUtil.prependColorTag(" -> ", Color.WHITE);
 
@@ -356,6 +367,63 @@ public class GroundItemsPlugin extends Plugin
 
 		Collections.reverse(newEntries);
 
+		newEntries.sort((a, b) ->
+		{
+			final int aMenuType = a.getEntry().getOpcode();
+			if (aMenuType == FIRST_OPTION || aMenuType == SECOND_OPTION || aMenuType == THIRD_OPTION
+					|| aMenuType == FOURTH_OPTION || aMenuType == FIFTH_OPTION || aMenuType == EXAMINE_ITEM
+					|| aMenuType == WALK)
+			{ // only check for item related menu types, so we don't sort other stuff
+				final int bMenuType = b.getEntry().getOpcode();
+				if (bMenuType == FIRST_OPTION || bMenuType == SECOND_OPTION || bMenuType == THIRD_OPTION
+						|| bMenuType == FOURTH_OPTION || bMenuType == FIFTH_OPTION || bMenuType == EXAMINE_ITEM
+						|| bMenuType == WALK)
+				{
+					final MenuEntry aEntry = a.getEntry();
+					final int aId = aEntry.getIdentifier();
+					final int aQuantity = getCollapsedItemQuantity(aId, aEntry.getTarget());
+					final boolean aHidden = isItemIdHidden(aId, aQuantity);
+
+					final MenuEntry bEntry = b.getEntry();
+					final int bId = bEntry.getIdentifier();
+					final int bQuantity = getCollapsedItemQuantity(bId, bEntry.getTarget());
+					final boolean bHidden = isItemIdHidden(bId, bQuantity);
+
+					// only put items below walk if the config is set for it
+					if (config.rightClickHidden())
+					{
+						if (aHidden && bMenuType == WALK)
+						{
+							return -1;
+						}
+						if (bHidden && aMenuType == WALK)
+						{
+							return 1;
+						}
+					}
+
+					// sort hidden items below non-hidden items
+					if (aHidden && !bHidden && bMenuType != WALK)
+					{
+						return -1;
+					}
+					if (bHidden && !aHidden && aMenuType != WALK)
+					{
+						return 1;
+					}
+
+
+					// RS sorts by alch price by private, so no need to sort if config not set
+					if (config.sortByGEPrice())
+					{
+						return (getGePriceFromItemId(aId) * aQuantity) - (getGePriceFromItemId(bId) * bQuantity);
+					}
+				}
+			}
+
+			return 0;
+		});
+
 		client.setMenuEntries(newEntries.stream().map(e ->
 		{
 			final MenuEntry entry = e.getEntry();
@@ -367,6 +435,46 @@ public class GroundItemsPlugin extends Plugin
 
 			return entry;
 		}).toArray(MenuEntry[]::new));
+	}
+
+	private int getGePriceFromItemId(final int itemId)
+	{
+		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
+		final int realItemId = itemComposition.getNote() != -1 ? itemComposition.getLinkedNoteId() : itemId;
+
+		return itemManager.getItemPrice(realItemId);
+	}
+
+	private boolean isItemIdHidden(final int itemId, final int quantity)
+	{
+		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
+		final int realItemId = itemComposition.getNote() != -1 ? itemComposition.getLinkedNoteId() : itemId;
+		final int alchPrice = itemManager.getAlchValue(itemComposition) * quantity;
+		final int gePrice = itemManager.getItemPrice(realItemId) * quantity;
+
+		return getHidden(new NamedQuantity(itemComposition.getName(), quantity), gePrice, alchPrice, itemComposition.isTradeable()) != null;
+	}
+
+	private int getCollapsedItemQuantity(final int itemId, final String item)
+	{
+		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
+		final boolean itemNameIncludesQuantity = Pattern.compile("\\(\\d+\\)").matcher(itemComposition.getName()).find();
+
+		final Matcher matcher = Pattern.compile("\\((\\d+)\\)").matcher(item);
+		int matches = 0;
+		String lastMatch = "1";
+		while (matcher.find())
+		{
+			// so that "Prayer Potion (4)" returns 1 instead of 4 and "Coins (25)" returns 25 instead of 1
+			if (!itemNameIncludesQuantity || matches >= 1)
+			{
+				lastMatch = matcher.group(1);
+			}
+
+			matches++;
+		}
+
+		return Integer.parseInt(lastMatch);
 	}
 
 	private void lootReceived(Collection<ItemStack> items, LootType lootType)
@@ -541,6 +649,8 @@ public class GroundItemsPlugin extends Plugin
 			{
 				lastEntry.setTarget(lastEntry.getTarget() + " (" + quantity + ")");
 			}
+
+			client.setMenuEntries(menuEntries);
 		}
 	}
 

@@ -31,11 +31,11 @@ shared int totalDistance[12]; // sum of distances to faces of a given priority
 shared int totalMappedNum[18]; // number of faces with a given adjusted priority
 
 shared int min10; // minimum distance to a face of priority 10
-shared int dfs[512]; // packed face id and distance
+shared int dfs[1024]; // packed face id and distance
 
 #include comp_common.glsl
 
-layout(local_size_x = 512) in;
+layout(local_size_x = 1024) in;
 
 #include common.glsl
 #include priority_render.glsl
