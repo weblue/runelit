@@ -483,6 +483,8 @@ public interface Client extends GameEngine
 	 */
 	int getMouseCurrentButton();
 
+	boolean getfield572();
+
 	/**
 	 * Gets the currently selected tile. (ie. last right clicked tile)
 	 *
@@ -2131,8 +2133,6 @@ public interface Client extends GameEngine
 	 * when a inventory item is clicked and dragged.
 	 */
 	void setTempMenuEntry(MenuEntry entry);
-
-	MenuEntry getTempMenuEntry();
 
 	void setShowMouseCross(boolean show);
 
