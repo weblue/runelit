@@ -1208,16 +1208,6 @@ class ConfigPanel extends PluginPanel
 		skipRebuild = false;
 	}
 
-	@Subscribe
-	private void onConfigChanged(ConfigChanged event){
-		if(pluginConfig.getConfigDescriptor() == null){
-			return;
-		}
-		if(pluginConfig.getConfigDescriptor().getGroup().value().equals(event.getGroup())) {
-			SwingUtilities.invokeLater(this::rebuild);
-		}
-	}
-
 	private JMenuItem createResetMenuItem(PluginConfigurationDescriptor pluginConfig, ConfigItemDescriptor configItemDescriptor)
 	{
 		JMenuItem menuItem = new JMenuItem("Reset");
