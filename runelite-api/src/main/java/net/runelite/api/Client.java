@@ -503,8 +503,6 @@ public interface Client extends GameEngine
 	 */
 	int getMouseCurrentButton();
 
-	boolean getfield572();
-
 	/**
 	 * Gets the currently selected tile. (ie. last right clicked tile)
 	 *
