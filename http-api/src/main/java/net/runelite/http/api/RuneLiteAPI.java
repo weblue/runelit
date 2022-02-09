@@ -59,7 +59,7 @@ public class RuneLiteAPI
 	public static final String RUNELITE_AUTH = "RUNELITE-AUTH";
 	public static final String RUNELITE_MACHINEID = "RUNELITE-MACHINEID";
 
-	public static final OkHttpClient CLIENT;
+	public static OkHttpClient CLIENT;
 	public static final Gson GSON;
 	public static final MediaType JSON = MediaType.parse("application/json");
 	public static String userAgent;

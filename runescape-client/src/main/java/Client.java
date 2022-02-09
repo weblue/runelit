@@ -862,6 +862,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@Export("dragItemSlotDestination")
 	static int dragItemSlotDestination;
 	@ObfuscatedName("kh")
+	@Export("field572")
 	static boolean field572;
 	@ObfuscatedName("ki")
 	@ObfuscatedGetter(
