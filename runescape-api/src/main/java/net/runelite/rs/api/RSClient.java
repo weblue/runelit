@@ -847,10 +847,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	boolean isInInstancedRegion();
 
-	@Import("field572")
-	@Override
-	boolean getfield572();
-
 	@Import("itemDragDuration")
 	@Override
 	int getItemPressedDuration();

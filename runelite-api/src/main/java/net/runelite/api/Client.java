@@ -35,6 +35,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import net.runelite.api.annotations.VisibleForExternalPlugins;
 import net.runelite.api.clan.ClanChannel;
+import net.runelite.api.clan.ClanID;
 import net.runelite.api.clan.ClanSettings;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -42,9 +43,11 @@ import net.runelite.api.events.PlayerChanged;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.vars.AccountType;
+import net.runelite.api.widgets.ItemQuantityMode;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import org.slf4j.Logger;
+import org.intellij.lang.annotations.MagicConstant;
 
 /**
  * Represents the RuneScape client.
@@ -440,7 +443,7 @@ public interface Client extends GameEngine
 	 * @return the created sprite
 	 */
 	@Nullable
-	SpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale);
+	SpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, @MagicConstant(valuesFromClass = ItemQuantityMode.class) int stackable, boolean noted, int scale);
 
 	/**
 	 * Loads and creates the sprite images of the passed archive and file IDs.
@@ -499,8 +502,6 @@ public interface Client extends GameEngine
 	 * @return the pressed mouse button
 	 */
 	int getMouseCurrentButton();
-
-	boolean getfield572();
 
 	/**
 	 * Gets the currently selected tile. (ie. last right clicked tile)
@@ -948,7 +949,7 @@ public interface Client extends GameEngine
 	 *
 	 * @return the widget flags table
 	 */
-	HashTable getWidgetFlags();
+	HashTable<IntegerNode> getWidgetFlags();
 
 	/**
 	 * Gets the widget node component table.
@@ -2280,7 +2281,7 @@ public interface Client extends GameEngine
 	 * @return
 	 * @see KeyCode
 	 */
-	boolean isKeyPressed(int keycode);
+	boolean isKeyPressed(@MagicConstant(valuesFromClass = KeyCode.class) int keycode);
 
 	int getFollowerIndex();
 
@@ -2381,7 +2382,7 @@ public interface Client extends GameEngine
 	 * @see net.runelite.api.clan.ClanID
 	 */
 	@Nullable
-	ClanChannel getClanChannel(int clanId);
+	ClanChannel getClanChannel(@MagicConstant(valuesFromClass = ClanID.class) int clanId);
 
 	/**
 	 * Get clan settings by id
@@ -2390,7 +2391,7 @@ public interface Client extends GameEngine
 	 * @see net.runelite.api.clan.ClanID
 	 */
 	@Nullable
-	ClanSettings getClanSettings(int clanId);
+	ClanSettings getClanSettings(@MagicConstant(valuesFromClass = ClanID.class) int clanId);
 
 	void setUnlockedFps(boolean unlock);
 	void setUnlockedFpsTarget(int fps);
