@@ -122,7 +122,6 @@ public class GroundItemsPlugin extends Plugin
 	private static final int FOURTH_OPTION = MenuAction.GROUND_ITEM_FOURTH_OPTION.getId();
 	private static final int FIFTH_OPTION = MenuAction.GROUND_ITEM_FIFTH_OPTION.getId();
 	private static final int EXAMINE_ITEM = MenuAction.EXAMINE_ITEM_GROUND.getId();
-	private static final int CAST_ON_ITEM = MenuAction.SPELL_CAST_ON_GROUND_ITEM.getId();
 	private static final int WALK = MenuAction.WALK.getId();
 
 	@Getter(AccessLevel.PACKAGE)
