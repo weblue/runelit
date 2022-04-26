@@ -209,8 +209,6 @@ public class MenuOptionClicked
 		menuEntry.setParam1(widgetId);
 	}
 
-
-	@Deprecated
 	public void setMenuEntry(MenuEntry entry)
 	{
 		this.setMenuOption(entry.getOption());
