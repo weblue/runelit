@@ -28,32 +28,156 @@ package net.runelite.mixins;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.primitives.Doubles;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import net.runelite.api.Actor;
+import net.runelite.api.Animation;
+import net.runelite.api.ChatMessageType;
 import net.runelite.api.Deque;
-import net.runelite.api.*;
+import net.runelite.api.EnumComposition;
+import net.runelite.api.FriendContainer;
+import net.runelite.api.GameState;
+import net.runelite.api.GrandExchangeOffer;
+import net.runelite.api.GraphicsObject;
+import net.runelite.api.HintArrowType;
+import net.runelite.api.Ignore;
+import net.runelite.api.IndexDataBase;
+import net.runelite.api.IndexedSprite;
+import net.runelite.api.IntegerNode;
+import net.runelite.api.InventoryID;
+import net.runelite.api.ItemComposition;
+import net.runelite.api.MenuAction;
+import static net.runelite.api.MenuAction.PLAYER_EIGTH_OPTION;
+import static net.runelite.api.MenuAction.PLAYER_FIFTH_OPTION;
+import static net.runelite.api.MenuAction.PLAYER_FIRST_OPTION;
+import static net.runelite.api.MenuAction.PLAYER_FOURTH_OPTION;
+import static net.runelite.api.MenuAction.PLAYER_SECOND_OPTION;
+import static net.runelite.api.MenuAction.PLAYER_SEVENTH_OPTION;
+import static net.runelite.api.MenuAction.PLAYER_SIXTH_OPTION;
+import static net.runelite.api.MenuAction.PLAYER_THIRD_OPTION;
+import static net.runelite.api.MenuAction.UNKNOWN;
+import net.runelite.api.MenuEntry;
+import net.runelite.api.MessageNode;
+import net.runelite.api.Model;
+import net.runelite.api.ModelData;
+import net.runelite.api.NPC;
+import net.runelite.api.NPCComposition;
+import net.runelite.api.NameableContainer;
+import net.runelite.api.NodeCache;
+import net.runelite.api.ObjectComposition;
+import net.runelite.api.Perspective;
+import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
+import net.runelite.api.Player;
+import net.runelite.api.Point;
+import net.runelite.api.Prayer;
+import net.runelite.api.Projectile;
+import net.runelite.api.ScriptEvent;
+import net.runelite.api.Skill;
+import net.runelite.api.SpritePixels;
+import net.runelite.api.StructComposition;
+import net.runelite.api.Tile;
+import net.runelite.api.VarPlayer;
+import net.runelite.api.Varbits;
+import net.runelite.api.WorldType;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanRank;
 import net.runelite.api.clan.ClanSettings;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.*;
+import net.runelite.api.events.CanvasSizeChanged;
+import net.runelite.api.events.ChatMessage;
+import net.runelite.api.events.ClanChannelChanged;
+import net.runelite.api.events.ClientTick;
+import net.runelite.api.events.DraggingWidgetChanged;
+import net.runelite.api.events.FriendsChatChanged;
+import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.GrandExchangeOfferChanged;
+import net.runelite.api.events.GrandExchangeSearched;
+import net.runelite.api.events.ItemSpawned;
+import net.runelite.api.events.MenuEntryAdded;
+import net.runelite.api.events.MenuOpened;
+import net.runelite.api.events.MenuOptionClicked;
+import net.runelite.api.events.MenuShouldLeftClick;
+import net.runelite.api.events.NpcSpawned;
+import net.runelite.api.events.PlayerDespawned;
+import net.runelite.api.events.PlayerMenuOptionsChanged;
+import net.runelite.api.events.PlayerSpawned;
+import net.runelite.api.events.PostStructComposition;
+import net.runelite.api.events.ResizeableChanged;
+import net.runelite.api.events.StatChanged;
+import net.runelite.api.events.UsernameChanged;
+import net.runelite.api.events.VarbitChanged;
+import net.runelite.api.events.VolumeChanged;
+import net.runelite.api.events.WidgetClosed;
+import net.runelite.api.events.WidgetLoaded;
+import net.runelite.api.events.WorldChanged;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
-import net.runelite.api.mixins.*;
+import net.runelite.api.mixins.Copy;
+import net.runelite.api.mixins.FieldHook;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.MethodHook;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
+import net.runelite.api.overlay.OverlayIndex;
 import net.runelite.api.vars.AccountType;
-import net.runelite.api.widgets.*;
-import net.runelite.rs.api.*;
+import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetConfig;
+import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.api.widgets.WidgetItem;
+import net.runelite.api.widgets.WidgetType;
+import static net.runelite.mixins.CameraMixin.NEW_PITCH_MAX;
+import static net.runelite.mixins.CameraMixin.STANDARD_PITCH_MAX;
+import static net.runelite.mixins.CameraMixin.STANDARD_PITCH_MIN;
+import net.runelite.rs.api.RSAbstractArchive;
+import net.runelite.rs.api.RSArchive;
+import net.runelite.rs.api.RSBuffer;
+import net.runelite.rs.api.RSChatChannel;
+import net.runelite.rs.api.RSClanChannel;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSCollisionMap;
+import net.runelite.rs.api.RSDualNode;
+import net.runelite.rs.api.RSEnumComposition;
+import net.runelite.rs.api.RSEvictingDualNodeHashTable;
+import net.runelite.rs.api.RSFloorOverlayDefinition;
+import net.runelite.rs.api.RSFriendSystem;
+import net.runelite.rs.api.RSIndexedSprite;
+import net.runelite.rs.api.RSInterfaceParent;
+import net.runelite.rs.api.RSItemComposition;
+import net.runelite.rs.api.RSItemContainer;
+import net.runelite.rs.api.RSModelData;
+import net.runelite.rs.api.RSNPC;
+import net.runelite.rs.api.RSNode;
+import net.runelite.rs.api.RSNodeDeque;
+import net.runelite.rs.api.RSNodeHashTable;
+import net.runelite.rs.api.RSPacketBuffer;
+import net.runelite.rs.api.RSPlayer;
+import net.runelite.rs.api.RSProjectile;
+import net.runelite.rs.api.RSRuneLiteClanMember;
+import net.runelite.rs.api.RSRuneLiteMenuEntry;
+import net.runelite.rs.api.RSScene;
+import net.runelite.rs.api.RSScriptEvent;
+import net.runelite.rs.api.RSSpritePixels;
+import net.runelite.rs.api.RSStructComposition;
+import net.runelite.rs.api.RSTile;
+import net.runelite.rs.api.RSTileItem;
+import net.runelite.rs.api.RSUsername;
+import net.runelite.rs.api.RSWidget;
+import net.runelite.rs.api.RSWorld;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.math.BigInteger;
-import java.util.*;
-
-import static net.runelite.api.MenuAction.*;
-import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
-import static net.runelite.mixins.CameraMixin.*;
 
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient
@@ -189,6 +313,9 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	private static int tmpMenuOptionsCount;
+
+	@Inject
+	private static final Map<Integer, byte[]> customClientScripts = new HashMap<>();
 
 	@Inject
 	@Override
@@ -817,7 +944,22 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public MenuEntry[] getMenuEntries()
 	{
-		return Arrays.copyOf(rl$menuEntries, client.getMenuOptionCount());
+		RSRuneLiteMenuEntry[] menuEntries = Arrays.copyOf(rl$menuEntries, client.getMenuOptionCount());
+
+		for (RSRuneLiteMenuEntry menuEntry : menuEntries)
+		{
+			if (menuEntry.getOption() == null)
+			{
+				menuEntry.setOption("null");
+			}
+
+			if (menuEntry.getTarget() == null)
+			{
+				menuEntry.setTarget("null");
+			}
+		}
+
+		return menuEntries;
 	}
 
 	@Inject
@@ -912,51 +1054,6 @@ public abstract class RSClientMixin implements RSClient
 		var2.setIdx(var0);
 	}
 
-	@SuppressWarnings("InfiniteRecursion")
-	//@Copy("incrementMenuEntries")
-	//@Replace("incrementMenuEntries")
-	private static void copy$menuSorter() {
-		copy$menuSorter();
-
-		int leftClickIndex = client.getMenuOptionCount() - 1;
-		MenuEntrySorted event = new MenuEntrySorted(leftClickIndex);
-		client.getCallbacks().post(event);
-
-		if(leftClickIndex >= 0 && event.getLeftClickIndex() >= 0 && event.getLeftClickIndex() < leftClickIndex){
-			String[] menuOptions = client.getMenuOptions();
-			String[] menuTargets = client.getMenuTargets();
-			int[] menuIdentifiers = client.getMenuIdentifiers();
-			int[] menuTypes = client.getMenuOpcodes();
-			int[] params0 = client.getMenuArguments1();
-			int[] params1 = client.getMenuArguments2();
-			boolean[] leftClick = client.getMenuForceLeftClick();
-
-			String tempOption = menuOptions[leftClickIndex];
-			String tempTarget = menuTargets[leftClickIndex];
-			int tempId = menuIdentifiers[leftClickIndex];
-			int tempOpcode = menuTypes[leftClickIndex];
-			int tempParams0 = params0[leftClickIndex];
-			int tempParams1 = params1[leftClickIndex];
-			boolean tempForceLeft = leftClick[leftClickIndex];
-
-			menuOptions[leftClickIndex] = menuOptions[event.getLeftClickIndex()];
-			menuTargets[leftClickIndex] = menuTargets[event.getLeftClickIndex()];
-			menuIdentifiers[leftClickIndex] = menuIdentifiers[event.getLeftClickIndex()];
-			menuTypes[leftClickIndex] = menuTypes[event.getLeftClickIndex()];
-			params0[leftClickIndex] = params0[event.getLeftClickIndex()];
-			params1[leftClickIndex] = params1[event.getLeftClickIndex()];
-			leftClick[leftClickIndex] = leftClick[event.getLeftClickIndex()];
-
-			menuOptions[event.getLeftClickIndex()] = tempOption;
-			menuTargets[event.getLeftClickIndex()] = tempTarget;
-			menuIdentifiers[event.getLeftClickIndex()] = tempId;
-			menuTypes[event.getLeftClickIndex()] = tempOpcode;
-			params0[event.getLeftClickIndex()] = tempParams0;
-			params1[event.getLeftClickIndex()] = tempParams1;
-			leftClick[event.getLeftClickIndex()] = tempForceLeft;
-		}
-	}
-
 	@FieldHook("menuOptionsCount")
 	@Inject
 	public static void onMenuOptionsChanged(int idx)
@@ -980,6 +1077,16 @@ public abstract class RSClientMixin implements RSClient
 		}
 		else if (optionCount == tmpOptionsCount + 1)
 		{
+			if (client.getMenuOptions()[tmpOptionsCount] == null)
+			{
+				client.getMenuOptions()[tmpOptionsCount] = "null";
+			}
+
+			if (client.getMenuTargets()[tmpOptionsCount] == null)
+			{
+				client.getMenuTargets()[tmpOptionsCount] = "null";
+			}
+
 			String menuOption = client.getMenuOptions()[tmpOptionsCount];
 			String menuTarget = client.getMenuTargets()[tmpOptionsCount];
 			int menuOpcode = client.getMenuOpcodes()[tmpOptionsCount];
@@ -1711,15 +1818,6 @@ public abstract class RSClientMixin implements RSClient
 			}
 		}
 
-		if (opcode == MenuAction.WIDGET_CONTINUE.getId())
-		{
-			Widget widget = client.getWidget(param1);
-			if (widget == null || param0 > -1 && widget.getChild(param0) == null)
-			{
-				return;
-			}
-		}
-
 		copy$menuAction(event.getParam0(), event.getParam1(),
 			event.getMenuAction() == UNKNOWN ? opcode : event.getMenuAction().getId(),
 			event.getId(), event.getMenuOption(), event.getMenuTarget(),
@@ -1854,19 +1952,12 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	public static void preRenderWidgetLayer(Widget[] widgets, int parentId, int minX, int minY, int maxX, int maxY, int x, int y, int var8)
 	{
-		@SuppressWarnings("unchecked") HashTable<WidgetNode> componentTable = client.getComponentTable();
-
-		for (int i = 0; i < widgets.length; i++)
+		for (Widget value : widgets)
 		{
-			RSWidget widget = (RSWidget) widgets[i];
+			RSWidget widget = (RSWidget) value;
 			if (widget == null || widget.getRSParentId() != parentId || widget.isSelfHidden())
 			{
 				continue;
-			}
-
-			if (parentId != -1)
-			{
-				widget.setRenderParentId(parentId);
 			}
 
 			final int renderX = x + widget.getRelativeX();
@@ -1888,24 +1979,6 @@ public abstract class RSClientMixin implements RSClient
 				viewportColor = outAlpha << 24 | c1 + c2;
 				widget.setHidden(true);
 				hiddenWidgets.add(widget);
-			}
-			else
-			{
-				WidgetNode childNode = componentTable.get(widget.getId());
-				if (childNode != null)
-				{
-					int widgetId = widget.getId();
-					int groupId = childNode.getId();
-					RSWidget[] children = client.getWidgets()[groupId];
-
-					for (RSWidget child : children)
-					{
-						if (child.getRSParentId() == -1)
-						{
-							child.setRenderParentId(widgetId);
-						}
-					}
-				}
 			}
 		}
 	}
@@ -2142,19 +2215,6 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		return false;
-	}
-
-	@Copy("menu")
-	@Replace("menu")
-	void copy$menu()
-	{
-		Menu menu = Menu.MENU;
-		menu.reset();
-		getCallbacks().post(menu);
-		if (menu.shouldRun())
-		{
-			copy$menu();
-		}
 	}
 
 	@Inject
@@ -2974,6 +3034,38 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		return null;
+	}
+
+	@Inject
+	@Override
+	public int addClientScript(byte[] script)
+	{
+		assert this.isClientThread() : "addClientScript must be called on client thread";
+
+		int highestUsedScript = -1;
+		for (int index : OverlayIndex.getOverlays())
+		{
+			if ((index >> 16) != 12)
+			{
+				continue;
+			}
+
+			int scriptId = index & 0xFFFF;
+			if (scriptId > highestUsedScript)
+			{
+				highestUsedScript = scriptId;
+			}
+		}
+
+		if (highestUsedScript == -1)
+		{
+			highestUsedScript = 10000;
+		}
+
+		int newScriptId = highestUsedScript + 1;
+		OverlayIndex.getOverlays().add((12 << 16) | newScriptId);
+		customClientScripts.put((12 << 16) | newScriptId, script);
+		return newScriptId;
 	}
 }
 
