@@ -3,142 +3,131 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("gc")
+@ObfuscatedName("gn")
 @Implements("Tile")
 public final class Tile extends Node {
-	@ObfuscatedName("eh")
-	@ObfuscatedSignature(
-		descriptor = "Lkz;"
-	)
-	@Export("archive3")
-	static Archive archive3;
-	@ObfuscatedName("eb")
-	@ObfuscatedSignature(
-		descriptor = "Lkz;"
-	)
-	@Export("archive10")
-	static Archive archive10;
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1888205811
+		intValue = 887186055
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1679760745
+		intValue = 719692751
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1912160653
+		intValue = 2070822957
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 100460827
+		intValue = -1571348595
 	)
 	@Export("originalPlane")
 	int originalPlane;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lhr;"
 	)
 	@Export("paint")
 	SceneTilePaint paint;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "Lgt;"
+		descriptor = "Lhu;"
 	)
 	@Export("model")
 	SceneTileModel model;
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "Lhg;"
-	)
-	@Export("boundaryObject")
-	BoundaryObject boundaryObject;
-	@ObfuscatedName("w")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "Lhc;"
 	)
+	@Export("boundaryObject")
+	BoundaryObject boundaryObject;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lhf;"
+	)
 	@Export("wallDecoration")
 	WallDecoration wallDecoration;
-	@ObfuscatedName("v")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Lgo;"
+		descriptor = "Lga;"
 	)
 	@Export("floorDecoration")
 	FloorDecoration floorDecoration;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lgr;"
+		descriptor = "Lgz;"
 	)
 	@Export("itemLayer")
 	ItemLayer itemLayer;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1951057499
+		intValue = -1697073381
 	)
 	@Export("gameObjectsCount")
 	int gameObjectsCount;
-	@ObfuscatedName("u")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "[Lhq;"
+		descriptor = "[Lhx;"
 	)
 	@Export("gameObjects")
 	GameObject[] gameObjects;
-	@ObfuscatedName("h")
+	@ObfuscatedName("w")
 	@Export("gameObjectEdgeMasks")
 	int[] gameObjectEdgeMasks;
-	@ObfuscatedName("q")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -2031317209
+		intValue = -344605411
 	)
 	@Export("gameObjectsEdgeMask")
 	int gameObjectsEdgeMask;
-	@ObfuscatedName("x")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 916424921
+		intValue = -1026469489
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("p")
+	@ObfuscatedName("g")
 	@Export("drawPrimary")
 	boolean drawPrimary;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@Export("drawSecondary")
 	boolean drawSecondary;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@Export("drawGameObjects")
 	boolean drawGameObjects;
-	@ObfuscatedName("d")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -141813919
+		intValue = -1027035127
 	)
 	@Export("drawGameObjectEdges")
 	int drawGameObjectEdges;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1962682993
+		intValue = 1807728235
 	)
-	int field2233;
+	int field2372;
 	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 175613087
+		intValue = -588428605
 	)
-	int field2252;
-	@ObfuscatedName("g")
+	int field2373;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -582165867
+		intValue = -720858367
 	)
-	int field2243;
-	@ObfuscatedName("t")
+	int field2374;
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lgc;"
+		descriptor = "Lgn;"
 	)
 	@Export("linkedBelowTile")
 	Tile linkedBelowTile;
@@ -147,8 +136,100 @@ public final class Tile extends Node {
 		this.gameObjects = new GameObject[5]; // L: 17
 		this.gameObjectEdgeMasks = new int[5]; // L: 18
 		this.gameObjectsEdgeMask = 0; // L: 19
-		this.originalPlane = this.plane = var1; // L: 31
+		this.originalPlane = this.plane = var1;
 		this.x = var2; // L: 32
 		this.y = var3; // L: 33
 	} // L: 34
+
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "(S)Lnw;",
+		garbageValue = "-23548"
+	)
+	public static class388 method3904() {
+		synchronized(class388.field4402) { // L: 27
+			if (class388.field4401 == 0) { // L: 28
+				return new class388();
+			} else {
+				class388.field4402[--class388.field4401].method6861(); // L: 30
+				return class388.field4402[class388.field4401]; // L: 31
+			}
+		}
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(ILbb;ZB)I",
+		garbageValue = "1"
+	)
+	static int method3903(int var0, Script var1, boolean var2) {
+		Widget var3 = class92.getWidget(Interpreter.Interpreter_intStack[--class12.Interpreter_intStackSize]); // L: 1312
+		if (var0 == ScriptOpcodes.IF_GETX) { // L: 1313
+			Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = var3.x; // L: 1314
+			return 1; // L: 1315
+		} else if (var0 == ScriptOpcodes.IF_GETY) { // L: 1317
+			Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = var3.y; // L: 1318
+			return 1; // L: 1319
+		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) { // L: 1321
+			Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = var3.width; // L: 1322
+			return 1; // L: 1323
+		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) { // L: 1325
+			Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = var3.height; // L: 1326
+			return 1; // L: 1327
+		} else if (var0 == ScriptOpcodes.IF_GETHIDE) { // L: 1329
+			Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1330
+			return 1; // L: 1331
+		} else if (var0 == ScriptOpcodes.IF_GETLAYER) { // L: 1333
+			Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = var3.parentId; // L: 1334
+			return 1; // L: 1335
+		} else {
+			return 2; // L: 1337
+		}
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(ILbb;ZB)I",
+		garbageValue = "-61"
+	)
+	static int method3902(int var0, Script var1, boolean var2) {
+		if (var0 == 7100) { // L: 4592
+			++class12.Interpreter_intStackSize; // L: 4593
+			return 1; // L: 4594
+		} else if (var0 == 7101) { // L: 4596
+			class9.Interpreter_stringStackSize += 2; // L: 4597
+			return 1; // L: 4598
+		} else if (var0 != 7102 && var0 != 7103 && var0 != 7104 && var0 != 7105 && var0 != 7109) { // L: 4600
+			if (var0 == 7106) { // L: 4604
+				++class12.Interpreter_intStackSize; // L: 4605
+				return 1; // L: 4606
+			} else if (var0 == 7107) { // L: 4608
+				++class12.Interpreter_intStackSize; // L: 4609
+				return 1; // L: 4610
+			} else if (var0 == 7108) { // L: 4612
+				Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = CollisionMap.method3788() ? 1 : 0; // L: 4613
+				return 1; // L: 4614
+			} else if (var0 == 7110) { // L: 4616
+				Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = 0; // L: 4617
+				return 1; // L: 4618
+			} else if (var0 == 7120) { // L: 4620
+				--class12.Interpreter_intStackSize; // L: 4621
+				Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = 0; // L: 4622
+				return 1; // L: 4623
+			} else if (var0 == 7121) { // L: 4625
+				class12.Interpreter_intStackSize -= 2; // L: 4626
+				Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = -1; // L: 4627
+				return 1; // L: 4628
+			} else if (var0 == 7122) { // L: 4630
+				class12.Interpreter_intStackSize -= 2; // L: 4631
+				Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = 0; // L: 4632
+				return 1; // L: 4633
+			} else {
+				return 2; // L: 4635
+			}
+		} else {
+			++class12.Interpreter_intStackSize; // L: 4601
+			return 1; // L: 4602
+		}
+	}
 }

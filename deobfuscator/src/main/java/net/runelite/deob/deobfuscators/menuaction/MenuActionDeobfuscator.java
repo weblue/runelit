@@ -26,10 +26,8 @@ package net.runelite.deob.deobfuscators.menuaction;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+
+import java.util.*;
 import java.util.stream.Collectors;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
@@ -249,7 +247,7 @@ public class MenuActionDeobfuscator implements Deobfuscator
 
 		Comparison mc2 = comparisons.stream()
 			.filter(c -> c2.next == c.next)
-			.min((m1, m2) -> Integer.compare(m1.getConstant().intValue(), m2.getConstant().intValue()))
+			.min(Comparator.comparingInt(m -> m.getConstant().intValue()))
 			.get();
 
 		return Integer.compare(mc1.getConstant().intValue(), mc2.getConstant().intValue());

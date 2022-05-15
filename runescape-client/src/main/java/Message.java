@@ -4,105 +4,105 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bd")
+@ObfuscatedName("bo")
 @Implements("Message")
 public class Message extends DualNode {
-	@ObfuscatedName("sv")
+	@ObfuscatedName("tj")
 	@ObfuscatedGetter(
-		intValue = 1210639323
+		intValue = -126703041
 	)
-	static int field478;
-	@ObfuscatedName("ej")
+	static int field469;
+	@ObfuscatedName("ec")
 	@ObfuscatedSignature(
-		descriptor = "Lkz;"
+		descriptor = "Lle;"
 	)
-	@Export("archive8")
-	static Archive archive8;
-	@ObfuscatedName("c")
+	@Export("archive5")
+	static Archive archive5;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 22593719
+		intValue = 2133469117
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1858764081
+		intValue = -1640607835
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1974054315
+		intValue = -1762197281
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@Export("sender")
 	String sender;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lpb;"
+		descriptor = "Lqv;"
 	)
 	@Export("senderUsername")
 	Username senderUsername;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "Lmc;"
+		descriptor = "Lnq;"
 	)
 	@Export("isFromFriend0")
 	TriBool isFromFriend0;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lmc;"
+		descriptor = "Lnq;"
 	)
 	@Export("isFromIgnored0")
 	TriBool isFromIgnored0;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@Export("prefix")
 	String prefix;
-	@ObfuscatedName("v")
+	@ObfuscatedName("r")
 	@Export("text")
 	String text;
 
 	Message(int var1, String var2, String var3, String var4) {
 		this.isFromFriend0 = TriBool.TriBool_unknown; // L: 13
-		this.isFromIgnored0 = TriBool.TriBool_unknown; // L: 14
+		this.isFromIgnored0 = TriBool.TriBool_unknown;
 		this.set(var1, var2, var3, var4); // L: 19
 	} // L: 20
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "-1055264133"
+		garbageValue = "1537190698"
 	)
 	@Export("set")
 	void set(int var1, String var2, String var3, String var4) {
 		int var5 = ++Messages.Messages_count - 1; // L: 25
 		this.count = var5; // L: 27
-		this.cycle = Client.cycle; // L: 28
-		this.type = var1; // L: 29
-		this.sender = var2; // L: 30
-		this.fillSenderUsername(); // L: 31
-		this.prefix = var3; // L: 32
-		this.text = var4; // L: 33
-		this.clearIsFromFriend(); // L: 34
-		this.clearIsFromIgnored(); // L: 35
+		this.cycle = Client.cycle;
+		this.type = var1;
+		this.sender = var2;
+		this.fillSenderUsername();
+		this.prefix = var3;
+		this.text = var4;
+		this.clearIsFromFriend();
+		this.clearIsFromIgnored();
 	} // L: 36
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-761093100"
+		garbageValue = "1779773713"
 	)
 	@Export("clearIsFromFriend")
 	void clearIsFromFriend() {
 		this.isFromFriend0 = TriBool.TriBool_unknown; // L: 39
 	} // L: 40
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "-117"
+		garbageValue = "61"
 	)
 	@Export("isFromFriend")
 	final boolean isFromFriend() {
@@ -113,30 +113,30 @@ public class Message extends DualNode {
 		return this.isFromFriend0 == TriBool.TriBool_true; // L: 46
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-29"
+		descriptor = "(I)V",
+		garbageValue = "402871861"
 	)
 	@Export("fillIsFromFriend")
 	void fillIsFromFriend() {
-		this.isFromFriend0 = ClanSettings.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 50
+		this.isFromFriend0 = BufferedSource.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 50
 	} // L: 51
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1530358618"
+		descriptor = "(B)V",
+		garbageValue = "-87"
 	)
 	@Export("clearIsFromIgnored")
 	void clearIsFromIgnored() {
 		this.isFromIgnored0 = TriBool.TriBool_unknown; // L: 54
 	} // L: 55
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-940344008"
+		garbageValue = "1909676695"
 	)
 	@Export("isFromIgnored")
 	final boolean isFromIgnored() {
@@ -147,54 +147,74 @@ public class Message extends DualNode {
 		return this.isFromIgnored0 == TriBool.TriBool_true; // L: 61
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-7389410"
+		garbageValue = "1418350386"
 	)
 	@Export("fillIsFromIgnored")
 	void fillIsFromIgnored() {
-		this.isFromIgnored0 = ClanSettings.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
-	}
+		this.isFromIgnored0 = BufferedSource.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 65
+	} // L: 66
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1271337219"
+		garbageValue = "604155557"
 	)
 	@Export("fillSenderUsername")
 	final void fillSenderUsername() {
-		if (this.sender != null) {
-			this.senderUsername = new Username(PlayerComposition.method5380(this.sender), VarcInt.loginType);
+		if (this.sender != null) { // L: 69
+			this.senderUsername = new Username(class150.method3026(this.sender), class391.loginType);
 		} else {
-			this.senderUsername = null;
+			this.senderUsername = null; // L: 70
 		}
 
+	} // L: 71
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "786721157"
+	)
+	static int method1079(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 14
+		if (var2 == null) { // L: 15
+			return -1;
+		} else {
+			return var1 >= 0 && var1 < var2.ids.length ? var2.ids[var1] : -1; // L: 16 17
+		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-625577603"
+		descriptor = "(II)Lgi;",
+		garbageValue = "-1137848227"
 	)
-	@Export("changeWorldSelectSorting")
-	static void changeWorldSelectSorting(int var0, int var1) {
-		int[] var2 = new int[4]; // L: 63
-		int[] var3 = new int[4]; // L: 64
-		var2[0] = var0; // L: 65
-		var3[0] = var1; // L: 66
-		int var4 = 1; // L: 67
-
-		for (int var5 = 0; var5 < 4; ++var5) { // L: 68
-			if (World.World_sortOption1[var5] != var0) { // L: 69
-				var2[var4] = World.World_sortOption1[var5]; // L: 70
-				var3[var4] = World.World_sortOption2[var5]; // L: 71
-				++var4; // L: 72
+	public static FloorOverlayDefinition method1098(int var0) {
+		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0); // L: 28
+		if (var1 != null) { // L: 29
+			return var1;
+		} else {
+			byte[] var2 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0); // L: 30
+			var1 = new FloorOverlayDefinition(); // L: 31
+			if (var2 != null) { // L: 32
+				var1.decode(new Buffer(var2), var0);
 			}
-		}
 
-		World.World_sortOption1 = var2; // L: 75
-		World.World_sortOption2 = var3; // L: 76
-		Players.sortWorlds(class33.World_worlds, 0, class33.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 77
-	} // L: 78
+			var1.postDecode(); // L: 33
+			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var1, (long)var0); // L: 34
+			return var1; // L: 35
+		}
+	}
+
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "(IZI)Ljava/lang/String;",
+		garbageValue = "15280176"
+	)
+	@Export("intToString")
+	public static String intToString(int var0, boolean var1) {
+		return var1 && var0 >= 0 ? class152.method3046(var0, 10, var1) : Integer.toString(var0); // L: 106 107
+	}
 }

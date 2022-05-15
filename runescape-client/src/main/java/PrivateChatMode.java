@@ -1,56 +1,39 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("py")
+@ObfuscatedName("qb")
 @Implements("PrivateChatMode")
 public class PrivateChatMode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lpy;"
+		descriptor = "Lqb;"
 	)
-	static final PrivateChatMode field4634;
+	static final PrivateChatMode field4795;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "Lqb;"
+	)
+	public static final PrivateChatMode field4794;
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lpy;"
+		descriptor = "Lqb;"
 	)
-	public static final PrivateChatMode field4632;
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "Lpy;"
-	)
-	static final PrivateChatMode field4633;
-	@ObfuscatedName("e")
+	static final PrivateChatMode field4793;
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1716574203
+		intValue = -1775266883
 	)
-	public final int field4631;
+	public final int field4796;
 
 	static {
-		field4634 = new PrivateChatMode(0); // L: 5
-		field4632 = new PrivateChatMode(1); // L: 6
-		field4633 = new PrivateChatMode(2);
+		field4795 = new PrivateChatMode(0); // L: 5
+		field4794 = new PrivateChatMode(1); // L: 6
+		field4793 = new PrivateChatMode(2);
 	} // L: 7
 
 	PrivateChatMode(int var1) {
-		this.field4631 = var1; // L: 15
-	} // L: 16
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(Lpc;IB)V",
-		garbageValue = "76"
-	)
-	@Export("updatePlayers")
-	static final void updatePlayers(PacketBuffer var0, int var1) {
-		int var2 = var0.offset; // L: 71
-		Players.Players_pendingUpdateCount = 0; // L: 72
-		class150.method3025(var0); // L: 73
-		AttackOption.method2292(var0); // L: 74
-		if (var0.offset - var2 != var1) { // L: 75
-			throw new RuntimeException(var0.offset - var2 + " " + var1); // L: 76
-		}
-	} // L: 78
+		this.field4796 = var1; // L: 11
+	} // L: 12
 }

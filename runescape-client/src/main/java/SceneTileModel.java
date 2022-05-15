@@ -2,77 +2,77 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("gt")
+@ObfuscatedName("hu")
 @Implements("SceneTileModel")
 public final class SceneTileModel {
-	@ObfuscatedName("p")
-	static int[] field2426;
-	@ObfuscatedName("n")
-	static int[] field2427;
-	@ObfuscatedName("m")
-	static int[] field2417;
-	@ObfuscatedName("d")
-	static int[] field2429;
-	@ObfuscatedName("j")
-	static int[] field2430;
-	@ObfuscatedName("f")
-	static final int[][] field2431;
 	@ObfuscatedName("g")
-	static final int[][] field2432;
-	@ObfuscatedName("c")
+	static int[] field2539;
+	@ObfuscatedName("x")
+	static int[] field2540;
+	@ObfuscatedName("n")
+	static int[] field2535;
+	@ObfuscatedName("e")
+	static int[] field2545;
+	@ObfuscatedName("h")
+	static int[] field2534;
+	@ObfuscatedName("f")
+	static final int[][] field2544;
+	@ObfuscatedName("d")
+	static final int[][] field2529;
+	@ObfuscatedName("o")
 	@Export("vertexX")
 	int[] vertexX;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("vertexY")
 	int[] vertexY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("vertexZ")
 	int[] vertexZ;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@Export("triangleColorA")
 	int[] triangleColorA;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@Export("triangleColorB")
 	int[] triangleColorB;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@Export("triangleColorC")
 	int[] triangleColorC;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@Export("faceX")
 	int[] faceX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@Export("faceY")
 	int[] faceY;
-	@ObfuscatedName("v")
+	@ObfuscatedName("r")
 	@Export("faceZ")
 	int[] faceZ;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@Export("triangleTextureId")
 	int[] triangleTextureId;
 	@ObfuscatedName("y")
 	@Export("isFlat")
 	boolean isFlat;
-	@ObfuscatedName("u")
+	@ObfuscatedName("c")
 	@Export("shape")
 	int shape;
-	@ObfuscatedName("h")
+	@ObfuscatedName("w")
 	@Export("rotation")
 	int rotation;
-	@ObfuscatedName("q")
+	@ObfuscatedName("b")
 	@Export("underlayRgb")
 	int underlayRgb;
-	@ObfuscatedName("x")
+	@ObfuscatedName("t")
 	@Export("overlayRgb")
 	int overlayRgb;
 
 	static {
-		field2426 = new int[6]; // L: 21
-		field2427 = new int[6]; // L: 22
-		field2417 = new int[6]; // L: 23
-		field2429 = new int[6]; // L: 24
-		field2430 = new int[6]; // L: 25
-		field2431 = new int[][]{{1, 3, 5, 7}, {1, 3, 5, 7}, {1, 3, 5, 7}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 2, 6}, {1, 3, 5, 7, 2, 8}, {1, 3, 5, 7, 2, 8}, {1, 3, 5, 7, 11, 12}, {1, 3, 5, 7, 11, 12}, {1, 3, 5, 7, 13, 14}}; // L: 26
-		field2432 = new int[][]{{0, 1, 2, 3, 0, 0, 1, 3}, {1, 1, 2, 3, 1, 0, 1, 3}, {0, 1, 2, 3, 1, 0, 1, 3}, {0, 0, 1, 2, 0, 0, 2, 4, 1, 0, 4, 3}, {0, 0, 1, 4, 0, 0, 4, 3, 1, 1, 2, 4}, {0, 0, 4, 3, 1, 0, 1, 2, 1, 0, 2, 4}, {0, 1, 2, 4, 1, 0, 1, 4, 1, 0, 4, 3}, {0, 4, 1, 2, 0, 4, 2, 5, 1, 0, 4, 5, 1, 0, 5, 3}, {0, 4, 1, 2, 0, 4, 2, 3, 0, 4, 3, 5, 1, 0, 4, 5}, {0, 0, 4, 5, 1, 4, 1, 2, 1, 4, 2, 3, 1, 4, 3, 5}, {0, 0, 1, 5, 0, 1, 4, 5, 0, 1, 2, 4, 1, 0, 5, 3, 1, 5, 4, 3, 1, 4, 2, 3}, {1, 0, 1, 5, 1, 1, 4, 5, 1, 1, 2, 4, 0, 0, 5, 3, 0, 5, 4, 3, 0, 4, 2, 3}, {1, 0, 5, 4, 1, 0, 1, 5, 0, 0, 4, 3, 0, 4, 5, 3, 0, 5, 2, 3, 0, 1, 2, 5}}; // L: 41
+		field2539 = new int[6]; // L: 21
+		field2540 = new int[6]; // L: 22
+		field2535 = new int[6]; // L: 23
+		field2545 = new int[6]; // L: 24
+		field2534 = new int[6]; // L: 25
+		field2544 = new int[][]{{1, 3, 5, 7}, {1, 3, 5, 7}, {1, 3, 5, 7}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 2, 6}, {1, 3, 5, 7, 2, 8}, {1, 3, 5, 7, 2, 8}, {1, 3, 5, 7, 11, 12}, {1, 3, 5, 7, 11, 12}, {1, 3, 5, 7, 13, 14}}; // L: 26
+		field2529 = new int[][]{{0, 1, 2, 3, 0, 0, 1, 3}, {1, 1, 2, 3, 1, 0, 1, 3}, {0, 1, 2, 3, 1, 0, 1, 3}, {0, 0, 1, 2, 0, 0, 2, 4, 1, 0, 4, 3}, {0, 0, 1, 4, 0, 0, 4, 3, 1, 1, 2, 4}, {0, 0, 4, 3, 1, 0, 1, 2, 1, 0, 2, 4}, {0, 1, 2, 4, 1, 0, 1, 4, 1, 0, 4, 3}, {0, 4, 1, 2, 0, 4, 2, 5, 1, 0, 4, 5, 1, 0, 5, 3}, {0, 4, 1, 2, 0, 4, 2, 3, 0, 4, 3, 5, 1, 0, 4, 5}, {0, 0, 4, 5, 1, 4, 1, 2, 1, 4, 2, 3, 1, 4, 3, 5}, {0, 0, 1, 5, 0, 1, 4, 5, 0, 1, 2, 4, 1, 0, 5, 3, 1, 5, 4, 3, 1, 4, 2, 3}, {1, 0, 1, 5, 1, 1, 4, 5, 1, 1, 2, 4, 0, 0, 5, 3, 0, 5, 4, 3, 0, 4, 2, 3}, {1, 0, 5, 4, 1, 0, 1, 5, 0, 0, 4, 3, 0, 4, 5, 3, 0, 5, 2, 3, 0, 1, 2, 5}}; // L: 41
 	}
 
 	SceneTileModel(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18, int var19) {
@@ -89,7 +89,7 @@ public final class SceneTileModel {
 		int var21 = var20 / 2; // L: 64
 		int var22 = var20 / 4; // L: 65
 		int var23 = var20 * 3 / 4; // L: 66
-		int[] var24 = field2431[var1]; // L: 67
+		int[] var24 = field2544[var1]; // L: 67
 		int var25 = var24.length; // L: 68
 		this.vertexX = new int[var25]; // L: 69
 		this.vertexY = new int[var25]; // L: 70
@@ -224,7 +224,7 @@ public final class SceneTileModel {
 			var27[var30] = var36; // L: 202
 		}
 
-		int[] var38 = field2432[var1]; // L: 204
+		int[] var38 = field2529[var1]; // L: 204
 		var31 = var38.length / 4; // L: 205
 		this.faceX = new int[var31]; // L: 206
 		this.faceY = new int[var31]; // L: 207

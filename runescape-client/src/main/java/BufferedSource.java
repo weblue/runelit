@@ -7,37 +7,46 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mv")
+@ObfuscatedName("np")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("uf")
+	@ObfuscatedSignature(
+		descriptor = "Lbd;"
+	)
+	@Export("friendSystem")
+	public static FriendSystem friendSystem;
+	@ObfuscatedName("j")
+	@Export("userHomeDirectory")
+	static String userHomeDirectory;
+	@ObfuscatedName("o")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -278059203
+		intValue = 1611590211
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 1313877129
+		intValue = 1886855287
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1487831007
+		intValue = 360959185
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@Export("exception")
 	IOException exception;
 
@@ -52,10 +61,10 @@ public class BufferedSource implements Runnable {
 		this.thread.start(); // L: 76
 	} // L: 77
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "-10"
+		descriptor = "(II)Z",
+		garbageValue = "-916314557"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -86,10 +95,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "9"
+		descriptor = "(I)I",
+		garbageValue = "377483853"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -110,15 +119,15 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-677588890"
+		descriptor = "(B)I",
+		garbageValue = "-18"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
 		synchronized(this) { // L: 142
-			if (this.position == this.limit) { // L: 143
+			if (this.limit == this.position) { // L: 143
 				if (this.exception != null) { // L: 144
 					throw new IOException(this.exception.toString());
 				} else {
@@ -133,10 +142,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "([BIIS)I",
-		garbageValue = "-28937"
+		descriptor = "([BIII)I",
+		garbageValue = "-720858367"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -174,10 +183,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-14"
+		descriptor = "(I)V",
+		garbageValue = "-1309478376"
 	)
 	@Export("close")
 	void close() {
@@ -241,6 +250,41 @@ public class BufferedSource implements Runnable {
 			synchronized(this) { // L: 106
 				this.limit = (var7 + this.limit) % this.capacity; // L: 107
 			} // L: 108
+		}
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "-1918735565"
+	)
+	static final boolean method6702(char var0) {
+		if (Character.isISOControl(var0)) { // L: 16
+			return false;
+		} else if (class78.isAlphaNumeric(var0)) { // L: 17
+			return true;
+		} else {
+			char[] var1 = class424.field4621; // L: 19
+
+			int var2;
+			char var3;
+			for (var2 = 0; var2 < var1.length; ++var2) { // L: 20
+				var3 = var1[var2]; // L: 21
+				if (var0 == var3) { // L: 22
+					return true;
+				}
+			}
+
+			var1 = class424.field4623; // L: 26
+
+			for (var2 = 0; var2 < var1.length; ++var2) { // L: 27
+				var3 = var1[var2]; // L: 28
+				if (var0 == var3) { // L: 29
+					return true;
+				}
+			}
+
+			return false; // L: 32
 		}
 	}
 }

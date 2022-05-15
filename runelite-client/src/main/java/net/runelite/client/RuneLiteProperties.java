@@ -50,6 +50,7 @@ public class RuneLiteProperties
 	private static final String PLUGINHUB_VERSION = "runelite.pluginhub.version";
 	private static final String API_BASE = "runelite.api.base";
 	private static final String RUNELITE_CONFIG = "runelite.config";
+	private static final String OSRS_TWITTER_LINK = "runelite.osrstwitter.link";
 
 	@Getter(AccessLevel.PACKAGE)
 	private static final Properties properties = new Properties();
@@ -136,7 +137,7 @@ public class RuneLiteProperties
 	public static HttpUrl getPluginHubBase()
 	{
 		String version = System.getProperty(PLUGINHUB_VERSION, properties.getProperty(PLUGINHUB_VERSION));
-		return HttpUrl.parse(properties.get(PLUGINHUB_BASE) + "/" + version);
+		return HttpUrl.get(properties.get(PLUGINHUB_BASE) + "/" + version);
 	}
 
 	public static String getApiBase()
@@ -147,5 +148,10 @@ public class RuneLiteProperties
 	public static String getRuneLiteConfig()
 	{
 		return properties.getProperty(RUNELITE_CONFIG);
+	}
+
+	public static String getOSRSTwitterLink()
+	{
+		return properties.getProperty(OSRS_TWITTER_LINK);
 	}
 }

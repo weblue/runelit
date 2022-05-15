@@ -4,68 +4,74 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cg")
+@ObfuscatedName("cr")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ic")
+	@ObfuscatedSignature(
+		descriptor = "[Lqd;"
+	)
+	@Export("modIconSprites")
+	static IndexedSprite[] modIconSprites;
+	@ObfuscatedName("o")
 	@Export("args")
 	Object[] args;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("isMouseInputEvent")
 	boolean isMouseInputEvent;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Ljz;"
+		descriptor = "Lki;"
 	)
 	@Export("widget")
 	Widget widget;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -858505837
+		intValue = 1486957431
 	)
 	@Export("mouseX")
 	int mouseX;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 126424841
+		intValue = -2142202081
 	)
 	@Export("mouseY")
 	int mouseY;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -210169861
+		intValue = 19118051
 	)
 	@Export("opIndex")
 	int opIndex;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Ljz;"
+		descriptor = "Lki;"
 	)
 	@Export("dragTarget")
 	Widget dragTarget;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 24554727
+		intValue = -337661445
 	)
 	@Export("keyTyped")
 	int keyTyped;
-	@ObfuscatedName("v")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -42257657
+		intValue = -2123703635
 	)
 	@Export("keyPressed")
 	int keyPressed;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@Export("targetName")
 	String targetName;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1380078595
+		intValue = 702616363
 	)
-	int field1041;
-	@ObfuscatedName("u")
+	int field1054;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -465756931
+		intValue = -394904135
 	)
 	@Export("type")
 	int type;
@@ -74,66 +80,67 @@ public class ScriptEvent extends Node {
 		this.type = 76; // L: 19
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/Object;I)V",
-		garbageValue = "476436061"
+		descriptor = "([Ljava/lang/Object;B)V",
+		garbageValue = "3"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
 		this.args = var1; // L: 22
 	} // L: 23
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "1370467396"
+		garbageValue = "1156737002"
 	)
 	@Export("setType")
 	public void setType(int var1) {
-		this.type = var1; // L: 26
-	} // L: 27
+		this.type = var1;
+	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "([BB)V",
-		garbageValue = "84"
+		descriptor = "(I)V",
+		garbageValue = "520194545"
 	)
-	@Export("ByteArrayPool_release")
-	public static synchronized void ByteArrayPool_release(byte[] var0) {
-		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field4073) { // L: 98
-			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0; // L: 99
-		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field4074) { // L: 102
-			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0; // L: 103
-		} else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field4071) { // L: 106
-			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0; // L: 107
-		} else if (var0.length == 30000 && ByteArrayPool.field4072 < ByteArrayPool.field4076) { // L: 110
-			ByteArrayPool.field4080[++ByteArrayPool.field4072 - 1] = var0; // L: 111
-		} else {
-			if (class113.ByteArrayPool_arrays != null) { // L: 114
-				for (int var1 = 0; var1 < ByteArrayPool.ByteArrayPool_alternativeSizes.length; ++var1) { // L: 115
-					if (var0.length == ByteArrayPool.ByteArrayPool_alternativeSizes[var1] && ArchiveDiskActionHandler.ByteArrayPool_altSizeArrayCounts[var1] < class113.ByteArrayPool_arrays[var1].length) { // L: 116
-						class113.ByteArrayPool_arrays[var1][ArchiveDiskActionHandler.ByteArrayPool_altSizeArrayCounts[var1]++] = var0; // L: 117
-						return; // L: 118
-					}
-				}
+	static void method2074() {
+		class82.field1072 = new int[2000]; // L: 25
+		int var0 = 0; // L: 26
+		int var1 = 240;
+
+		int var3;
+		for (byte var2 = 12; var0 < 16; var1 -= var2) {
+			var3 = class127.method2805((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.075F + (float)var0 * 0.425F / 16.0F)); // L: 30
+			class82.field1072[var0] = var3; // L: 31
+			++var0; // L: 29
+		}
+
+		var1 = 48; // L: 33
+
+		for (int var5 = var1 / 6; var0 < class82.field1072.length; var1 -= var5) { // L: 34 35 41
+			var3 = var0 * 2; // L: 36
+
+			for (int var4 = class127.method2805((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < class82.field1072.length; ++var0) { // L: 37 38
+				class82.field1072[var0] = var4; // L: 39
 			}
-
 		}
-	} // L: 100 104 108 112 122
 
-	@ObfuscatedName("v")
+	} // L: 43
+
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(IIIZII)J",
-		garbageValue = "2021733791"
+		descriptor = "(Ljava/lang/String;ZZI)V",
+		garbageValue = "-1817866678"
 	)
-	@Export("calculateTag")
-	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
-		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17; // L: 84
-		if (var3) { // L: 85
-			var5 |= 65536L;
-		}
+	@Export("openURL")
+	public static void openURL(String var0, boolean var1, boolean var2) {
+		World.method1663(var0, var1, "openjs", var2); // L: 27
+	} // L: 28
 
-		return var5; // L: 86
+	@ObfuscatedName("p")
+	public static int method2085(long var0) {
+		return (int)(var0 >>> 7 & 127L); // L: 68
 	}
 }

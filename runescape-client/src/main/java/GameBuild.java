@@ -4,42 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kf")
+@ObfuscatedName("kt")
 @Implements("GameBuild")
 public class GameBuild {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lkf;"
+		descriptor = "Lkt;"
 	)
 	@Export("LIVE")
-	public static final GameBuild LIVE;
-	@ObfuscatedName("l")
+	static final GameBuild LIVE;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lkf;"
+		descriptor = "Lkt;"
 	)
 	@Export("BUILDLIVE")
-	public static final GameBuild BUILDLIVE;
-	@ObfuscatedName("s")
+	static final GameBuild BUILDLIVE;
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lkf;"
+		descriptor = "Lkt;"
 	)
 	@Export("RC")
-	public static final GameBuild RC;
-	@ObfuscatedName("e")
+	static final GameBuild RC;
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "Lkf;"
+		descriptor = "Lkt;"
 	)
 	@Export("WIP")
-	public static final GameBuild WIP;
-	@ObfuscatedName("r")
+	static final GameBuild WIP;
+	@ObfuscatedName("a")
 	@Export("name")
 	public final String name;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1842686617
+		intValue = -1924800269
 	)
 	@Export("buildId")
-	public final int buildId;
+	final int buildId;
 
 	static {
 		LIVE = new GameBuild("LIVE", 0); // L: 5
@@ -53,21 +53,13 @@ public class GameBuild {
 		this.buildId = var2; // L: 14
 	} // L: 15
 
-	@ObfuscatedName("kg")
+	@ObfuscatedName("kp")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "2700"
+		descriptor = "(I)I",
+		garbageValue = "206667436"
 	)
-	static final void method5483() {
-		for (int var0 = 0; var0 < Players.Players_count; ++var0) { // L: 11873
-			Player var1 = Client.players[Players.Players_indices[var0]]; // L: 11874
-			var1.clearIsFriend(); // L: 11875
-		}
-
-		ClanSettings.method2903(); // L: 11877
-		if (class67.friendsChat != null) { // L: 11878
-			class67.friendsChat.clearFriends(); // L: 11879
-		}
-
-	} // L: 11881
+	static final int method5586() {
+		float var0 = 200.0F * ((float)class12.clientPreferences.method2225() - 0.5F); // L: 12049
+		return 100 - Math.round(var0); // L: 12050
+	}
 }

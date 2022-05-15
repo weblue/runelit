@@ -3,37 +3,34 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ck")
+@ObfuscatedName("ct")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("fk")
-	@Export("worldHost")
-	static String worldHost;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lfs;"
+		descriptor = "Lfr;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "Llt;"
+		descriptor = "Llo;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfs;)V"
+		descriptor = "(Lfr;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque(); // L: 12
 		this.definition = var1; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "-1837572845"
+		garbageValue = "-1281629783"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -44,11 +41,11 @@ public class HealthBar extends Node {
 			++var6; // L: 22
 			if (var7.cycle == var1) { // L: 23
 				var7.set(var1, var2, var3, var4); // L: 24
-				return; // L: 25
+				return;
 			}
 
-			if (var7.cycle <= var1) { // L: 27
-				var5 = var7;
+			if (var7.cycle <= var1) {
+				var5 = var7; // L: 27
 			}
 		}
 
@@ -66,10 +63,10 @@ public class HealthBar extends Node {
 		}
 	} // L: 31 35
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lcd;",
-		garbageValue = "1"
+		descriptor = "(IB)Lcn;",
+		garbageValue = "79"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -80,7 +77,7 @@ public class HealthBar extends Node {
 				var2 = var3; // L: 43
 			}
 
-			if (this.definition.int5 + var2.cycle + var2.cycleOffset > var1) { // L: 47
+			if (this.definition.int5 + var2.cycleOffset + var2.cycle > var1) { // L: 47
 				return var2;
 			} else {
 				var2.remove(); // L: 49
@@ -91,33 +88,60 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "2000667860"
+		descriptor = "(B)Z",
+		garbageValue = "127"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method5882(); // L: 55
+		return this.updates.method5986(); // L: 55
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(Lkq;Lkq;ZI)V",
-		garbageValue = "-2108078857"
+		descriptor = "(I)[Ldl;",
+		garbageValue = "-95794784"
 	)
-	public static void method2248(AbstractArchive var0, AbstractArchive var1, boolean var2) {
-		class12.ObjectDefinition_archive = var0; // L: 73
-		ObjectComposition.ObjectDefinition_modelsArchive = var1; // L: 74
-		ObjectComposition.ObjectDefinition_isLowDetail = var2; // L: 75
-	} // L: 76
-
-	@ObfuscatedName("gj")
-	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "4"
-	)
-	static boolean method2250() {
-		return (Client.drawPlayerNames & 8) != 0; // L: 4737
+	static class118[] method2333() {
+		return new class118[]{class118.field1498, class118.field1491, class118.field1492, class118.field1499, class118.field1490, class118.field1495}; // L: 25
 	}
+
+	@ObfuscatedName("fv")
+	@ObfuscatedSignature(
+		descriptor = "(Lle;Ljava/lang/String;I)V",
+		garbageValue = "757631192"
+	)
+	static void method2335(Archive var0, String var1) {
+		ArchiveLoader var2 = new ArchiveLoader(var0, var1); // L: 1475
+		Client.archiveLoaders.add(var2); // L: 1476
+		Client.field770 += var2.groupCount; // L: 1477
+	} // L: 1478
+
+	@ObfuscatedName("gp")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "85"
+	)
+	static final void method2334() {
+		if (Tiles.field997) { // L: 3842
+			for (int var0 = 0; var0 < Players.Players_count; ++var0) { // L: 3844
+				Player var1 = Client.players[Players.Players_indices[var0]]; // L: 3845
+				var1.method2114(); // L: 3846
+			}
+
+			Tiles.field997 = false; // L: 3849
+		}
+
+	} // L: 3851
+
+	@ObfuscatedName("ig")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "2108689548"
+	)
+	static void method2336() {
+		Client.menuOptionsCount = 0; // L: 8697
+		Client.isMenuOpen = false; // L: 8698
+	} // L: 8699
 }

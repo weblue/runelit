@@ -1,32 +1,32 @@
-import java.util.Iterator;
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cu")
+@ObfuscatedName("cv")
 @Implements("MouseRecorder")
 public class MouseRecorder implements Runnable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@Export("isRunning")
 	boolean isRunning;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("lock")
 	Object lock;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 28944215
+		intValue = 1556283769
 	)
 	@Export("index")
 	int index;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@Export("xs")
 	int[] xs;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@Export("ys")
 	int[] ys;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@Export("millis")
 	long[] millis;
 
@@ -40,7 +40,7 @@ public class MouseRecorder implements Runnable {
 	} // L: 14
 
 	public void run() {
-		for (; this.isRunning; Language.method5813(50L)) { // L: 18 27
+		for (; this.isRunning; class241.method4815(50L)) { // L: 18 27
 			synchronized(this.lock) { // L: 19
 				if (this.index < 500) { // L: 20
 					this.xs[this.index] = MouseHandler.MouseHandler_x; // L: 21
@@ -53,32 +53,28 @@ public class MouseRecorder implements Runnable {
 
 	} // L: 29
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-122"
+		descriptor = "(ZB)V",
+		garbageValue = "-105"
 	)
-	public static void method2100() {
-		StructComposition.StructDefinition_cached.clear(); // L: 57
-	} // L: 58
+	public static void method2088(boolean var0) {
+		if (NetCache.NetCache_socket != null) { // L: 42
+			try {
+				Buffer var1 = new Buffer(4); // L: 44
+				var1.writeByte(var0 ? 2 : 3); // L: 45
+				var1.writeMedium(0); // L: 46
+				NetCache.NetCache_socket.write(var1.array, 0, 4); // L: 47
+			} catch (IOException var4) {
+				try {
+					NetCache.NetCache_socket.close(); // L: 51
+				} catch (Exception var3) { // L: 53
+				}
 
-	@ObfuscatedName("kz")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1953012058"
-	)
-	@Export("FriendSystem_invalidateIgnoreds")
-	static final void FriendSystem_invalidateIgnoreds() {
-		Iterator var0 = Messages.Messages_hashTable.iterator(); // L: 11885
+				++NetCache.NetCache_ioExceptions; // L: 54
+				NetCache.NetCache_socket = null; // L: 55
+			}
 
-		while (var0.hasNext()) { // L: 11890
-			Message var1 = (Message)var0.next(); // L: 11886
-			var1.clearIsFromIgnored(); // L: 11888
 		}
-
-		if (class67.friendsChat != null) { // L: 11892
-			class67.friendsChat.invalidateIgnoreds(); // L: 11893
-		}
-
-	} // L: 11895
+	} // L: 57
 }

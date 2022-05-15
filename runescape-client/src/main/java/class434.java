@@ -1,34 +1,43 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pa")
-public class class434 {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 848474323
-	)
-	@Export("SpriteBuffer_spriteCount")
-	public static int SpriteBuffer_spriteCount;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = -847686003
-	)
-	@Export("SpriteBuffer_spriteWidth")
-	public static int SpriteBuffer_spriteWidth;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = 1403919859
-	)
-	@Export("SpriteBuffer_spriteHeight")
-	public static int SpriteBuffer_spriteHeight;
-	@ObfuscatedName("e")
-	@Export("SpriteBuffer_xOffsets")
-	public static int[] SpriteBuffer_xOffsets;
-	@ObfuscatedName("r")
-	@Export("SpriteBuffer_yOffsets")
-	public static int[] SpriteBuffer_yOffsets;
+@ObfuscatedName("ps")
+final class class434 implements class429 {
 	@ObfuscatedName("o")
-	@Export("SpriteBuffer_spriteWidths")
-	public static int[] SpriteBuffer_spriteWidths;
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Object;Lpx;I)V",
+		garbageValue = "-2139027116"
+	)
+	public void vmethod7440(Object var1, Buffer var2) {
+		this.method7435((String)var1, var2); // L: 49
+	} // L: 50
+
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "(Lpx;I)Ljava/lang/Object;",
+		garbageValue = "352015354"
+	)
+	public Object vmethod7436(Buffer var1) {
+		return var1.readStringCp1252NullTerminated(); // L: 45
+	}
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Lpx;I)V",
+		garbageValue = "1690387944"
+	)
+	void method7435(String var1, Buffer var2) {
+		var2.writeStringCp1252NullTerminated(var1); // L: 40
+	} // L: 41
+
+	@ObfuscatedName("lb")
+	@ObfuscatedSignature(
+		descriptor = "(Lki;I)Z",
+		garbageValue = "284900734"
+	)
+	@Export("isComponentHidden")
+	static boolean isComponentHidden(Widget var0) {
+		return var0.isHidden; // L: 12509
+	}
 }

@@ -4,140 +4,135 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ba")
+@ObfuscatedName("bq")
 @Implements("Projectile")
 public final class Projectile extends Renderable {
-	@ObfuscatedName("fs")
-	@ObfuscatedGetter(
-		intValue = 1652766549
+	@ObfuscatedName("is")
+	@ObfuscatedSignature(
+		descriptor = "[Lqr;"
 	)
-	static int field955;
-	@ObfuscatedName("ms")
+	@Export("crossSprites")
+	static SpritePixels[] crossSprites;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1365886225
-	)
-	@Export("menuX")
-	static int menuX;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 544019481
+		intValue = -1270230427
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1296031991
+		intValue = -2041826239
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1696264285
+		intValue = -1745093525
 	)
 	@Export("sourceX")
 	int sourceX;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 576824563
+		intValue = -1313084137
 	)
 	@Export("sourceY")
 	int sourceY;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1778659705
+		intValue = -771723281
 	)
 	@Export("sourceZ")
 	int sourceZ;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -2037376117
+		intValue = 1417687011
 	)
 	@Export("endHeight")
 	int endHeight;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 939878615
+		intValue = 1939828539
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 597868345
+		intValue = -269487725
 	)
 	@Export("cycleEnd")
 	int cycleEnd;
-	@ObfuscatedName("v")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 813089219
+		intValue = -1305552491
 	)
 	@Export("slope")
 	int slope;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -77924159
+		intValue = -717216545
 	)
 	@Export("startHeight")
 	int startHeight;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -228041705
+		intValue = -2047363817
 	)
 	@Export("targetIndex")
 	int targetIndex;
-	@ObfuscatedName("u")
+	@ObfuscatedName("c")
 	@Export("isMoving")
 	boolean isMoving;
-	@ObfuscatedName("h")
+	@ObfuscatedName("w")
 	@Export("x")
 	double x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("b")
 	@Export("y")
 	double y;
-	@ObfuscatedName("x")
+	@ObfuscatedName("t")
 	@Export("z")
 	double z;
-	@ObfuscatedName("p")
+	@ObfuscatedName("g")
 	@Export("speedX")
 	double speedX;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@Export("speedY")
 	double speedY;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@Export("speed")
 	double speed;
-	@ObfuscatedName("d")
+	@ObfuscatedName("e")
 	@Export("speedZ")
 	double speedZ;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@Export("accelerationZ")
 	double accelerationZ;
 	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1470989415
+		intValue = 1944098901
 	)
 	@Export("yaw")
 	int yaw;
-	@ObfuscatedName("g")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -130990231
+		intValue = 932506569
 	)
 	@Export("pitch")
 	int pitch;
-	@ObfuscatedName("t")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lgm;"
+		descriptor = "Lgq;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("k")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 493792113
+		intValue = 804241453
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("b")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -155726325
+		intValue = 1940243561
 	)
 	@Export("frameCycle")
 	int frameCycle;
@@ -158,51 +153,51 @@ public final class Projectile extends Renderable {
 		this.targetIndex = var10; // L: 45
 		this.endHeight = var11; // L: 46
 		this.isMoving = false; // L: 47
-		int var12 = Widget.SpotAnimationDefinition_get(this.id).sequence; // L: 48
+		int var12 = class136.SpotAnimationDefinition_get(this.id).sequence; // L: 48
 		if (var12 != -1) { // L: 49
-			this.sequenceDefinition = class78.SequenceDefinition_get(var12);
+			this.sequenceDefinition = class114.SequenceDefinition_get(var12);
 		} else {
 			this.sequenceDefinition = null; // L: 50
 		}
 
 	} // L: 51
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "940270805"
+		garbageValue = "253345363"
 	)
 	@Export("setDestination")
 	final void setDestination(int var1, int var2, int var3, int var4) {
 		double var5;
-		if (!this.isMoving) {
+		if (!this.isMoving) { // L: 54
 			var5 = (double)(var1 - this.sourceX); // L: 55
-			double var7 = (double)(var2 - this.sourceY);
-			double var9 = Math.sqrt(var5 * var5 + var7 * var7);
-			this.x = (double)this.sourceX + (double)this.startHeight * var5 / var9;
-			this.y = (double)this.sourceY + (double)this.startHeight * var7 / var9;
+			double var7 = (double)(var2 - this.sourceY); // L: 56
+			double var9 = Math.sqrt(var5 * var5 + var7 * var7); // L: 57
+			this.x = (double)this.startHeight * var5 / var9 + (double)this.sourceX; // L: 58
+			this.y = (double)this.startHeight * var7 / var9 + (double)this.sourceY; // L: 59
 			this.z = (double)this.sourceZ; // L: 60
 		}
 
-		var5 = (double)(this.cycleEnd + 1 - var4);
-		this.speedX = ((double)var1 - this.x) / var5;
-		this.speedY = ((double)var2 - this.y) / var5;
+		var5 = (double)(this.cycleEnd + 1 - var4); // L: 62
+		this.speedX = ((double)var1 - this.x) / var5; // L: 63
+		this.speedY = ((double)var2 - this.y) / var5; // L: 64
 		this.speed = Math.sqrt(this.speedY * this.speedY + this.speedX * this.speedX); // L: 65
-		if (!this.isMoving) {
+		if (!this.isMoving) { // L: 66
 			this.speedZ = -this.speed * Math.tan(0.02454369D * (double)this.slope);
 		}
 
-		this.accelerationZ = 2.0D * ((double)var3 - this.z - var5 * this.speedZ) / (var5 * var5);
-	}
+		this.accelerationZ = ((double)var3 - this.z - this.speedZ * var5) * 2.0D / (var5 * var5); // L: 67
+	} // L: 68
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lgf;",
-		garbageValue = "39"
+		descriptor = "(I)Lhv;",
+		garbageValue = "-238822980"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = Widget.SpotAnimationDefinition_get(this.id); // L: 101
+		SpotAnimationDefinition var1 = class136.SpotAnimationDefinition_get(this.id); // L: 101
 		Model var2 = var1.getModel(this.frame); // L: 102
 		if (var2 == null) { // L: 103
 			return null;
@@ -212,17 +207,17 @@ public final class Projectile extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "-1935695525"
+		garbageValue = "1804737749"
 	)
 	@Export("advance")
 	final void advance(int var1) {
 		this.isMoving = true; // L: 71
-		this.x += (double)var1 * this.speedX;
-		this.y += this.speedY * (double)var1; // L: 73
-		this.z += this.speedZ * (double)var1 + (double)var1 * this.accelerationZ * 0.5D * (double)var1; // L: 74
+		this.x += (double)var1 * this.speedX; // L: 72
+		this.y += (double)var1 * this.speedY; // L: 73
+		this.z += (double)var1 * this.speedZ + (double)var1 * this.accelerationZ * 0.5D * (double)var1; // L: 74
 		this.speedZ += this.accelerationZ * (double)var1; // L: 75
 		this.yaw = (int)(Math.atan2(this.speedX, this.speedY) * 325.949D) + 1024 & 2047; // L: 76
 		this.pitch = (int)(Math.atan2(this.speedZ, this.speed) * 325.949D) & 2047; // L: 77
@@ -248,7 +243,7 @@ public final class Projectile extends Renderable {
 				}
 			} else {
 				this.frame += var1; // L: 91
-				int var2 = this.sequenceDefinition.method3637(); // L: 92
+				int var2 = this.sequenceDefinition.method3729(); // L: 92
 				if (this.frame >= var2) { // L: 93
 					this.frame = var2 - this.sequenceDefinition.frameCount; // L: 94
 				}
@@ -257,49 +252,13 @@ public final class Projectile extends Renderable {
 
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("ia")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lbl;",
-		garbageValue = "1045641298"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIII)V",
+		garbageValue = "1000139939"
 	)
-	static Script method1969(int var0, int var1) {
-		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16)); // L: 52
-		if (var2 != null) { // L: 53
-			return var2; // L: 54
-		} else {
-			String var3 = String.valueOf(var0); // L: 56
-			int var4 = class148.archive12.getGroupId(var3); // L: 57
-			if (var4 == -1) { // L: 58
-				return null; // L: 59
-			} else {
-				byte[] var5 = class148.archive12.takeFileFlat(var4); // L: 61
-				if (var5 != null) { // L: 62
-					if (var5.length <= 1) { // L: 63
-						return null; // L: 64
-					}
-
-					var2 = ScriptFrame.newScript(var5); // L: 66
-					if (var2 != null) { // L: 67
-						Script.Script_cached.put(var2, (long)(var0 << 16)); // L: 68
-						return var2; // L: 69
-					}
-				}
-
-				return null; // L: 72
-			}
-		}
-	}
-
-	@ObfuscatedName("fo")
-	@ObfuscatedSignature(
-		descriptor = "(Lgm;IIII)V",
-		garbageValue = "-1549271927"
-	)
-	static void method1958(SequenceDefinition var0, int var1, int var2, int var3) {
-		if (Client.soundEffectCount < 50 && class424.clientPreferences.areaSoundEffectsVolume != 0) { // L: 3403
-			if (var0.soundEffects != null && var1 < var0.soundEffects.length) { // L: 3404
-				ObjectComposition.method3508(var0.soundEffects[var1], var2, var3); // L: 3405
-			}
-		}
-	} // L: 3406
+	@Export("insertMenuItemNoShift")
+	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
+		class175.insertMenuItem(var0, var1, var2, var3, var4, var5, false); // L: 9907
+	} // L: 9908
 }

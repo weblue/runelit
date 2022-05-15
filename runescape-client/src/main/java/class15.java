@@ -12,10 +12,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-@ObfuscatedName("p")
+@ObfuscatedName("g")
 public class class15 extends SSLSocketFactory {
-	@ObfuscatedName("c")
-	SecureRandom field88;
+	@ObfuscatedName("o")
+	SecureRandom field78;
 
 	static {
 		if (Security.getProvider("BC") == null) { // L: 40
@@ -24,53 +24,53 @@ public class class15 extends SSLSocketFactory {
 
 	} // L: 41
 
-	class15() {
-		this.field88 = new SecureRandom(); // L: 43
-	} // L: 45
+	public class15() {
+		this.field78 = new SecureRandom(); // L: 43
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;I)Ljavax/net/ssl/SSLSocket;",
-		garbageValue = "2008156590"
+		garbageValue = "-2042805034"
 	)
-	SSLSocket method183(String var1, TlsClientProtocol var2) {
-		return new class12(this, var2, var1); // L: 90
-	}
-
-	public String[] getDefaultCipherSuites() {
-		return null; // L: 61
-	}
-
-	public String[] getSupportedCipherSuites() {
-		return null; // L: 66
+	SSLSocket method169(String var1, TlsClientProtocol var2) {
+		return new class12(this, var2, var1); // L: 88
 	}
 
 	public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException {
-		if (var1 == null) { // L: 49
-			var1 = new Socket(); // L: 50
+		if (var1 == null) { // L: 47
+			var1 = new Socket(); // L: 48
 		}
 
-		if (!var1.isConnected()) { // L: 52
-			var1.connect(new InetSocketAddress(var2, var3)); // L: 53
+		if (!var1.isConnected()) { // L: 50
+			var1.connect(new InetSocketAddress(var2, var3)); // L: 51
 		}
 
-		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field88); // L: 55
-		return this.method183(var2, var5); // L: 56
+		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field78); // L: 53
+		return this.method169(var2, var5); // L: 54
 	}
 
-	public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException {
-		return null; // L: 86
+	public String[] getDefaultCipherSuites() {
+		return null; // L: 59
 	}
 
-	public Socket createSocket(InetAddress var1, int var2) throws IOException {
-		return null; // L: 76
-	}
-
-	public Socket createSocket(String var1, int var2, InetAddress var3, int var4) throws IOException, UnknownHostException {
-		return null; // L: 81
+	public String[] getSupportedCipherSuites() {
+		return null; // L: 64
 	}
 
 	public Socket createSocket(String var1, int var2) throws IOException, UnknownHostException {
-		return null; // L: 71
+		return null; // L: 69
+	}
+
+	public Socket createSocket(String var1, int var2, InetAddress var3, int var4) throws IOException, UnknownHostException {
+		return null; // L: 79
+	}
+
+	public Socket createSocket(InetAddress var1, int var2) throws IOException {
+		return null; // L: 74
+	}
+
+	public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException {
+		return null; // L: 84
 	}
 }

@@ -1,41 +1,80 @@
+import java.util.Iterator;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("po")
-public class class428 {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 281606451
+@ObfuscatedName("pd")
+public class class428 extends class393 implements class252 {
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "Llp;"
 	)
-	public final int field4576;
+	final AbstractArchive field4645;
 	@ObfuscatedName("l")
-	public Object field4575;
+	@ObfuscatedSignature(
+		descriptor = "Lic;"
+	)
+	final DemotingHashTable field4646;
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = 858241003
+	)
+	final int field4647;
 
-	public class428(int var1) {
-		this.field4576 = var1; // L: 8
-	} // L: 9
+	@ObfuscatedSignature(
+		descriptor = "(Lke;ILlq;Llp;)V"
+	)
+	public class428(StudioGame var1, int var2, Language var3, AbstractArchive var4) {
+		super(var1, var3, var4 != null ? var4.getGroupFileCount(var2) : 0); // L: 19
+		this.field4646 = new DemotingHashTable(64); // L: 15
+		this.field4645 = var4; // L: 20
+		this.field4647 = var2; // L: 21
+	} // L: 22
 
-	public class428(int var1, Object var2) {
-		this.field4576 = var1; // L: 12
-		this.field4575 = var2; // L: 13
-	} // L: 14
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lou;",
+		garbageValue = "-318323569"
+	)
+	protected class395 vmethod7381(int var1) {
+		synchronized(this.field4646) { // L: 26
+			class394 var2 = (class394)this.field4646.get((long)var1); // L: 27
+			if (var2 == null) { // L: 28
+				var2 = this.method7380(var1); // L: 29
+				this.field4646.method4942(var2, (long)var1); // L: 30
+			}
 
-	public int hashCode() {
-		return super.hashCode(); // L: 18
+			return var2; // L: 33
+		}
 	}
 
-	public boolean equals(Object var1) {
-		if (!(var1 instanceof class428)) { // L: 23
-			return false;
-		} else {
-			class428 var2 = (class428)var1; // L: 24
-			if (var2.field4575 == null && this.field4575 != null) { // L: 25
-				return false;
-			} else if (this.field4575 == null && var2.field4575 != null) { // L: 26
-				return false;
-			} else {
-				return var2.field4576 == this.field4576 && var2.field4575.equals(this.field4575); // L: 27
-			}
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Low;",
+		garbageValue = "52"
+	)
+	class394 method7380(int var1) {
+		byte[] var2 = this.field4645.takeFile(this.field4647, var1); // L: 37
+		class394 var3 = new class394(var1); // L: 38
+		if (var2 != null) {
+			var3.method6927(new Buffer(var2)); // L: 39
 		}
+
+		return var3; // L: 40
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-380169429"
+	)
+	public void method7382() {
+		synchronized(this.field4646) { // L: 44
+			this.field4646.clear(); // L: 45
+		}
+	} // L: 47
+
+	public Iterator iterator() {
+		return new class427(this); // L: 51
 	}
 }

@@ -4,57 +4,51 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gw")
+@ObfuscatedName("ht")
 @Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
-	@ObfuscatedName("kd")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lgw;"
-	)
-	@Export("textureProvider")
-	static TextureProvider textureProvider;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "[Lgy;"
+		descriptor = "[Lgo;"
 	)
 	@Export("textures")
 	Texture[] textures;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lls;"
+		descriptor = "Llv;"
 	)
 	@Export("deque")
 	NodeDeque deque;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -283041557
+		intValue = -1556133807
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -1705250821
+		intValue = -1550792351
 	)
 	@Export("remaining")
 	int remaining;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@Export("brightness")
 	double brightness;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -296565847
+		intValue = 125957321
 	)
 	@Export("textureSize")
 	int textureSize;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lkq;"
+		descriptor = "Llp;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkq;Lkq;IDI)V"
+		descriptor = "(Llp;Llp;IDI)V"
 	)
 	public TextureProvider(AbstractArchive var1, AbstractArchive var2, int var3, double var4, int var6) {
 		this.deque = new NodeDeque(); // L: 9
@@ -77,10 +71,10 @@ public class TextureProvider implements TextureLoader {
 
 	} // L: 29
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "1131903056"
+		garbageValue = "-1270321324"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
@@ -96,7 +90,7 @@ public class TextureProvider implements TextureLoader {
 
 				for (int var7 = 0; var7 < var6.length; ++var7) { // L: 43
 					int var8 = var6[var7]; // L: 44
-					if (this.archive.method5581(var8)) { // L: 46
+					if (this.archive.method5668(var8)) { // L: 46
 						++var2; // L: 47
 					}
 				}
@@ -110,17 +104,17 @@ public class TextureProvider implements TextureLoader {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("setBrightness")
 	public void setBrightness(double var1) {
 		this.brightness = var1; // L: 60
 		this.clear(); // L: 61
 	} // L: 62
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(II)[I",
-		garbageValue = "2053272226"
+		garbageValue = "-1172311447"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
@@ -150,39 +144,39 @@ public class TextureProvider implements TextureLoader {
 		return null; // L: 84
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "125"
+		descriptor = "(II)I",
+		garbageValue = "-1180986754"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
 		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0; // L: 88 89
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(IB)Z",
-		garbageValue = "-25"
+		garbageValue = "53"
 	)
-	public boolean vmethod4281(int var1) {
-		return this.textures[var1].field2211; // L: 93
+	public boolean vmethod4381(int var1) {
+		return this.textures[var1].field2332; // L: 93
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-1833970906"
+		descriptor = "(IB)Z",
+		garbageValue = "40"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
 		return this.textureSize == 64; // L: 97
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "9"
+		descriptor = "(I)V",
+		garbageValue = "412770361"
 	)
 	@Export("clear")
 	public void clear() {
@@ -196,10 +190,10 @@ public class TextureProvider implements TextureLoader {
 		this.remaining = this.capacity; // L: 105
 	} // L: 106
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "1910120966"
+		garbageValue = "1167642279"
 	)
 	@Export("animate")
 	public void animate(int var1) {
@@ -212,4 +206,60 @@ public class TextureProvider implements TextureLoader {
 		}
 
 	} // L: 116
+
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "(ILbb;ZI)I",
+		garbageValue = "-496024306"
+	)
+	static int method4246(int var0, Script var1, boolean var2) {
+		if (var0 != 7000 && var0 != 7005 && var0 != 7010 && var0 != 7015 && var0 != 7020 && var0 != 7025 && var0 != 7030 && var0 != 7035) { // L: 4547
+			if (var0 != 7001 && var0 != 7002 && var0 != 7011 && var0 != 7012 && var0 != 7021 && var0 != 7022) { // L: 4551
+				if (var0 != 7003 && var0 != 7013 && var0 != 7023) { // L: 4555
+					if (var0 != 7006 && var0 != 7007 && var0 != 7016 && var0 != 7017 && var0 != 7026 && var0 != 7027) { // L: 4559
+						if (var0 != 7008 && var0 != 7018 && var0 != 7028) { // L: 4563
+							if (var0 != 7031 && var0 != 7032) { // L: 4567
+								if (var0 == 7033) { // L: 4572
+									--class9.Interpreter_stringStackSize; // L: 4573
+									return 1; // L: 4574
+								} else if (var0 != 7036 && var0 != 7037) { // L: 4576
+									if (var0 == 7038) { // L: 4580
+										--class12.Interpreter_intStackSize; // L: 4581
+										return 1; // L: 4582
+									} else if (var0 != 7004 && var0 != 7009 && var0 != 7014 && var0 != 7019 && var0 != 7024 && var0 != 7029 && var0 != 7034 && var0 != 7039) { // L: 4584
+										return 2; // L: 4588
+									} else {
+										--class12.Interpreter_intStackSize; // L: 4585
+										return 1; // L: 4586
+									}
+								} else {
+									class12.Interpreter_intStackSize -= 2; // L: 4577
+									return 1; // L: 4578
+								}
+							} else {
+								--class9.Interpreter_stringStackSize; // L: 4568
+								--class12.Interpreter_intStackSize; // L: 4569
+								return 1; // L: 4570
+							}
+						} else {
+							--class12.Interpreter_intStackSize; // L: 4564
+							return 1; // L: 4565
+						}
+					} else {
+						class12.Interpreter_intStackSize -= 2; // L: 4560
+						return 1; // L: 4561
+					}
+				} else {
+					class12.Interpreter_intStackSize -= 2; // L: 4556
+					return 1; // L: 4557
+				}
+			} else {
+				class12.Interpreter_intStackSize -= 3; // L: 4552
+				return 1; // L: 4553
+			}
+		} else {
+			class12.Interpreter_intStackSize -= 5; // L: 4548
+			return 1; // L: 4549
+		}
+	}
 }

@@ -42,6 +42,12 @@ public class WidgetOverlay extends Overlay
 	public static Collection<WidgetOverlay> createOverlays(final OverlayManager overlayManager, final Client client)
 	{
 		return Arrays.asList(
+			new WidgetOverlay(client, WidgetInfo.RESIZABLE_VIEWPORT_CHATBOX_PARENT, OverlayPosition.DETACHED),
+			new WidgetOverlay(client, WidgetInfo.RESIZABLE_VIEWPORT_INVENTORY_PARENT, OverlayPosition.DETACHED),
+			new WidgetOverlay(client, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_CHATBOX_PARENT, OverlayPosition.DETACHED),
+			new WidgetOverlay(client, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_TABS1, OverlayPosition.DETACHED),
+			new WidgetOverlay(client, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_TABS2, OverlayPosition.DETACHED),
+			new WidgetOverlay(client, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INVENTORY_PARENT, OverlayPosition.DETACHED),
 			new WidgetOverlay(client, WidgetInfo.RESIZABLE_MINIMAP_WIDGET, OverlayPosition.CANVAS_TOP_RIGHT),
 			new WidgetOverlay(client, WidgetInfo.RESIZABLE_MINIMAP_STONES_WIDGET, OverlayPosition.CANVAS_TOP_RIGHT),
 			// The client forces the oxygen bar below the xp tracker, so set its priority lower
@@ -209,8 +215,8 @@ public class WidgetOverlay extends Overlay
 		{
 			// The xptracker component layer isn't hidden if the counter and process bar are both configured "Off",
 			// it just has its children hidden.
-			if (client.getVar(Varbits.EXPERIENCE_TRACKER_COUNTER) == 30 // Off
-				&& client.getVar(Varbits.EXPERIENCE_TRACKER_PROGRESS_BAR) == 0) // Off
+			if (client.getVarbitValue(Varbits.EXPERIENCE_TRACKER_COUNTER) == 30 // Off
+				&& client.getVarbitValue(Varbits.EXPERIENCE_TRACKER_PROGRESS_BAR) == 0) // Off
 			{
 				return null;
 			}
@@ -234,7 +240,7 @@ public class WidgetOverlay extends Overlay
 			}
 
 			OverlayPosition position;
-			switch (client.getVar(Varbits.EXPERIENCE_TRACKER_POSITION))
+			switch (client.getVarbitValue(Varbits.EXPERIENCE_TRACKER_POSITION))
 			{
 				case 0:
 				default:
@@ -269,7 +275,7 @@ public class WidgetOverlay extends Overlay
 		public Dimension render(Graphics2D graphics)
 		{
 			// Don't draw widget overlay if the PVP KDR stats text will be empty
-			if (client.getVar(Varbits.SHOW_PVP_KDR_STATS) == 1)
+			if (client.getVarbitValue(Varbits.SHOW_PVP_KDR_STATS) == 1)
 			{
 				return super.render(graphics);
 			}

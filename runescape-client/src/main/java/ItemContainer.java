@@ -1,22 +1,34 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("bp")
+@ObfuscatedName("bw")
 @Implements("ItemContainer")
 public class ItemContainer extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Loj;"
+		descriptor = "Lpv;"
 	)
 	@Export("itemContainers")
 	static NodeHashTable itemContainers;
-	@ObfuscatedName("l")
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = 1933505575
+	)
+	@Export("ItemDefinition_fileCount")
+	public static int ItemDefinition_fileCount;
+	@ObfuscatedName("ey")
+	@ObfuscatedSignature(
+		descriptor = "Lle;"
+	)
+	@Export("archive20")
+	static Archive archive20;
+	@ObfuscatedName("q")
 	@Export("ids")
 	int[] ids;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("quantities")
 	int[] quantities;
 
@@ -29,61 +41,67 @@ public class ItemContainer extends Node {
 		this.quantities = new int[]{0}; // L: 9
 	} // L: 11
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
-		garbageValue = "-1793389136"
+		descriptor = "(Llp;IIB)[Lqd;",
+		garbageValue = "123"
 	)
-	@Export("loadClassFromDescriptor")
-	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-		if (var0.equals("B")) { // L: 222
-			return Byte.TYPE;
-		} else if (var0.equals("I")) { // L: 223
-			return Integer.TYPE;
-		} else if (var0.equals("S")) { // L: 224
-			return Short.TYPE;
-		} else if (var0.equals("J")) { // L: 225
-			return Long.TYPE;
-		} else if (var0.equals("Z")) { // L: 226
-			return Boolean.TYPE;
-		} else if (var0.equals("F")) { // L: 227
-			return Float.TYPE;
-		} else if (var0.equals("D")) { // L: 228
-			return Double.TYPE;
-		} else if (var0.equals("C")) { // L: 229
-			return Character.TYPE;
+	public static IndexedSprite[] method2062(AbstractArchive var0, int var1, int var2) {
+		if (!User.method6514(var0, var1, var2)) { // L: 23
+			return null;
 		} else {
-			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0); // L: 230 231
+			IndexedSprite[] var4 = new IndexedSprite[class453.SpriteBuffer_spriteCount]; // L: 26
+
+			for (int var5 = 0; var5 < class453.SpriteBuffer_spriteCount; ++var5) { // L: 27
+				IndexedSprite var6 = var4[var5] = new IndexedSprite(); // L: 28
+				var6.width = class453.SpriteBuffer_spriteWidth; // L: 29
+				var6.height = class453.SpriteBuffer_spriteHeight; // L: 30
+				var6.xOffset = class453.SpriteBuffer_xOffsets[var5]; // L: 31
+				var6.yOffset = class453.SpriteBuffer_yOffsets[var5]; // L: 32
+				var6.subWidth = ScriptFrame.SpriteBuffer_spriteWidths[var5]; // L: 33
+				var6.subHeight = class453.SpriteBuffer_spriteHeights[var5]; // L: 34
+				var6.palette = Decimator.SpriteBuffer_spritePalette; // L: 35
+				var6.pixels = class127.SpriteBuffer_pixels[var5]; // L: 36
+			}
+
+			VarcInt.method3325(); // L: 38
+			return var4; // L: 41
 		}
 	}
 
-	@ObfuscatedName("go")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(Lcw;III)V",
-		garbageValue = "-586498893"
+		descriptor = "(I)[Lda;",
+		garbageValue = "-726850383"
 	)
-	@Export("performPlayerAnimation")
-	static void performPlayerAnimation(Player var0, int var1, int var2) {
-		if (var0.sequence == var1 && var1 != -1) { // L: 4111
-			int var3 = class78.SequenceDefinition_get(var1).field2109; // L: 4112
-			if (var3 == 1) { // L: 4113
-				var0.sequenceFrame = 0; // L: 4114
-				var0.sequenceFrameCycle = 0; // L: 4115
-				var0.sequenceDelay = var2; // L: 4116
-				var0.field1129 = 0; // L: 4117
-			}
+	static class119[] method2060() {
+		return new class119[]{class119.field1508, class119.field1512, class119.field1502, class119.field1516, class119.field1518, class119.field1521, class119.field1506, class119.field1507, class119.field1500, class119.field1509, class119.field1510, class119.field1511, class119.field1503, class119.field1513, class119.field1514, class119.field1515, class119.field1504}; // L: 74
+	}
 
-			if (var3 == 2) { // L: 4119
-				var0.field1129 = 0; // L: 4120
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "-1192606922"
+	)
+	public static int method2059(int var0) {
+		if (var0 > 0) { // L: 194
+			return 1;
+		} else {
+			return var0 < 0 ? -1 : 0; // L: 195 196
+		}
+	}
+
+	@ObfuscatedName("iz")
+	@ObfuscatedSignature(
+		descriptor = "(IIIII)V",
+		garbageValue = "358850975"
+	)
+	static final void method2061(int var0, int var1, int var2, int var3) {
+		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) { // L: 8721
+			if (Client.rootWidgetWidths[var4] + Client.rootWidgetXs[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetYs[var4] + Client.rootWidgetHeights[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) { // L: 8722
+				Client.field704[var4] = true;
 			}
-		} else if (var1 == -1 || var0.sequence == -1 || class78.SequenceDefinition_get(var1).field2095 >= class78.SequenceDefinition_get(var0.sequence).field2095) { // L: 4123
-			var0.sequence = var1; // L: 4124
-			var0.sequenceFrame = 0; // L: 4125
-			var0.sequenceFrameCycle = 0; // L: 4126
-			var0.sequenceDelay = var2; // L: 4127
-			var0.field1129 = 0; // L: 4128
-			var0.field1176 = var0.pathLength; // L: 4129
 		}
 
-	} // L: 4131
+	} // L: 8724
 }

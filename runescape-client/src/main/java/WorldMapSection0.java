@@ -3,97 +3,91 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("hy")
+@ObfuscatedName("ha")
 @Implements("WorldMapSection0")
 public class WorldMapSection0 implements WorldMapSection {
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		descriptor = "Ley;"
-	)
-	static ClanSettings field2713;
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1656389005
+		intValue = -1921370827
 	)
 	@Export("oldZ")
 	int oldZ;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 753980223
+		intValue = -1948863841
 	)
 	@Export("newZ")
 	int newZ;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -708563667
+		intValue = -1923971
 	)
 	@Export("oldX")
 	int oldX;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 345874997
+		intValue = -834083351
 	)
 	@Export("oldY")
 	int oldY;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -181019815
+		intValue = -151067067
 	)
 	@Export("newX")
 	int newX;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1362481739
+		intValue = -993548849
 	)
 	@Export("newY")
 	int newY;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1066473217
+		intValue = -1130243685
 	)
 	@Export("oldChunkXLow")
 	int oldChunkXLow;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -306855367
+		intValue = -1666808285
 	)
 	@Export("oldChunkYLow")
 	int oldChunkYLow;
-	@ObfuscatedName("v")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1493914521
+		intValue = -912507685
 	)
 	@Export("oldChunkXHigh")
 	int oldChunkXHigh;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -502378895
+		intValue = -1336425609
 	)
 	@Export("oldChunkYHigh")
 	int oldChunkYHigh;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1039818759
+		intValue = -834426157
 	)
 	@Export("newChunkXLow")
 	int newChunkXLow;
-	@ObfuscatedName("u")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1186966869
+		intValue = -1730040283
 	)
 	@Export("newChunkYLow")
 	int newChunkYLow;
-	@ObfuscatedName("h")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 586618761
+		intValue = -1327937655
 	)
 	@Export("newChunkXHigh")
 	int newChunkXHigh;
-	@ObfuscatedName("q")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1668463027
+		intValue = -1666490665
 	)
 	@Export("newChunkYHigh")
 	int newChunkYHigh;
@@ -101,10 +95,10 @@ public class WorldMapSection0 implements WorldMapSection {
 	WorldMapSection0() {
 	} // L: 22
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(Lhm;I)V",
-		garbageValue = "806489369"
+		garbageValue = "-1792723155"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -113,10 +107,10 @@ public class WorldMapSection0 implements WorldMapSection {
 		}
 
 		if (var1.regionHighX < this.newX) {
-			var1.regionHighX = this.newX;
+			var1.regionHighX = this.newX; // L: 27
 		}
 
-		if (var1.regionLowY > this.newY) {
+		if (var1.regionLowY > this.newY) { // L: 28
 			var1.regionLowY = this.newY;
 		}
 
@@ -124,36 +118,36 @@ public class WorldMapSection0 implements WorldMapSection {
 			var1.regionHighY = this.newY;
 		}
 
-	}
+	} // L: 30
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)Z",
-		garbageValue = "1721879281"
+		descriptor = "(IIIB)Z",
+		garbageValue = "1"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
-		if (var1 >= this.oldZ && var1 < this.newZ + this.oldZ) { // L: 34
+		if (var1 >= this.oldZ && var1 < this.oldZ + this.newZ) { // L: 34
 			return var2 >= (this.oldX << 6) + (this.oldChunkXLow << 3) && var2 <= (this.oldX << 6) + (this.oldChunkXHigh << 3) + 7 && var3 >= (this.oldY << 6) + (this.oldChunkYLow << 3) && var3 <= (this.oldY << 6) + (this.oldChunkYHigh << 3) + 7; // L: 37
 		} else {
 			return false; // L: 35
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "898039462"
+		descriptor = "(IIB)Z",
+		garbageValue = "2"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
 		return var1 >= (this.newX << 6) + (this.newChunkXLow << 3) && var1 <= (this.newX << 6) + (this.newChunkXHigh << 3) + 7 && var2 >= (this.newY << 6) + (this.newChunkYLow << 3) && var2 <= (this.newY << 6) + (this.newChunkYHigh << 3) + 7; // L: 42
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)[I",
-		garbageValue = "499785766"
+		garbageValue = "-41287528"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -165,10 +159,10 @@ public class WorldMapSection0 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)Ljd;",
-		garbageValue = "90"
+		descriptor = "(III)Lkd;",
+		garbageValue = "289851355"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -181,10 +175,10 @@ public class WorldMapSection0 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;B)V",
-		garbageValue = "-121"
+		descriptor = "(Lpx;I)V",
+		garbageValue = "-113194936"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -205,98 +199,12 @@ public class WorldMapSection0 implements WorldMapSection {
 		this.postRead(); // L: 82
 	} // L: 83
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1987835372"
+		descriptor = "(S)V",
+		garbageValue = "-6373"
 	)
 	@Export("postRead")
 	void postRead() {
 	} // L: 85
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-32"
-	)
-	public static int method4702() {
-		return ViewportMouse.ViewportMouse_entityCount; // L: 44
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lni;",
-		garbageValue = "-533029822"
-	)
-	public static class371 method4716() {
-		synchronized(class371.field4238) { // L: 27
-			if (class296.field3510 == 0) { // L: 28
-				return new class371();
-			} else {
-				class371.field4238[--class296.field3510].method6677(); // L: 30
-				return class371.field4238[class296.field3510]; // L: 31
-			}
-		}
-	}
-
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "(ILbl;ZI)I",
-		garbageValue = "271325473"
-	)
-	static int method4714(int var0, Script var1, boolean var2) {
-		int var3 = -1; // L: 563
-		Widget var4;
-		if (var0 >= 2000) { // L: 565
-			var0 -= 1000; // L: 566
-			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 567
-			var4 = class130.getWidget(var3); // L: 568
-		} else {
-			var4 = var2 ? class16.scriptDotWidget : Interpreter.scriptActiveWidget; // L: 570
-		}
-
-		if (var0 == ScriptOpcodes.CC_SETPOSITION) { // L: 571
-			Interpreter.Interpreter_intStackSize -= 4; // L: 572
-			var4.rawX = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize]; // L: 573
-			var4.rawY = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]; // L: 574
-			var4.xAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2]; // L: 575
-			var4.yAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3]; // L: 576
-			class112.invalidateWidget(var4); // L: 577
-			class414.client.alignWidget(var4); // L: 578
-			if (var3 != -1 && var4.type == 0) { // L: 579
-				PcmPlayer.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var3 >> 16], var4, false);
-			}
-
-			return 1; // L: 580
-		} else if (var0 == ScriptOpcodes.CC_SETSIZE) { // L: 582
-			Interpreter.Interpreter_intStackSize -= 4; // L: 583
-			var4.rawWidth = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize]; // L: 584
-			var4.rawHeight = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]; // L: 585
-			var4.widthAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2]; // L: 586
-			var4.heightAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3]; // L: 587
-			class112.invalidateWidget(var4); // L: 588
-			class414.client.alignWidget(var4); // L: 589
-			if (var3 != -1 && var4.type == 0) { // L: 590
-				PcmPlayer.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var3 >> 16], var4, false);
-			}
-
-			return 1; // L: 591
-		} else if (var0 == ScriptOpcodes.CC_SETHIDE) { // L: 593
-			boolean var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1; // L: 594
-			if (var5 != var4.isHidden) { // L: 595
-				var4.isHidden = var5; // L: 596
-				class112.invalidateWidget(var4); // L: 597
-			}
-
-			return 1; // L: 599
-		} else if (var0 == ScriptOpcodes.CC_SETNOCLICKTHROUGH) { // L: 601
-			var4.noClickThrough = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1; // L: 602
-			return 1; // L: 603
-		} else if (var0 == ScriptOpcodes.CC_SETNOSCROLLTHROUGH) { // L: 605
-			var4.noScrollThrough = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1; // L: 606
-			return 1; // L: 607
-		} else {
-			return 2; // L: 609
-		}
-	}
 }

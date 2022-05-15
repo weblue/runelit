@@ -3,100 +3,131 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dv")
-public class class118 implements class110 {
-	@ObfuscatedName("b")
-	@Export("BZip2Decompressor_block")
-	static int[] BZip2Decompressor_block;
-	@ObfuscatedName("hc")
-	@ObfuscatedGetter(
-		intValue = 11763445
-	)
-	@Export("baseY")
-	static int baseY;
-
-	@ObfuscatedName("w")
+@ObfuscatedName("dl")
+public class class118 implements MouseWheel {
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-1768325568"
+		descriptor = "Ldl;"
 	)
-	@Export("isDigit")
-	public static boolean isDigit(char var0) {
-		return var0 >= '0' && var0 <= '9'; // L: 152
+	static final class118 field1498;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "Ldl;"
+	)
+	static final class118 field1491;
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "Ldl;"
+	)
+	static final class118 field1492;
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "Ldl;"
+	)
+	static final class118 field1499;
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "Ldl;"
+	)
+	static final class118 field1490;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "Ldl;"
+	)
+	static final class118 field1495;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = -733991275
+	)
+	final int field1496;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = 1625780091
+	)
+	final int field1497;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = -808605415
+	)
+	final int field1493;
+
+	static {
+		field1498 = new class118(0, 0, (String)null, 0); // L: 14
+		field1491 = new class118(1, 1, (String)null, 9); // L: 15
+		field1492 = new class118(2, 2, (String)null, 3); // L: 16
+		field1499 = new class118(3, 3, (String)null, 6); // L: 17
+		field1490 = new class118(4, 4, (String)null, 1); // L: 18
+		field1495 = new class118(5, 5, (String)null, 3); // L: 19
 	}
 
-	@ObfuscatedName("fy")
+	class118(int var1, int var2, String var3, int var4) {
+		this.field1496 = var1;
+		this.field1497 = var2; // L: 30
+		this.field1493 = var4; // L: 31
+	} // L: 32
+
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "5311"
+		descriptor = "(B)I",
+		garbageValue = "30"
 	)
-	static final void method2657() {
-		if (SoundSystem.Client_plane != Client.field735) { // L: 3487
-			Client.field735 = SoundSystem.Client_plane; // L: 3488
-			int var0 = SoundSystem.Client_plane; // L: 3489
-			int[] var1 = class414.sceneMinimapSprite.pixels; // L: 3491
-			int var2 = var1.length; // L: 3492
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1497; // L: 46
+	}
 
-			int var3;
-			for (var3 = 0; var3 < var2; ++var3) { // L: 3493
-				var1[var3] = 0;
-			}
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-1599057614"
+	)
+	int method2732() {
+		return this.field1493; // L: 41
+	}
 
-			int var4;
-			int var5;
-			for (var3 = 1; var3 < 103; ++var3) { // L: 3494
-				var4 = (103 - var3) * 2048 + 24628; // L: 3495
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(Llp;Ljava/lang/String;Ljava/lang/String;IZI)V",
+		garbageValue = "-898838791"
+	)
+	public static void method2733(AbstractArchive var0, String var1, String var2, int var3, boolean var4) {
+		int var5 = var0.getGroupId(var1); // L: 26
+		int var6 = var0.getFileId(var5, var2); // L: 27
+		UserComparator8.method2574(var0, var5, var6, var3, var4); // L: 28
+	} // L: 29
 
-				for (var5 = 1; var5 < 103; ++var5) { // L: 3496
-					if ((Tiles.Tiles_renderFlags[var0][var5][var3] & 24) == 0) { // L: 3497
-						Decimator.scene.drawTileMinimap(var1, var4, 512, var0, var5, var3);
-					}
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Lkg;",
+		garbageValue = "-495384223"
+	)
+	@Export("PlayerType_values")
+	public static PlayerType[] PlayerType_values() {
+		return new PlayerType[]{PlayerType.field3989, PlayerType.PlayerType_ironman, PlayerType.field3984, PlayerType.PlayerType_jagexModerator, PlayerType.PlayerType_hardcoreIronman, PlayerType.PlayerType_normal, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_ultimateIronman, PlayerType.field3990}; // L: 22
+	}
 
-					if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var5][var3] & 8) != 0) {
-						Decimator.scene.drawTileMinimap(var1, var4, 512, var0 + 1, var5, var3); // L: 3498
-					}
-
-					var4 += 4; // L: 3499
-				}
-			}
-
-			var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10); // L: 3502
-			var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16; // L: 3503
-			class414.sceneMinimapSprite.setRaster(); // L: 3504
-
-			int var6;
-			for (var5 = 1; var5 < 103; ++var5) { // L: 3505
-				for (var6 = 1; var6 < 103; ++var6) { // L: 3506
-					if ((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) { // L: 3507
-						class7.drawObject(var0, var6, var5, var3, var4);
-					}
-
-					if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) { // L: 3508
-						class7.drawObject(var0 + 1, var6, var5, var3, var4);
-					}
-				}
-			}
-
-			Client.mapIconCount = 0; // L: 3511
-
-			for (var5 = 0; var5 < 104; ++var5) { // L: 3512
-				for (var6 = 0; var6 < 104; ++var6) { // L: 3513
-					long var7 = Decimator.scene.getFloorDecorationTag(SoundSystem.Client_plane, var5, var6); // L: 3514
-					if (var7 != 0L) { // L: 3515
-						int var9 = Skeleton.Entity_unpackID(var7); // L: 3516
-						int var10 = ParamComposition.getObjectDefinition(var9).mapIconId; // L: 3517
-						if (var10 >= 0 && class126.WorldMapElement_get(var10).field1773) { // L: 3518 3519
-							Client.mapIcons[Client.mapIconCount] = class126.WorldMapElement_get(var10).getSpriteBool(false); // L: 3522
-							Client.mapIconXs[Client.mapIconCount] = var5; // L: 3523
-							Client.mapIconYs[Client.mapIconCount] = var6; // L: 3524
-							++Client.mapIconCount; // L: 3525
-						}
-					}
-				}
-			}
-
-			PcmPlayer.rasterProvider.apply(); // L: 3530
+	@ObfuscatedName("ht")
+	@ObfuscatedSignature(
+		descriptor = "(Lca;I)Z",
+		garbageValue = "1081302246"
+	)
+	static boolean method2720(Player var0) {
+		if (Client.drawPlayerNames == 0) { // L: 5020
+			return false;
+		} else if (ModelData0.localPlayer != var0) { // L: 5021
+			boolean var1 = (Client.drawPlayerNames & 4) != 0; // L: 5024
+			return var1 || SoundSystem.method779() && var0.isFriend() || class116.method2685() && var0.isFriendsChatMember(); // L: 5026
+		} else {
+			return class21.method274(); // L: 5028
 		}
+	}
 
-	} // L: 3533
+	@ObfuscatedName("lx")
+	@ObfuscatedSignature(
+		descriptor = "(S)Z",
+		garbageValue = "5517"
+	)
+	static boolean method2721() {
+		return class12.clientPreferences.method2243() >= Client.field484; // L: 12710
+	}
 }

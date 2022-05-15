@@ -4,59 +4,53 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bl")
+@ObfuscatedName("bb")
 @Implements("Script")
 public class Script extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lic;"
+		descriptor = "Lir;"
 	)
 	@Export("Script_cached")
 	static EvictingDualNodeHashTable Script_cached;
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "Lpg;"
-	)
-	@Export("options_buttons_0Sprite")
-	static IndexedSprite options_buttons_0Sprite;
+	@ObfuscatedName("q")
+	String field949;
 	@ObfuscatedName("l")
-	String field960;
-	@ObfuscatedName("s")
 	@Export("opcodes")
 	int[] opcodes;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@Export("intOperands")
 	int[] intOperands;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@Export("stringOperands")
 	String[] stringOperands;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1266754377
+		intValue = -1638738709
 	)
 	@Export("localIntCount")
 	int localIntCount;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 915485379
+		intValue = 2011225427
 	)
 	@Export("localStringCount")
 	int localStringCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1163597385
+		intValue = -1425203371
 	)
 	@Export("intArgumentCount")
 	int intArgumentCount;
-	@ObfuscatedName("v")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1119154997
+		intValue = 2038288745
 	)
 	@Export("stringArgumentCount")
 	int stringArgumentCount;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "[Lon;"
+		descriptor = "[Lpt;"
 	)
 	@Export("switches")
 	IterableNodeHashTable[] switches;
@@ -68,22 +62,53 @@ public class Script extends DualNode {
 	Script() {
 	} // L: 23
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(IB)[Lon;",
-		garbageValue = "-83"
+		descriptor = "(IB)[Lpt;",
+		garbageValue = "0"
 	)
 	@Export("newIterableNodeHashTable")
 	IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
-		return new IterableNodeHashTable[var1]; // L: 119
+		return new IterableNodeHashTable[var1]; // L: 155
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-2117274807"
+		descriptor = "(II)Lfb;",
+		garbageValue = "16711680"
 	)
-	public static void method1993(int var0) {
-		MouseHandler.MouseHandler_idleCycles = var0; // L: 61
-	} // L: 62
+	@Export("KitDefinition_get")
+	public static KitDefinition KitDefinition_get(int var0) {
+		KitDefinition var1 = (KitDefinition)KitDefinition.KitDefinition_cached.get((long)var0); // L: 33
+		if (var1 != null) { // L: 34
+			return var1;
+		} else {
+			byte[] var2 = class18.KitDefinition_archive.takeFile(3, var0); // L: 35
+			var1 = new KitDefinition(); // L: 36
+			if (var2 != null) { // L: 37
+				var1.decode(new Buffer(var2));
+			}
+
+			KitDefinition.KitDefinition_cached.put(var1, (long)var0); // L: 38
+			return var1; // L: 39
+		}
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(Lki;IB)V",
+		garbageValue = "11"
+	)
+	@Export("Widget_setKeyIgnoreHeld")
+	static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
+		if (var0.field3474 == null) { // L: 1020
+			throw new RuntimeException(); // L: 1021
+		} else {
+			if (var0.field3527 == null) { // L: 1023
+				var0.field3527 = new int[var0.field3474.length]; // L: 1024
+			}
+
+			var0.field3527[var1] = Integer.MAX_VALUE; // L: 1026
+		}
+	} // L: 1027
 }

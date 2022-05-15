@@ -4,42 +4,48 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hz")
+@ObfuscatedName("hs")
 @Implements("WorldMapIcon_0")
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
-	@ObfuscatedName("c")
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "Lli;"
+	)
+	@Export("NetCache_currentResponse")
+	public static NetFileRequest NetCache_currentResponse;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1986325945
+		intValue = -956371221
 	)
 	@Export("element")
 	final int element;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lhp;"
+		descriptor = "Lip;"
 	)
 	@Export("label")
 	final WorldMapLabel label;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -804430029
+		intValue = 2031981367
 	)
 	@Export("subWidth")
 	final int subWidth;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -1605592337
+		intValue = -1919685021
 	)
 	@Export("subHeight")
 	final int subHeight;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljd;Ljd;ILhp;)V"
+		descriptor = "(Lkd;Lkd;ILip;)V"
 	)
 	WorldMapIcon_0(Coord var1, Coord var2, int var3, WorldMapLabel var4) {
 		super(var1, var2); // L: 14
 		this.element = var3; // L: 15
 		this.label = var4; // L: 16
-		WorldMapElement var5 = class126.WorldMapElement_get(this.getElement()); // L: 17
+		WorldMapElement var5 = class120.WorldMapElement_get(this.getElement()); // L: 17
 		SpritePixels var6 = var5.getSpriteBool(false); // L: 18
 		if (var6 != null) { // L: 19
 			this.subWidth = var6.subWidth; // L: 20
@@ -51,108 +57,67 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	} // L: 27
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-206805537"
+		descriptor = "(B)I",
+		garbageValue = "16"
 	)
 	@Export("getElement")
 	public int getElement() {
 		return this.element; // L: 31
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhp;",
-		garbageValue = "260379500"
+		descriptor = "(I)Lip;",
+		garbageValue = "1420245554"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
 		return this.label; // L: 36
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1605473270"
+		descriptor = "(B)I",
+		garbageValue = "102"
 	)
 	@Export("getSubWidth")
 	int getSubWidth() {
 		return this.subWidth; // L: 41
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-985060397"
+		garbageValue = "-1663406998"
 	)
 	@Export("getSubHeight")
 	int getSubHeight() {
 		return this.subHeight; // L: 46
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("gj")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;IZB)I",
-		garbageValue = "6"
+		descriptor = "(II)V",
+		garbageValue = "-1424752711"
 	)
-	public static int method4690(CharSequence var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) { // L: 81
-			boolean var3 = false; // L: 82
-			boolean var4 = false; // L: 83
-			int var5 = 0; // L: 84
-			int var6 = var0.length(); // L: 85
-
-			for (int var7 = 0; var7 < var6; ++var7) { // L: 86
-				char var8 = var0.charAt(var7); // L: 87
-				if (var7 == 0) { // L: 88
-					if (var8 == '-') { // L: 89
-						var3 = true; // L: 90
-						continue;
-					}
-
-					if (var8 == '+') { // L: 93
-						continue;
-					}
-				}
-
-				int var10;
-				if (var8 >= '0' && var8 <= '9') { // L: 95
-					var10 = var8 - '0';
-				} else if (var8 >= 'A' && var8 <= 'Z') { // L: 96
-					var10 = var8 - '7';
-				} else {
-					if (var8 < 'a' || var8 > 'z') { // L: 97
-						throw new NumberFormatException(); // L: 98
-					}
-
-					var10 = var8 - 'W';
-				}
-
-				if (var10 >= var1) { // L: 99
-					throw new NumberFormatException();
-				}
-
-				if (var3) { // L: 100
-					var10 = -var10;
-				}
-
-				int var9 = var5 * var1 + var10; // L: 101
-				if (var9 / var1 != var5) { // L: 102
-					throw new NumberFormatException();
-				}
-
-				var5 = var9; // L: 103
-				var4 = true; // L: 104
-			}
-
-			if (!var4) { // L: 106
-				throw new NumberFormatException();
-			} else {
-				return var5; // L: 107
-			}
-		} else {
-			throw new IllegalArgumentException("" + var1);
+	@Export("playSong")
+	static void playSong(int var0) {
+		if (var0 == -1 && !Client.playingJingle) { // L: 3800
+			ApproximateRouteStrategy.method1110(); // L: 3801
+		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && class12.clientPreferences.method2248() != 0 && !Client.playingJingle) { // L: 3803
+			Archive var1 = AbstractUserComparator.archive6; // L: 3804
+			int var2 = class12.clientPreferences.method2248(); // L: 3805
+			class273.musicPlayerStatus = 1; // L: 3807
+			ClanChannelMember.musicTrackArchive = var1; // L: 3808
+			StructComposition.musicTrackGroupId = var0; // L: 3809
+			FriendsList.musicTrackFileId = 0; // L: 3810
+			Clock.musicTrackVolume = var2; // L: 3811
+			VertexNormal.musicTrackBoolean = false; // L: 3812
+			GrandExchangeEvent.pcmSampleLength = 2; // L: 3813
 		}
-	}
+
+		Client.currentTrackGroupId = var0; // L: 3816
+	} // L: 3817
 }

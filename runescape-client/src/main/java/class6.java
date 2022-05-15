@@ -1,97 +1,103 @@
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("i")
+@ObfuscatedName("p")
 public enum class6 implements MouseWheel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Li;"
+		descriptor = "Lp;"
 	)
-	field27(0, 0);
+	field16(0, 0);
 
 	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "Lkq;"
+	@Export("BZip2Decompressor_block")
+	static int[] BZip2Decompressor_block;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = 2103814257
 	)
-	@Export("ItemDefinition_modelArchive")
-	public static AbstractArchive ItemDefinition_modelArchive;
-	@ObfuscatedName("aj")
-	@ObfuscatedSignature(
-		descriptor = "Lna;"
-	)
-	static Bounds field25;
-	@ObfuscatedName("gw")
-	@ObfuscatedSignature(
-		descriptor = "Lcz;"
-	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
+	public final int field11;
 	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1479015629
+		intValue = 23593839
 	)
-	final int field22;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = 538107041
-	)
-	final int field20;
+	final int field15;
 
 	class6(int var3, int var4) {
-		this.field22 = var3; // L: 12
-		this.field20 = var4; // L: 13
+		this.field11 = var3; // L: 12
+		this.field15 = var4; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-303340189"
+		descriptor = "(B)I",
+		garbageValue = "30"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field20; // L: 18
+		return this.field15; // L: 18
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-72"
+		descriptor = "(III)I",
+		garbageValue = "-918039654"
 	)
-	@Export("loadWorlds")
-	static boolean loadWorlds() {
-		try {
-			if (WorldMapID.World_request == null) { // L: 31
-				WorldMapID.World_request = urlRequester.request(new URL(ModelData0.field2546));
-			} else if (WorldMapID.World_request.isDone()) { // L: 33
-				byte[] var0 = WorldMapID.World_request.getResponse(); // L: 34
-				Buffer var1 = new Buffer(var0); // L: 35
-				var1.readInt(); // L: 36
-				World.World_count = var1.readUnsignedShort(); // L: 37
-				class33.World_worlds = new World[World.World_count]; // L: 38
+	static int method45(int var0, int var1) {
+		long var2 = (long)((var0 << 16) + var1); // L: 164
+		return WorldMapIcon_0.NetCache_currentResponse != null && var2 == WorldMapIcon_0.NetCache_currentResponse.key ? class357.NetCache_responseArchiveBuffer.offset * 99 / (class357.NetCache_responseArchiveBuffer.array.length - WorldMapIcon_0.NetCache_currentResponse.padding) + 1 : 0; // L: 165 166
+	}
 
-				World var3;
-				for (int var2 = 0; var2 < World.World_count; var3.index = var2++) { // L: 39 47
-					var3 = class33.World_worlds[var2] = new World(); // L: 40
-					var3.id = var1.readUnsignedShort(); // L: 41
-					var3.properties = var1.readInt(); // L: 42
-					var3.host = var1.readStringCp1252NullTerminated(); // L: 43
-					var3.activity = var1.readStringCp1252NullTerminated(); // L: 44
-					var3.location = var1.readUnsignedByte(); // L: 45
-					var3.population = var1.readShort(); // L: 46
-				}
-
-				Players.sortWorlds(class33.World_worlds, 0, class33.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 49
-				WorldMapID.World_request = null; // L: 50
-				return true; // L: 51
-			}
-		} catch (Exception var4) { // L: 55
-			var4.printStackTrace(); // L: 56
-			WorldMapID.World_request = null; // L: 57
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		descriptor = "(CB)Z",
+		garbageValue = "-55"
+	)
+	@Export("isCharPrintable")
+	public static boolean isCharPrintable(char var0) {
+		if (var0 >= ' ' && var0 <= '~') { // L: 187
+			return true;
+		} else if (var0 >= 160 && var0 <= 255) {
+			return true; // L: 188
+		} else {
+			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376; // L: 189
 		}
+	}
 
-		return false; // L: 59
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(ILbb;ZI)I",
+		garbageValue = "1816581663"
+	)
+	static int method47(int var0, Script var1, boolean var2) {
+		if (var0 != 6700 && var0 != 6702 && var0 != 6704 && var0 != 6706 && var0 != 6708) { // L: 4484
+			if (var0 != 6701 && var0 != 6703 && var0 != 6705 && var0 != 6707 && var0 != 6709) { // L: 4489
+				if (var0 == 6750) { // L: 4493
+					Interpreter.Interpreter_stringStack[++class9.Interpreter_stringStackSize - 1] = ""; // L: 4494
+					return 1; // L: 4495
+				} else if (var0 != 6751 && var0 != 6752 && var0 != 6753) { // L: 4497
+					if (var0 == 6754) { // L: 4501
+						int var3 = Interpreter.Interpreter_intStack[--class12.Interpreter_intStackSize]; // L: 4502
+						NPCComposition var4 = WorldMapSectionType.getNpcDefinition(var3); // L: 4503
+						Interpreter.Interpreter_stringStack[++class9.Interpreter_stringStackSize - 1] = var4 != null ? var4.name : ""; // L: 4504
+						return 1; // L: 4505
+					} else {
+						return 2; // L: 4507
+					}
+				} else {
+					Interpreter.Interpreter_intStack[++class12.Interpreter_intStackSize - 1] = -1; // L: 4498
+					return 1; // L: 4499
+				}
+			} else {
+				--class12.Interpreter_intStackSize; // L: 4490
+				return 1; // L: 4491
+			}
+		} else {
+			class12.Interpreter_intStackSize -= 2; // L: 4485
+			--class9.Interpreter_stringStackSize; // L: 4486
+			return 1; // L: 4487
+		}
 	}
 }

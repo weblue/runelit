@@ -4,62 +4,48 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bh")
+@ObfuscatedName("bv")
 @Implements("MenuAction")
 public class MenuAction {
-	@ObfuscatedName("c")
+	@ObfuscatedName("b")
+	static int[] field866;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 683087729
+		intValue = 912945925
 	)
 	@Export("param0")
 	int param0;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1027855045
+		intValue = 1803529141
 	)
 	@Export("param1")
 	int param1;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 791610257
+		intValue = 1012533909
 	)
 	@Export("opcode")
 	int opcode;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1555115433
+		intValue = 1732693837
 	)
 	@Export("identifier")
 	int identifier;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@Export("action")
 	String action;
 
 	MenuAction() {
-	} // L: 12200
+	} // L: 12749
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lkq;IIIZB)V",
-		garbageValue = "-93"
+		descriptor = "(IIB)Z",
+		garbageValue = "32"
 	)
-	public static void method1894(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class265.musicPlayerStatus = 1; // L: 34
-		class265.musicTrackArchive = var0; // L: 35
-		class265.musicTrackGroupId = var1; // L: 36
-		class140.musicTrackFileId = var2; // L: 37
-		class167.musicTrackVolume = var3; // L: 38
-		MusicPatch.musicTrackBoolean = var4; // L: 39
-		GrandExchangeOfferNameComparator.pcmSampleLength = 10000; // L: 40
-	} // L: 41
-
-	@ObfuscatedName("lv")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1125693830"
-	)
-	static void method1895() {
-		class424.clientPreferences.field1231 = Client.field699; // L: 12164
-		GameEngine.savePreferences(); // L: 12165
-	} // L: 12166
+	public static boolean method1880(int var0, int var1) {
+		return (var0 >> var1 + 1 & 1) != 0; // L: 9
+	}
 }

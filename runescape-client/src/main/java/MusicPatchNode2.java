@@ -1,50 +1,74 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ju")
+@ObfuscatedName("jp")
 @Implements("MusicPatchNode2")
 public class MusicPatchNode2 {
-	@ObfuscatedName("c")
-	byte[] field3094;
+	@ObfuscatedName("o")
+	byte[] field3232;
+	@ObfuscatedName("q")
+	byte[] field3223;
 	@ObfuscatedName("l")
-	byte[] field3099;
+	@ObfuscatedGetter(
+		intValue = 706358109
+	)
+	int field3226;
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = 2100894531
+	)
+	int field3225;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = 2080800417
+	)
+	int field3224;
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = 1431898739
+	)
+	int field3227;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = -1294985269
+	)
+	int field3228;
 	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1249365099
+		intValue = -1586241363
 	)
-	int field3095;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -1884748109
-	)
-	int field3096;
+	int field3229;
 	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 279976399
+		intValue = 1620713125
 	)
-	int field3097;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = -857497113
-	)
-	int field3098;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = 2009736759
-	)
-	int field3102;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = 1817476075
-	)
-	int field3100;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 953509989
-	)
-	int field3101;
+	int field3222;
 
 	MusicPatchNode2() {
 	} // L: 14
+
+	@ObfuscatedName("if")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1059182079"
+	)
+	@Export("Widget_runOnTargetLeave")
+	static void Widget_runOnTargetLeave() {
+		if (Client.isSpellSelected) { // L: 9786
+			Widget var0 = ApproximateRouteStrategy.getWidgetChild(ArchiveDiskActionHandler.selectedSpellWidget, Client.selectedSpellChildIndex); // L: 9787
+			if (var0 != null && var0.onTargetLeave != null) { // L: 9788
+				ScriptEvent var1 = new ScriptEvent(); // L: 9789
+				var1.widget = var0; // L: 9790
+				var1.args = var0.onTargetLeave; // L: 9791
+				class144.runScriptEvent(var1); // L: 9792
+			}
+
+			Client.selectedSpellItemId = -1; // L: 9794
+			Client.isSpellSelected = false; // L: 9795
+			GrandExchangeOfferTotalQuantityComparator.invalidateWidget(var0); // L: 9796
+		}
+	} // L: 9797
 }

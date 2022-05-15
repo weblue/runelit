@@ -4,12 +4,12 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mo")
+@ObfuscatedName("nz")
 @Implements("Ignored")
 public class Ignored extends User {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1341966107
+		intValue = 157062685
 	)
 	@Export("id")
 	int id;
@@ -17,20 +17,20 @@ public class Ignored extends User {
 	Ignored() {
 	} // L: 6
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lmo;B)I",
-		garbageValue = "-68"
+		descriptor = "(Lnz;B)I",
+		garbageValue = "0"
 	)
 	@Export("compareTo_ignored")
 	int compareTo_ignored(Ignored var1) {
 		return this.id - var1.id; // L: 9
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Lmy;I)I",
-		garbageValue = "-1446218206"
+		descriptor = "(Lnb;I)I",
+		garbageValue = "434999779"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(User var1) {
@@ -41,30 +41,18 @@ public class Ignored extends User {
 		return this.compareTo_ignored((Ignored)var1); // L: 17
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-164861656"
+		descriptor = "([FIFI)F",
+		garbageValue = "-1881391939"
 	)
-	@Export("clearItemContainer")
-	static void clearItemContainer(int var0) {
-		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 63
-		if (var1 != null) { // L: 64
-			for (int var2 = 0; var2 < var1.ids.length; ++var2) { // L: 65
-				var1.ids[var2] = -1; // L: 66
-				var1.quantities[var2] = 0; // L: 67
-			}
+	static float method6616(float[] var0, int var1, float var2) {
+		float var3 = var0[var1]; // L: 108
 
+		for (int var4 = var1 - 1; var4 >= 0; --var4) { // L: 109
+			var3 = var2 * var3 + var0[var4]; // L: 110
 		}
-	} // L: 69
 
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-300276479"
-	)
-	@Export("isCharAlphabetic")
-	public static boolean isCharAlphabetic(char var0) {
-		return var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z'; // L: 148
+		return var3; // L: 112
 	}
 }

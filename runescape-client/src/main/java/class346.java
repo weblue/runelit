@@ -1,20 +1,18 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ml")
-public class class346 {
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Lpi;"
-	)
-	@Export("NetCache_reference")
-	public static Buffer NetCache_reference;
-	@ObfuscatedName("ff")
+@ObfuscatedName("mf")
+public final class class346 {
+	@ObfuscatedName("o")
+	final Object field4171;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1161233069
+		intValue = -2109207935
 	)
-	@Export("worldPort")
-	static int worldPort;
+	int field4170;
+
+	class346(Object var1, int var2) {
+		this.field4171 = var1; // L: 170
+		this.field4170 = var2; // L: 171
+	} // L: 172
 }

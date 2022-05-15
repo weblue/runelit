@@ -1,89 +1,59 @@
-import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cj")
+@ObfuscatedName("cg")
 @Implements("TileItem")
 public final class TileItem extends Renderable {
-	@ObfuscatedName("t")
-	@Export("userHomeDirectory")
-	static String userHomeDirectory;
-	@ObfuscatedName("c")
+	@ObfuscatedName("sb")
 	@ObfuscatedGetter(
-		intValue = -1193227227
+		intValue = -1684889403
+	)
+	static int field1292;
+	@ObfuscatedName("ev")
+	@ObfuscatedSignature(
+		descriptor = "Lle;"
+	)
+	@Export("archive9")
+	static Archive archive9;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = -2046412949
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -440248455
+		intValue = 129863863
 	)
 	@Export("quantity")
 	int quantity;
 
 	TileItem() {
-	}
+	} // L: 11
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lgf;",
-		garbageValue = "39"
+		descriptor = "(I)Lhv;",
+		garbageValue = "-238822980"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return Client.ItemDefinition_get(this.id).getModel(this.quantity);
+		return FileSystem.ItemDefinition_get(this.id).getModel(this.quantity); // L: 14
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("fk")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "404484711"
+		descriptor = "(Lgq;IIIB)V",
+		garbageValue = "11"
 	)
-	public static String method2296(CharSequence var0) {
-		int var1 = var0.length(); // L: 11
-		StringBuilder var2 = new StringBuilder(var1); // L: 12
-
-		for (int var3 = 0; var3 < var1; ++var3) { // L: 13
-			char var4 = var0.charAt(var3); // L: 14
-			if ((var4 < 'a' || var4 > 'z') && (var4 < 'A' || var4 > 'Z') && (var4 < '0' || var4 > '9') && var4 != '.' && var4 != '-' && var4 != '*' && var4 != '_') { // L: 15
-				if (var4 == ' ') { // L: 16
-					var2.append('+');
-				} else {
-					byte var5 = UserComparator8.charToByteCp1252(var4); // L: 18
-					var2.append('%'); // L: 19
-					int var6 = var5 >> 4 & 15; // L: 20
-					if (var6 >= 10) { // L: 21
-						var2.append((char)(var6 + 55));
-					} else {
-						var2.append((char)(var6 + 48)); // L: 22
-					}
-
-					var6 = var5 & 15; // L: 23
-					if (var6 >= 10) { // L: 24
-						var2.append((char)(var6 + 55));
-					} else {
-						var2.append((char)(var6 + 48)); // L: 25
-					}
-				}
-			} else {
-				var2.append(var4);
+	static void method2407(SequenceDefinition var0, int var1, int var2, int var3) {
+		if (Client.soundEffectCount < 50 && class12.clientPreferences.method2239() != 0) { // L: 3768
+			if (var0.field2209 != null && var0.field2209.containsKey(var1)) { // L: 3769
+				MouseHandler.method588((Integer)var0.field2209.get(var1), var2, var3); // L: 3770
 			}
 		}
-
-		return var2.toString(); // L: 28
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/awt/Component;B)V",
-		garbageValue = "17"
-	)
-	static void method2299(Component var0) {
-		var0.setFocusTraversalKeysEnabled(false); // L: 155
-		var0.addKeyListener(KeyHandler.KeyHandler_instance); // L: 156
-		var0.addFocusListener(KeyHandler.KeyHandler_instance); // L: 157
-	} // L: 158
+	} // L: 3771
 }

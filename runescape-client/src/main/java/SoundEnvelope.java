@@ -3,37 +3,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("az")
+@ObfuscatedName("aq")
 @Implements("SoundEnvelope")
 public class SoundEnvelope {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@Export("segments")
 	int segments;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("durations")
 	int[] durations;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("phases")
 	int[] phases;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@Export("start")
 	int start;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@Export("end")
 	int end;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@Export("form")
 	int form;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@Export("ticks")
 	int ticks;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@Export("phaseIndex")
 	int phaseIndex;
-	@ObfuscatedName("v")
+	@ObfuscatedName("r")
 	@Export("step")
 	int step;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@Export("amplitude")
 	int amplitude;
 	@ObfuscatedName("y")
@@ -50,9 +50,9 @@ public class SoundEnvelope {
 		this.phases[1] = 65535; // L: 27
 	} // L: 28
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;)V"
+		descriptor = "(Lpx;)V"
 	)
 	@Export("decode")
 	final void decode(Buffer var1) {
@@ -62,9 +62,9 @@ public class SoundEnvelope {
 		this.decodeSegments(var1); // L: 34
 	} // L: 35
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;)V"
+		descriptor = "(Lpx;)V"
 	)
 	@Export("decodeSegments")
 	final void decodeSegments(Buffer var1) {
@@ -79,7 +79,7 @@ public class SoundEnvelope {
 
 	} // L: 45
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("reset")
 	final void reset() {
 		this.ticks = 0; // L: 48
@@ -89,7 +89,7 @@ public class SoundEnvelope {
 		this.max = 0; // L: 52
 	} // L: 53
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@Export("doStep")
 	final int doStep(int var1) {
 		if (this.max >= this.ticks) { // L: 56

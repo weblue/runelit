@@ -1,129 +1,117 @@
-import java.io.File;
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fv")
+@ObfuscatedName("ge")
 @Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lkq;"
+		descriptor = "Llp;"
 	)
 	@Export("VarbitDefinition_archive")
 	public static AbstractArchive VarbitDefinition_archive;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lic;"
+		descriptor = "Lir;"
 	)
 	@Export("VarbitDefinition_cached")
 	public static EvictingDualNodeHashTable VarbitDefinition_cached;
-	@ObfuscatedName("o")
-	static final int[] field1929;
-	@ObfuscatedName("s")
+	@ObfuscatedName("m")
+	static final int[] field2039;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1004826275
+		intValue = 449659853
 	)
 	@Export("baseVar")
 	public int baseVar;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 593245031
+		intValue = -1293091049
 	)
 	@Export("startBit")
 	public int startBit;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 1032069569
+		intValue = -1571653715
 	)
 	@Export("endBit")
 	public int endBit;
 
 	static {
 		VarbitDefinition_cached = new EvictingDualNodeHashTable(64); // L: 11
-		field1929 = new int[32]; // L: 15
+		field2039 = new int[32]; // L: 15
 		int var0 = 2; // L: 18
 
 		for (int var1 = 0; var1 < 32; ++var1) { // L: 19
-			field1929[var1] = var0 - 1; // L: 20
+			field2039[var1] = var0 - 1; // L: 20
 			var0 += var0; // L: 21
 		}
 
 	} // L: 23
 
-	@ObfuscatedName("l")
+	VarbitComposition() {
+	} // L: 25
+
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;I)V",
-		garbageValue = "2022529608"
+		descriptor = "(Lpx;I)V",
+		garbageValue = "1433634569"
 	)
 	@Export("decode")
-	public void decode(Buffer var1) {
+	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 31
-			if (var2 == 0) { // L: 32
-				return; // L: 35
+			int var2 = var1.readUnsignedByte(); // L: 39
+			if (var2 == 0) { // L: 40
+				return; // L: 43
 			}
 
-			this.decodeNext(var1, var2); // L: 33
+			this.decodeNext(var1, var2); // L: 41
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;II)V",
-		garbageValue = "119027723"
+		descriptor = "(Lpx;II)V",
+		garbageValue = "1729188867"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 1) { // L: 38
-			this.baseVar = var1.readUnsignedShort(); // L: 39
-			this.startBit = var1.readUnsignedByte(); // L: 40
-			this.endBit = var1.readUnsignedByte(); // L: 41
+		if (var2 == 1) { // L: 46
+			this.baseVar = var1.readUnsignedShort(); // L: 47
+			this.startBit = var1.readUnsignedByte(); // L: 48
+			this.endBit = var1.readUnsignedByte(); // L: 49
 		}
 
-	} // L: 44
+	} // L: 52
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;ZI)Loo;",
-		garbageValue = "-1196339506"
+		descriptor = "(IIIZIB)J",
+		garbageValue = "-48"
 	)
-	@Export("getPreferencesFile")
-	public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
-		File var3 = new File(UrlRequest.cacheDir, "preferences" + var0 + ".dat"); // L: 280
-		if (var3.exists()) { // L: 281
-			try {
-				AccessFile var10 = new AccessFile(var3, "rw", 10000L); // L: 283
-				return var10; // L: 284
-			} catch (IOException var9) { // L: 286
-			}
+	@Export("calculateTag")
+	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
+		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17; // L: 88
+		if (var3) { // L: 89
+			var5 |= 65536L;
 		}
 
-		String var4 = ""; // L: 288
-		if (WorldMapSectionType.cacheGamebuild == 33) { // L: 289
-			var4 = "_rc";
-		} else if (WorldMapSectionType.cacheGamebuild == 34) { // L: 290
-			var4 = "_wip";
-		}
+		return var5; // L: 90
+	}
 
-		File var5 = new File(TileItem.userHomeDirectory, "jagex_" + var1 + "_preferences" + var0 + var4 + ".dat"); // L: 291
-		AccessFile var6;
-		if (!var2 && var5.exists()) { // L: 292
-			try {
-				var6 = new AccessFile(var5, "rw", 10000L); // L: 294
-				return var6; // L: 295
-			} catch (IOException var8) { // L: 297
-			}
-		}
-
-		try {
-			var6 = new AccessFile(var3, "rw", 10000L); // L: 300
-			return var6; // L: 301
-		} catch (IOException var7) { // L: 303
-			throw new RuntimeException(); // L: 304
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(IIIB)I",
+		garbageValue = "-113"
+	)
+	static int method3489(int var0, int var1, int var2) {
+		if ((Tiles.Tiles_renderFlags[var0][var1][var2] & 8) != 0) { // L: 912
+			return 0;
+		} else {
+			return var0 > 0 && (Tiles.Tiles_renderFlags[1][var1][var2] & 2) != 0 ? var0 - 1 : var0; // L: 913
 		}
 	}
 }

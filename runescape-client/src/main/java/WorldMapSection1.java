@@ -3,43 +3,49 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.Reflection;
 
-@ObfuscatedName("ik")
+@ObfuscatedName("in")
 @Implements("WorldMapSection1")
 public class WorldMapSection1 implements WorldMapSection {
-	@ObfuscatedName("c")
+	@ObfuscatedName("sj")
 	@ObfuscatedGetter(
-		intValue = 1753874875
+		intValue = 1030373785
+	)
+	static int field2898;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = -1054024445
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -828363939
+		intValue = 268591679
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1815956983
+		intValue = 1612610403
 	)
 	@Export("regionStartX")
 	int regionStartX;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1394044099
+		intValue = -462292543
 	)
 	@Export("regionStartY")
 	int regionStartY;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 249945147
+		intValue = -1693287799
 	)
 	@Export("regionEndX")
 	int regionEndX;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 99224141
+		intValue = 1403534241
 	)
 	@Export("regionEndY")
 	int regionEndY;
@@ -47,10 +53,10 @@ public class WorldMapSection1 implements WorldMapSection {
 	WorldMapSection1() {
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(Lhm;I)V",
-		garbageValue = "806489369"
+		garbageValue = "-1792723155"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -72,10 +78,10 @@ public class WorldMapSection1 implements WorldMapSection {
 
 	} // L: 22
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)Z",
-		garbageValue = "1721879281"
+		descriptor = "(IIIB)Z",
+		garbageValue = "1"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -86,20 +92,20 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "898039462"
+		descriptor = "(IIB)Z",
+		garbageValue = "2"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
 		return var1 >> 6 == this.regionEndX && var2 >> 6 == this.regionEndY; // L: 34
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)[I",
-		garbageValue = "499785766"
+		garbageValue = "-41287528"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -111,10 +117,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)Ljd;",
-		garbageValue = "90"
+		descriptor = "(III)Lkd;",
+		garbageValue = "289851355"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -127,75 +133,87 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;B)V",
-		garbageValue = "-121"
+		descriptor = "(Lpx;I)V",
+		garbageValue = "-113194936"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
-		this.minPlane = var1.readUnsignedByte();
-		this.planes = var1.readUnsignedByte();
-		this.regionStartX = var1.readUnsignedShort();
-		this.regionStartY = var1.readUnsignedShort();
-		this.regionEndX = var1.readUnsignedShort();
-		this.regionEndY = var1.readUnsignedShort();
-		this.postRead();
-	}
+		this.minPlane = var1.readUnsignedByte(); // L: 60
+		this.planes = var1.readUnsignedByte(); // L: 61
+		this.regionStartX = var1.readUnsignedShort(); // L: 62
+		this.regionStartY = var1.readUnsignedShort(); // L: 63
+		this.regionEndX = var1.readUnsignedShort(); // L: 64
+		this.regionEndY = var1.readUnsignedShort(); // L: 65
+		this.postRead(); // L: 66
+	} // L: 67
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "475724077"
+		descriptor = "(B)V",
+		garbageValue = "38"
 	)
 	@Export("postRead")
 	void postRead() {
+	} // L: 69
+
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "1032077651"
+	)
+	@Export("Widget_unpackTargetMask")
+	public static int Widget_unpackTargetMask(int var0) {
+		return var0 >> 11 & 63; // L: 13
 	}
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Lkz;IIIBZB)V",
-		garbageValue = "0"
+		descriptor = "(Ljava/lang/String;B)Ljava/lang/Class;",
+		garbageValue = "53"
 	)
-	@Export("requestNetFile")
-	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
-		long var6 = (long)((var1 << 16) + var2); // L: 60
-		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6); // L: 61
-		if (var8 == null) { // L: 62
-			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6); // L: 63
-			if (var8 == null) { // L: 64
-				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6); // L: 65
-				if (var8 != null) { // L: 66
-					if (var5) { // L: 67
-						var8.removeDual(); // L: 68
-						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 69
-						--NetCache.NetCache_pendingWritesCount; // L: 70
-						++NetCache.NetCache_pendingPriorityWritesCount; // L: 71
-					}
-
-				} else {
-					if (!var5) { // L: 75
-						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6); // L: 76
-						if (var8 != null) { // L: 77
-							return;
-						}
-					}
-
-					var8 = new NetFileRequest(); // L: 79
-					var8.archive = var0; // L: 80
-					var8.crc = var3; // L: 81
-					var8.padding = var4; // L: 82
-					if (var5) { // L: 83
-						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 84
-						++NetCache.NetCache_pendingPriorityWritesCount; // L: 85
-					} else {
-						NetCache.NetCache_pendingWritesQueue.addFirst(var8); // L: 88
-						NetCache.NetCache_pendingWrites.put(var8, var6); // L: 89
-						++NetCache.NetCache_pendingWritesCount; // L: 90
-					}
-
-				}
-			}
+	@Export("loadClassFromDescriptor")
+	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
+		if (var0.equals("B")) { // L: 212
+			return Byte.TYPE;
+		} else if (var0.equals("I")) { // L: 213
+			return Integer.TYPE;
+		} else if (var0.equals("S")) { // L: 214
+			return Short.TYPE;
+		} else if (var0.equals("J")) { // L: 215
+			return Long.TYPE;
+		} else if (var0.equals("Z")) { // L: 216
+			return Boolean.TYPE;
+		} else if (var0.equals("F")) { // L: 217
+			return Float.TYPE;
+		} else if (var0.equals("D")) { // L: 218
+			return Double.TYPE;
+		} else if (var0.equals("C")) { // L: 219
+			return Character.TYPE;
+		} else {
+			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0); // L: 220 221
 		}
-	} // L: 73 92
+	}
+
+	@ObfuscatedName("gv")
+	@ObfuscatedSignature(
+		descriptor = "(S)V",
+		garbageValue = "20733"
+	)
+	static final void method4839() {
+		if (Decimator.ClanChat_inClanChat) { // L: 3827
+			if (PcmPlayer.friendsChat != null) { // L: 3828
+				PcmPlayer.friendsChat.sort(); // L: 3829
+			}
+
+			for (int var0 = 0; var0 < Players.Players_count; ++var0) { // L: 3832
+				Player var1 = Client.players[Players.Players_indices[var0]]; // L: 3833
+				var1.clearIsInFriendsChat(); // L: 3834
+			}
+
+			Decimator.ClanChat_inClanChat = false; // L: 3837
+		}
+
+	} // L: 3839
 }

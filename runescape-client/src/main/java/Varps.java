@@ -1,20 +1,26 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jv")
+@ObfuscatedName("kn")
 @Implements("Varps")
 public class Varps {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@Export("Varps_masks")
 	static int[] Varps_masks;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("Varps_temp")
 	public static int[] Varps_temp;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("Varps_main")
 	public static int[] Varps_main;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = -995653473
+	)
+	public static int field3348;
 
 	static {
 		Varps_masks = new int[32]; // L: 6
@@ -29,34 +35,27 @@ public class Varps {
 		Varps_main = new int[4000]; // L: 17
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("kj")
 	@ObfuscatedSignature(
-		descriptor = "([BIIII[Lgi;I)V",
-		garbageValue = "-1249872319"
+		descriptor = "(I)V",
+		garbageValue = "-20299938"
 	)
-	static final void method5333(byte[] var0, int var1, int var2, int var3, int var4, CollisionMap[] var5) {
-		int var7;
-		int var8;
-		for (int var6 = 0; var6 < 4; ++var6) { // L: 93
-			for (var7 = 0; var7 < 64; ++var7) { // L: 94
-				for (var8 = 0; var8 < 64; ++var8) { // L: 95
-					if (var7 + var1 > 0 && var7 + var1 < 103 && var8 + var2 > 0 && var8 + var2 < 103) { // L: 96
-						int[] var10000 = var5[var6].flags[var7 + var1];
-						var10000[var2 + var8] &= -16777217;
-					}
-				}
+	static final void method5366() {
+		PacketBufferNode var0 = WallDecoration.getPacketBufferNode(ClientPacket.field3001, Client.packetWriter.isaacCipher); // L: 12197
+		Client.packetWriter.addNode(var0); // L: 12198
+		Interpreter.field833 = true; // L: 12199
+
+		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) { // L: 12200
+			if (var1.type == 0 || var1.type == 3) { // L: 12201
+				NetSocket.closeInterface(var1, true);
 			}
 		}
 
-		Buffer var10 = new Buffer(var0); // L: 100
-
-		for (var7 = 0; var7 < 4; ++var7) { // L: 101
-			for (var8 = 0; var8 < 64; ++var8) { // L: 102
-				for (int var9 = 0; var9 < 64; ++var9) { // L: 103
-					UserComparator9.loadTerrain(var10, var7, var8 + var1, var9 + var2, var3, var4, 0); // L: 104
-				}
-			}
+		if (Client.meslayerContinueWidget != null) { // L: 12203
+			GrandExchangeOfferTotalQuantityComparator.invalidateWidget(Client.meslayerContinueWidget); // L: 12204
+			Client.meslayerContinueWidget = null; // L: 12205
 		}
 
-	} // L: 108
+		Interpreter.field833 = false; // L: 12207
+	} // L: 12208
 }

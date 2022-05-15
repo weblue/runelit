@@ -24,6 +24,7 @@
  */
 package net.runelite.api;
 
+import com.jagex.oldscape.pub.OAuthApi;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.math.BigInteger;
@@ -33,6 +34,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import net.runelite.api.annotations.Varbit;
 import net.runelite.api.annotations.VisibleForExternalPlugins;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanID;
@@ -52,7 +54,7 @@ import org.intellij.lang.annotations.MagicConstant;
 /**
  * Represents the RuneScape client.
  */
-public interface Client extends GameEngine
+public interface Client extends OAuthApi, GameEngine
 {
 	/**
 	 * The injected client invokes these callbacks to send events to us
@@ -199,10 +201,13 @@ public interface Client extends GameEngine
 	void setWorldSelectOpen(boolean open);
 
 	/**
+	 * DEPRECATED. See getAccountHash instead.
 	 * Gets the current logged in username.
 	 *
 	 * @return the logged in username
+	 * @see OAuthApi#getAccountHash()
 	 */
+	@Deprecated
 	String getUsername();
 
 	/**
@@ -394,6 +399,16 @@ public interface Client extends GameEngine
 	int getPlane();
 
 	/**
+	 * Gets the max plane the client can render.
+	 * <p>
+	 * Unlike the plane, the ScenePlane is affected the current status of roof visibility.
+	 * <p>
+	 *
+	 * @return the plane
+	 */
+	int getScenePlane();
+
+	/**
 	 * Gets the current scene
 	 */
 	Scene getScene();
@@ -405,7 +420,6 @@ public interface Client extends GameEngine
 	 * <p>
 	 * (getLocalPlayerIndex returns the local index, useful for menus/interacting)
 	 */
-	@Nullable
 	Player getLocalPlayer();
 
 	int getLocalPlayerIndex();
@@ -444,6 +458,20 @@ public interface Client extends GameEngine
 	 */
 	@Nullable
 	SpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, @MagicConstant(valuesFromClass = ItemQuantityMode.class) int stackable, boolean noted, int scale);
+
+	/**
+	 * Get the item model cache. These models are used for drawing widgets of type {@link net.runelite.api.widgets.WidgetType#MODEL}
+	 * and inventory item icons
+	 * @return
+	 */
+	NodeCache getItemModelCache();
+
+	/**
+	 * Get the item sprite cache. These are 2d SpritePixels which are used to raster item images on the inventory and
+	 * on widgets of type {@link net.runelite.api.widgets.WidgetType#GRAPHIC}
+	 * @return
+	 */
+	NodeCache getItemSpriteCache();
 
 	/**
 	 * Loads and creates the sprite images of the passed archive and file IDs.
@@ -545,6 +573,14 @@ public interface Client extends GameEngine
 	 * @param widget the new dragged on widget
 	 */
 	void setDraggedOnWidget(Widget widget);
+
+	/**
+	 * Get the number of client cycles the current dragged widget
+	 * has been dragged for.
+	 *
+	 * @return
+	 */
+	int getDragTime();
 
 	/**
 	 * Gets Interface ID of the root widget
@@ -828,12 +864,22 @@ public interface Client extends GameEngine
 	int getVar(VarPlayer varPlayer);
 
 	/**
-	 * Gets a value corresponding to the passed variable.
+	 * Gets a value corresponding to the passed varbit.
 	 *
-	 * @param varbit the variable
+	 * @param varbit the varbit id
+	 * @return the value
+	 * @see Client#getVarbitValue(int)
+	 */
+	@Deprecated
+	int getVar(@Varbit int varbit);
+
+	/**
+	 * Gets a value corresponding to the passed varbit.
+	 *
+	 * @param varbit the varbit id
 	 * @return the value
 	 */
-	int getVar(Varbits varbit);
+	int getVarbitValue(@Varbit int varbit);
 
 	/**
 	 * Gets an int value corresponding to the passed variable.
@@ -850,15 +896,6 @@ public interface Client extends GameEngine
 	 * @return the value
 	 */
 	String getVar(VarClientStr varClientStr);
-
-	/**
-	 * Gets the value of a given Varbit.
-	 *
-	 * @param varbitId the varbit id
-	 * @return the value
-	 */
-	@VisibleForExternalPlugins
-	int getVarbitValue(int varbitId);
 
 	/**
 	 * Gets the value of a given VarClientInt
@@ -889,12 +926,12 @@ public interface Client extends GameEngine
 	void setVar(VarClientInt varClientStr, int value);
 
 	/**
-	 * Sets the value of a given variable.
+	 * Sets the value of a varbit
 	 *
-	 * @param varbit the variable
+	 * @param varbit the varbit id
 	 * @param value  the new value
 	 */
-	void setVarbit(Varbits varbit, int value);
+	void setVarbit(@Varbit int varbit, int value);
 
 	/**
 	 * Gets the varbit composition for a given varbit id
@@ -913,7 +950,7 @@ public interface Client extends GameEngine
 	 * @return the value
 	 * @see Varbits
 	 */
-	int getVarbitValue(int[] varps, int varbitId);
+	int getVarbitValue(int[] varps, @Varbit int varbitId);
 
 	/**
 	 * Gets the value of a given VarPlayer.
@@ -935,7 +972,7 @@ public interface Client extends GameEngine
 	 * @param value  the value
 	 * @see Varbits
 	 */
-	void setVarbitValue(int[] varps, int varbit, int value);
+	void setVarbitValue(int[] varps, @Varbit int varbit, int value);
 
 	/**
 	 * Mark the given varp as changed, causing var listeners to be
@@ -1131,7 +1168,7 @@ public interface Client extends GameEngine
 	 * @return the new projectile
 	 */
 	Projectile createProjectile(int id, int plane, int startX, int startY, int startZ, int startCycle, int endCycle,
-		int slope, int startHeight, int endHeight, @Nullable Actor target, int targetX, int targetY);
+								int slope, int startHeight, int endHeight, @Nullable Actor target, int targetX, int targetY);
 
 	/**
 	 * Gets a list of all projectiles currently spawned.
@@ -1210,6 +1247,17 @@ public interface Client extends GameEngine
 	 * @param volume 0-255 inclusive
 	 */
 	void setMusicVolume(int volume);
+
+	/**
+	 * @return true if the current {@link #getMusicCurrentTrackId()} is a Jingle, otherwise its a Track
+	 */
+	boolean isPlayingJingle();
+
+	/**
+	 * @return Currently playing music/jingle id, or -1 if not playing
+	 * @see #isPlayingJingle()
+	 */
+	int getMusicCurrentTrackId();
 
 	/**
 	 * Play a sound effect at the player's current location. This is how UI,
@@ -1859,6 +1907,14 @@ public interface Client extends GameEngine
 	void setBlacklistDeadNpcs(Set<Integer> blacklist);
 
 	/**
+	 * Adds a custom clientscript to the list of available clientscripts.
+	 *
+	 * @param script compiled clientscript code
+	 * @return the id of the newly-added script
+	 */
+	int addClientScript(byte[] script);
+
+	/**
 	 * Gets an array of tile collision data.
 	 * <p>
 	 * The index into the array is the plane/z-axis coordinate.
@@ -2047,9 +2103,34 @@ public interface Client extends GameEngine
 	void setSpellSelected(boolean selected);
 
 	/**
+	 * @deprecated use {@link #getSelectedWidget()} instead.
+	 */
+	@Deprecated
+	int getSelectedItem();
+
+	/**
+	 * @deprecated use {@link #getSelectedSpellChildIndex()} instead.
+	 */
+	@Deprecated
+	int getSelectedItemIndex();
+
+	/**
+	 * Get the selected widget, such as a selected spell or selected item (eg. "Use")
+	 * @return the selected widget
+	 */
+	@Nullable
+	Widget getSelectedWidget();
+
+	/**
 	 * Returns client item composition cache
 	 */
 	NodeCache getItemCompositionCache();
+
+	/**
+	 * Returns client object composition cache
+	 * @return
+	 */
+	NodeCache getObjectCompositionCache();
 
 	/**
 	 * Returns the array of cross sprites that appear and animate when left-clicking
@@ -2098,6 +2179,12 @@ public interface Client extends GameEngine
 	String getSelectedSpellActionName();
 
 	int getSelectedSpellFlags();
+
+	void setSelectedSpellFlags(int var0);
+
+	int getSelectedSpellItemId();
+
+	void setSelectedSpellItemId(int itemId);
 
 	/**
 	 * Set whether or not player attack options will be hidden for friends
@@ -2163,14 +2250,34 @@ public interface Client extends GameEngine
 	 */
 	void insertMenuItem(String action, String target, int opcode, int identifier, int argument1, int argument2, boolean forceLeftClick);
 
+	/**
+	 * @deprecated use {@link #setSelectedSpellItemId(int)} instead.
+	 */
+	@Deprecated
 	void setSelectedItemID(int id);
 
+	/**
+	 * @deprecated use {@link #getSelectedSpellWidget()} instead.
+	 */
+	@Deprecated
 	int getSelectedItemWidget();
 
+	/**
+	 * @deprecated use {@link #setSelectedSpellWidget(int)} instead.
+	 */
+	@Deprecated
 	void setSelectedItemWidget(int widgetID);
 
+	/**
+	 * @deprecated use {@link #getSelectedSpellChildIndex()} instead.
+	 */
+	@Deprecated
 	int getSelectedItemSlot();
 
+	/**
+	 * @deprecated use {@link #setSelectedSpellChildIndex(int)} instead.
+	 */
+	@Deprecated
 	void setSelectedItemSlot(int idx);
 
 	int getSelectedSpellWidget();

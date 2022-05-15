@@ -5,91 +5,85 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cx")
+@ObfuscatedName("cz")
 @Implements("PacketWriter")
 public class PacketWriter {
-	@ObfuscatedName("de")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lcu;"
-	)
-	@Export("mouseRecorder")
-	static MouseRecorder mouseRecorder;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lmg;"
+		descriptor = "Lnf;"
 	)
 	@Export("socket")
 	AbstractSocket socket;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Llt;"
+		descriptor = "Llo;"
 	)
 	@Export("packetBufferNodes")
 	IterableNodeDeque packetBufferNodes;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -2067413841
+		intValue = -644004197
 	)
 	@Export("bufferSize")
 	int bufferSize;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "Lpi;"
+		descriptor = "Lpx;"
 	)
 	@Export("buffer")
 	Buffer buffer;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lpv;"
+		descriptor = "Lqh;"
 	)
 	@Export("isaacCipher")
 	public IsaacCipher isaacCipher;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		descriptor = "Lpc;"
 	)
 	@Export("packetBuffer")
 	PacketBuffer packetBuffer;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Liq;"
+		descriptor = "Ljg;"
 	)
 	@Export("serverPacket")
 	ServerPacket serverPacket;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 516931455
+		intValue = -1393417271
 	)
 	@Export("serverPacketLength")
 	int serverPacketLength;
+	@ObfuscatedName("r")
+	boolean field1348;
 	@ObfuscatedName("v")
-	boolean field1322;
-	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -969138177
+		intValue = 2050999841
 	)
-	int field1323;
+	int field1349;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1999393413
+		intValue = 1635279751
 	)
 	@Export("pendingWrites")
 	int pendingWrites;
-	@ObfuscatedName("u")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Liq;"
+		descriptor = "Ljg;"
 	)
-	ServerPacket field1325;
-	@ObfuscatedName("h")
+	ServerPacket field1351;
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Liq;"
+		descriptor = "Ljg;"
 	)
-	ServerPacket field1326;
-	@ObfuscatedName("q")
+	ServerPacket field1340;
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Liq;"
+		descriptor = "Ljg;"
 	)
-	ServerPacket field1327;
+	ServerPacket field1345;
 
 	PacketWriter() {
 		this.packetBufferNodes = new IterableNodeDeque(); // L: 15
@@ -98,15 +92,15 @@ public class PacketWriter {
 		this.packetBuffer = new PacketBuffer(40000); // L: 19
 		this.serverPacket = null; // L: 20
 		this.serverPacketLength = 0; // L: 21
-		this.field1322 = true; // L: 22
-		this.field1323 = 0; // L: 23
+		this.field1348 = true; // L: 22
+		this.field1349 = 0; // L: 23
 		this.pendingWrites = 0; // L: 24
 	} // L: 29
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-24"
+		descriptor = "(I)V",
+		garbageValue = "-564347144"
 	)
 	@Export("clearBuffer")
 	final void clearBuffer() {
@@ -114,10 +108,10 @@ public class PacketWriter {
 		this.bufferSize = 0; // L: 33
 	} // L: 34
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-266664682"
+		garbageValue = "-1796136378"
 	)
 	@Export("flush")
 	final void flush() throws IOException {
@@ -142,10 +136,10 @@ public class PacketWriter {
 
 	} // L: 52
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Lii;I)V",
-		garbageValue = "1102926475"
+		descriptor = "(Ljm;B)V",
+		garbageValue = "0"
 	)
 	@Export("addNode")
 	public final void addNode(PacketBufferNode var1) {
@@ -155,20 +149,20 @@ public class PacketWriter {
 		this.bufferSize += var1.index; // L: 58
 	} // L: 59
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(Lmg;I)V",
-		garbageValue = "1368024855"
+		descriptor = "(Lnf;I)V",
+		garbageValue = "1112545790"
 	)
 	@Export("setSocket")
 	void setSocket(AbstractSocket var1) {
 		this.socket = var1; // L: 62
 	} // L: 63
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-25"
+		descriptor = "(I)V",
+		garbageValue = "-658822811"
 	)
 	@Export("close")
 	void close() {
@@ -179,23 +173,145 @@ public class PacketWriter {
 
 	} // L: 70
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "2128981183"
+		descriptor = "(B)V",
+		garbageValue = "92"
 	)
 	@Export("removeSocket")
 	void removeSocket() {
 		this.socket = null; // L: 73
 	} // L: 74
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lmg;",
-		garbageValue = "1683746255"
+		descriptor = "(S)Lnf;",
+		garbageValue = "255"
 	)
 	@Export("getSocket")
 	AbstractSocket getSocket() {
 		return this.socket; // L: 77
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIZB)Lqr;",
+		garbageValue = "5"
+	)
+	@Export("getItemSprite")
+	public static final SpritePixels getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
+		if (var1 == -1) { // L: 357
+			var4 = 0;
+		} else if (var4 == 2 && var1 != 1) { // L: 358
+			var4 = 1;
+		}
+
+		long var6 = ((long)var3 << 42) + ((long)var1 << 16) + (long)var0 + ((long)var2 << 38) + ((long)var4 << 40); // L: 359
+		SpritePixels var8;
+		if (!var5) { // L: 361
+			var8 = (SpritePixels)ItemComposition.ItemDefinition_cachedSprites.get(var6); // L: 362
+			if (var8 != null) { // L: 363
+				return var8;
+			}
+		}
+
+		ItemComposition var9 = FileSystem.ItemDefinition_get(var0); // L: 365
+		if (var1 > 1 && var9.countobj != null) { // L: 366
+			int var10 = -1; // L: 367
+
+			for (int var11 = 0; var11 < 10; ++var11) { // L: 368
+				if (var1 >= var9.countco[var11] && var9.countco[var11] != 0) { // L: 369
+					var10 = var9.countobj[var11];
+				}
+			}
+
+			if (var10 != -1) { // L: 371
+				var9 = FileSystem.ItemDefinition_get(var10);
+			}
+		}
+
+		Model var19 = var9.getModel(1); // L: 373
+		if (var19 == null) { // L: 374
+			return null;
+		} else {
+			SpritePixels var20 = null; // L: 375
+			if (var9.noteTemplate != -1) { // L: 376
+				var20 = getItemSprite(var9.note, 10, 1, 0, 0, true); // L: 377
+				if (var20 == null) { // L: 378
+					return null;
+				}
+			} else if (var9.notedId != -1) { // L: 380
+				var20 = getItemSprite(var9.unnotedId, var1, var2, var3, 0, false); // L: 381
+				if (var20 == null) { // L: 382
+					return null;
+				}
+			} else if (var9.placeholderTemplate != -1) { // L: 384
+				var20 = getItemSprite(var9.placeholder, var1, 0, 0, 0, false); // L: 385
+				if (var20 == null) { // L: 386
+					return null;
+				}
+			}
+
+			int[] var12 = Rasterizer2D.Rasterizer2D_pixels; // L: 388
+			int var13 = Rasterizer2D.Rasterizer2D_width; // L: 389
+			int var14 = Rasterizer2D.Rasterizer2D_height; // L: 390
+			int[] var15 = new int[4]; // L: 391
+			Rasterizer2D.Rasterizer2D_getClipArray(var15); // L: 392
+			var8 = new SpritePixels(36, 32); // L: 393
+			Rasterizer2D.Rasterizer2D_replace(var8.pixels, 36, 32); // L: 394
+			Rasterizer2D.Rasterizer2D_clear(); // L: 395
+			Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D(); // L: 396
+			Rasterizer3D.method3939(16, 16); // L: 397
+			Rasterizer3D.field2379 = false; // L: 398
+			if (var9.placeholderTemplate != -1) { // L: 399
+				var20.drawTransBgAt(0, 0);
+			}
+
+			int var16 = var9.zoom2d; // L: 400
+			if (var5) { // L: 401
+				var16 = (int)((double)var16 * 1.5D);
+			} else if (var2 == 2) { // L: 402
+				var16 = (int)(1.04D * (double)var16);
+			}
+
+			int var17 = var16 * Rasterizer3D.Rasterizer3D_sine[var9.xan2d] >> 16; // L: 403
+			int var18 = var16 * Rasterizer3D.Rasterizer3D_cosine[var9.xan2d] >> 16; // L: 404
+			var19.calculateBoundsCylinder(); // L: 405
+			var19.method4272(0, var9.yan2d, var9.zan2d, var9.xan2d, var9.offsetX2d, var19.height / 2 + var17 + var9.offsetY2d, var18 + var9.offsetY2d); // L: 406
+			if (var9.notedId != -1) { // L: 407
+				var20.drawTransBgAt(0, 0);
+			}
+
+			if (var2 >= 1) { // L: 408
+				var8.outline(1);
+			}
+
+			if (var2 >= 2) { // L: 409
+				var8.outline(16777215);
+			}
+
+			if (var3 != 0) { // L: 410
+				var8.shadow(var3);
+			}
+
+			Rasterizer2D.Rasterizer2D_replace(var8.pixels, 36, 32); // L: 411
+			if (var9.noteTemplate != -1) { // L: 412
+				var20.drawTransBgAt(0, 0);
+			}
+
+			if (var4 == 1 || var4 == 2 && var9.isStackable == 1) { // L: 413
+				class146.ItemDefinition_fontPlain11.draw(class301.method5583(var1), 0, 9, 16776960, 1); // L: 414
+			}
+
+			if (!var5) { // L: 416
+				ItemComposition.ItemDefinition_cachedSprites.put(var8, var6);
+			}
+
+			Rasterizer2D.Rasterizer2D_replace(var12, var13, var14); // L: 417
+			Rasterizer2D.Rasterizer2D_setClipArray(var15); // L: 418
+			Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D(); // L: 419
+			Rasterizer3D.field2379 = true; // L: 420
+			return var8; // L: 421
+		}
 	}
 }

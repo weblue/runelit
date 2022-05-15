@@ -1,30 +1,99 @@
+import java.net.MalformedURLException;
+import java.net.URL;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kb")
-public final class class291 {
-	@ObfuscatedName("fm")
+@ObfuscatedName("kk")
+public class class291 {
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "5"
+		descriptor = "Lcb;"
 	)
-	static final void method5478() {
-		SceneTilePaint.method4270(class213.field2598, FriendsChat.field4141, class139.field1624); // L: 3601
-		class260.method5000(LoginPacket.field3062, Interpreter.field854); // L: 3602
-		if (class213.field2598 == class414.cameraX && FriendsChat.field4141 == WorldMapDecoration.cameraY && class139.field1624 == GrandExchangeOfferOwnWorldComparator.cameraZ && LoginPacket.field3062 == class7.cameraPitch && class7.cameraYaw == Interpreter.field854) { // L: 3603
-			Client.field755 = false; // L: 3604
-			Client.isCameraLocked = false; // L: 3605
-			class7.field33 = 0; // L: 3606
-			class21.field119 = 0; // L: 3607
-			class334.field4057 = 0; // L: 3608
-			WorldMapSectionType.field2723 = 0; // L: 3609
-			WallDecoration.field2573 = 0; // L: 3610
-			class4.field17 = 0; // L: 3611
-			SceneTilePaint.field2543 = 0; // L: 3612
-			Message.field478 = 0; // L: 3613
-			class12.field75 = 0; // L: 3614
-			class121.field1492 = 0; // L: 3615
+	UrlRequest field3356;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "Lqr;"
+	)
+	SpritePixels field3357;
+
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Lce;)V"
+	)
+	class291(String var1, UrlRequester var2) {
+		try {
+			this.field3356 = var2.request(new URL(var1)); // L: 16
+		} catch (MalformedURLException var4) {
+			this.field3356 = null;
 		}
 
-	} // L: 3618
+	}
+
+	@ObfuscatedSignature(
+		descriptor = "(Lcb;)V"
+	)
+	class291(UrlRequest var1) {
+		this.field3356 = var1; // L: 24
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lqr;",
+		garbageValue = "1905006321"
+	)
+	SpritePixels method5391() {
+		if (this.field3357 == null && this.field3356 != null && this.field3356.isDone()) { // L: 28
+			if (this.field3356.getResponse() != null) { // L: 29
+				this.field3357 = Frames.method4217(this.field3356.getResponse()); // L: 30
+			}
+
+			this.field3356 = null; // L: 32
+		}
+
+		return this.field3357; // L: 34
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "([Llk;II)Llk;",
+		garbageValue = "-1552191752"
+	)
+	@Export("findEnumerated")
+	public static MouseWheel findEnumerated(MouseWheel[] var0, int var1) {
+		MouseWheel[] var2 = var0; // L: 17
+
+		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 18
+			MouseWheel var4 = var2[var3]; // L: 19
+			if (var1 == var4.rsOrdinal()) {
+				return var4; // L: 21
+			}
+		}
+
+		return null; // L: 25
+	}
+
+	@ObfuscatedName("kl")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "16"
+	)
+	static final void method5390(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 255); // L: 12054
+		if (var0 != class12.clientPreferences.method2248()) { // L: 12055
+			if (class12.clientPreferences.method2248() == 0 && Client.currentTrackGroupId != -1) { // L: 12056
+				UserComparator8.method2574(AbstractUserComparator.archive6, Client.currentTrackGroupId, 0, var0, false); // L: 12057
+				Client.playingJingle = false; // L: 12058
+			} else if (var0 == 0) { // L: 12060
+				ApproximateRouteStrategy.method1110(); // L: 12061
+				Client.playingJingle = false; // L: 12062
+			} else if (class273.musicPlayerStatus != 0) { // L: 12065
+				Clock.musicTrackVolume = var0;
+			} else {
+				class273.midiPcmStream.setPcmStreamVolume(var0); // L: 12066
+			}
+
+			class12.clientPreferences.method2234(var0); // L: 12068
+		}
+
+	} // L: 12070
 }

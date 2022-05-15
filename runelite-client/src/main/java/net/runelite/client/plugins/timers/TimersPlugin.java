@@ -45,6 +45,7 @@ import net.runelite.api.ItemContainer;
 import net.runelite.api.ItemID;
 import static net.runelite.api.ItemID.FIRE_CAPE;
 import static net.runelite.api.ItemID.INFERNAL_CAPE;
+import net.runelite.api.MenuAction;
 import net.runelite.api.NPC;
 import net.runelite.api.NpcID;
 import net.runelite.api.Player;
@@ -136,7 +137,6 @@ public class TimersPlugin extends Plugin
 	private static final int NMZ_MAP_REGION_ID = 9033;
 	private static final Pattern TZHAAR_WAVE_MESSAGE = Pattern.compile("Wave: (\\d+)");
 	private static final String TZHAAR_DEFEATED_MESSAGE = "You have been defeated!";
-	private static final Pattern TZHAAR_COMPLETE_MESSAGE = Pattern.compile("Your (?:TzTok-Jad|TzKal-Zuk) kill count is:");
 	private static final Pattern TZHAAR_PAUSED_MESSAGE = Pattern.compile("The (?:Inferno|Fight Cave) has been paused. You may now log out.");
 
 	private TimerTimer freezeTimer;
@@ -206,13 +206,13 @@ public class TimersPlugin extends Plugin
 	@Subscribe
 	public void onVarbitChanged(VarbitChanged event)
 	{
-		int raidVarb = client.getVar(Varbits.IN_RAID);
-		int vengCooldownVarb = client.getVar(Varbits.VENGEANCE_COOLDOWN);
-		int isVengeancedVarb = client.getVar(Varbits.VENGEANCE_ACTIVE);
+		int raidVarb = client.getVarbitValue(Varbits.IN_RAID);
+		int vengCooldownVarb = client.getVarbitValue(Varbits.VENGEANCE_COOLDOWN);
+		int isVengeancedVarb = client.getVarbitValue(Varbits.VENGEANCE_ACTIVE);
 		int poisonVarp = client.getVar(VarPlayer.POISON);
-		int pvpVarb = client.getVar(Varbits.PVP_SPEC_ORB);
-		int corruptionCooldownVarb = client.getVar(Varbits.CORRUPTION_COOLDOWN);
-		int imbuedHeartCooldownVarb = client.getVar(Varbits.IMBUED_HEART_COOLDOWN);
+		int pvpVarb = client.getVarbitValue(Varbits.PVP_SPEC_ORB);
+		int corruptionCooldownVarb = client.getVarbitValue(Varbits.CORRUPTION_COOLDOWN);
+		int imbuedHeartCooldownVarb = client.getVarbitValue(Varbits.IMBUED_HEART_COOLDOWN);
 
 		if (lastRaidVarb != raidVarb)
 		{
@@ -439,64 +439,65 @@ public class TimersPlugin extends Plugin
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (config.showStamina()
-			&& event.getMenuOption().contains("Drink")
-			&& (event.getId() == ItemID.STAMINA_MIX1
-			|| event.getId() == ItemID.STAMINA_MIX2
-			|| event.getId() == ItemID.EGNIOL_POTION_1
-			|| event.getId() == ItemID.EGNIOL_POTION_2
-			|| event.getId() == ItemID.EGNIOL_POTION_3
-			|| event.getId() == ItemID.EGNIOL_POTION_4))
+		if (event.isItemOp() && event.getMenuOption().equals("Drink"))
 		{
-			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
-			createStaminaTimer();
-			return;
+			if ((event.getItemId() == ItemID.STAMINA_MIX1
+				|| event.getItemId() == ItemID.STAMINA_MIX2
+				|| event.getItemId() == ItemID.EGNIOL_POTION_1
+				|| event.getItemId() == ItemID.EGNIOL_POTION_2
+				|| event.getItemId() == ItemID.EGNIOL_POTION_3
+				|| event.getItemId() == ItemID.EGNIOL_POTION_4)
+				&& config.showStamina())
+			{
+				// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
+				createStaminaTimer();
+				return;
+			}
+
+			if ((event.getItemId() == ItemID.ANTIFIRE_MIX1
+				|| event.getItemId() == ItemID.ANTIFIRE_MIX2)
+				&& config.showAntiFire())
+			{
+				// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
+				createGameTimer(ANTIFIRE);
+				return;
+			}
+
+			if ((event.getItemId() == ItemID.EXTENDED_ANTIFIRE_MIX1
+				|| event.getItemId() == ItemID.EXTENDED_ANTIFIRE_MIX2)
+				&& config.showAntiFire())
+			{
+				// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
+				createGameTimer(EXANTIFIRE);
+				return;
+			}
+
+			if ((event.getItemId() == ItemID.SUPER_ANTIFIRE_MIX1
+				|| event.getItemId() == ItemID.SUPER_ANTIFIRE_MIX2)
+				&& config.showAntiFire())
+			{
+				// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
+				createGameTimer(SUPERANTIFIRE);
+				return;
+			}
+
+			if ((event.getItemId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX1
+				|| event.getItemId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX2)
+				&& config.showAntiFire())
+			{
+				// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
+				createGameTimer(EXSUPERANTIFIRE);
+				return;
+			}
 		}
 
-		if (config.showAntiFire()
-			&& event.getMenuOption().contains("Drink")
-			&& (event.getId() == ItemID.ANTIFIRE_MIX1
-			|| event.getId() == ItemID.ANTIFIRE_MIX2))
+		if (event.getMenuAction() == MenuAction.CC_OP)
 		{
-			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
-			createGameTimer(ANTIFIRE);
-			return;
-		}
-
-		if (config.showAntiFire()
-			&& event.getMenuOption().contains("Drink")
-			&& (event.getId() == ItemID.EXTENDED_ANTIFIRE_MIX1
-			|| event.getId() == ItemID.EXTENDED_ANTIFIRE_MIX2))
-		{
-			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
-			createGameTimer(EXANTIFIRE);
-			return;
-		}
-
-		if (config.showAntiFire()
-			&& event.getMenuOption().contains("Drink")
-			&& (event.getId() == ItemID.SUPER_ANTIFIRE_MIX1
-			|| event.getId() == ItemID.SUPER_ANTIFIRE_MIX2))
-		{
-			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
-			createGameTimer(SUPERANTIFIRE);
-			return;
-		}
-
-		if (config.showAntiFire()
-			&& event.getMenuOption().contains("Drink")
-			&& (event.getId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX1
-			|| event.getId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX2))
-		{
-			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
-			createGameTimer(EXSUPERANTIFIRE);
-			return;
-		}
-
-		TeleportWidget teleportWidget = TeleportWidget.of(event.getParam1());
-		if (teleportWidget != null)
-		{
-			lastTeleportClicked = teleportWidget;
+			TeleportWidget teleportWidget = TeleportWidget.of(event.getParam1());
+			if (teleportWidget != null)
+			{
+				lastTeleportClicked = teleportWidget;
+			}
 		}
 	}
 
@@ -576,7 +577,7 @@ public class TimersPlugin extends Plugin
 
 		if (config.showOverload() && message.startsWith("You drink some of your") && message.contains("overload"))
 		{
-			if (client.getVar(Varbits.IN_RAID) == 1)
+			if (client.getVarbitValue(Varbits.IN_RAID) == 1)
 			{
 				createGameTimer(OVERLOAD_RAID);
 			}
@@ -774,7 +775,7 @@ public class TimersPlugin extends Plugin
 			}
 		}
 
-		if (message.equals(TZHAAR_DEFEATED_MESSAGE) || TZHAAR_COMPLETE_MESSAGE.matcher(message).matches())
+		if (message.equals(TZHAAR_DEFEATED_MESSAGE))
 		{
 			log.debug("Stopping tzhaar timer");
 			removeTzhaarTimer();

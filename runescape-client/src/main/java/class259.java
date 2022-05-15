@@ -2,61 +2,38 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ia")
+@ObfuscatedName("io")
 public class class259 {
-	@ObfuscatedName("o")
+	@ObfuscatedName("dk")
 	@ObfuscatedSignature(
-		descriptor = "Lpg;"
+		descriptor = "Lfl;"
 	)
-	@Export("titlebuttonSprite")
-	static IndexedSprite titlebuttonSprite;
+	@Export("js5SocketTask")
+	static Task js5SocketTask;
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("gu")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1157177731"
+		descriptor = "(Ljava/lang/String;ZI)V",
+		garbageValue = "-2064241274"
 	)
-	public static void method4999() {
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) { // L: 116
-			if (ArchiveDiskActionHandler.field3869 != 0) { // L: 117
-				ArchiveDiskActionHandler.field3869 = 1; // L: 118
-
-				try {
-					ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock.wait(); // L: 120
-				} catch (InterruptedException var3) { // L: 122
-				}
+	@Export("drawLoadingMessage")
+	static final void drawLoadingMessage(String var0, boolean var1) {
+		if (Client.showLoadingMessages) { // L: 4565
+			byte var2 = 4; // L: 4566
+			int var3 = var2 + 6; // L: 4567
+			int var4 = var2 + 6; // L: 4568
+			int var5 = class149.fontPlain12.lineWidth(var0, 250); // L: 4569
+			int var6 = class149.fontPlain12.lineCount(var0, 250) * 13; // L: 4570
+			Rasterizer2D.Rasterizer2D_fillRectangle(var3 - var2, var4 - var2, var2 + var5 + var2, var2 + var6 + var2, 0); // L: 4571
+			Rasterizer2D.Rasterizer2D_drawRectangle(var3 - var2, var4 - var2, var5 + var2 + var2, var2 + var2 + var6, 16777215); // L: 4572
+			class149.fontPlain12.drawLines(var0, var3, var4, var5, var6, 16777215, -1, 1, 1, 0); // L: 4573
+			class132.method2836(var3 - var2, var4 - var2, var2 + var2 + var5, var2 + var6 + var2); // L: 4574
+			if (var1) { // L: 4575
+				DevicePcmPlayerProvider.rasterProvider.drawFull(0, 0); // L: 4576
+			} else {
+				ItemContainer.method2061(var3, var4, var5, var6); // L: 4579
 			}
 
 		}
-	} // L: 125
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(ILkq;IIIZI)V",
-		garbageValue = "1434577237"
-	)
-	public static void method4997(int var0, AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
-		class265.musicPlayerStatus = 1; // L: 49
-		class265.musicTrackArchive = var1; // L: 50
-		class265.musicTrackGroupId = var2; // L: 51
-		class140.musicTrackFileId = var3; // L: 52
-		class167.musicTrackVolume = var4; // L: 53
-		MusicPatch.musicTrackBoolean = var5; // L: 54
-		GrandExchangeOfferNameComparator.pcmSampleLength = var0; // L: 55
-	} // L: 56
-
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "0"
-	)
-	public static void method4998(int var0) {
-		class265.musicPlayerStatus = 1; // L: 59
-		class265.musicTrackArchive = null; // L: 60
-		class265.musicTrackGroupId = -1; // L: 61
-		class140.musicTrackFileId = -1; // L: 62
-		class167.musicTrackVolume = 0; // L: 63
-		MusicPatch.musicTrackBoolean = false; // L: 64
-		GrandExchangeOfferNameComparator.pcmSampleLength = var0; // L: 65
-	} // L: 66
+	} // L: 4581
 }
